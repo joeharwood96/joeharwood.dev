@@ -45,7 +45,7 @@ const projects = [
 export default function Home() {
   return (
     <div className="h-screen">
-      <nav className="hidden md:flex justify-between items-center py-8 md:px-24 lg:w-4/5 mx-auto ">
+      <nav className="flex justify-between items-center py-8 md:px-24 lg:w-4/5 mx-auto ">
         <h1 className="text-2xl font-bold">jh.dev</h1>
         <div className="flex gap-4">
           <Link
