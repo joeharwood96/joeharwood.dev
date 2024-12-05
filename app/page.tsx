@@ -69,13 +69,14 @@ export default function Home() {
         <div className="flex md:justify-center md:items-center h-full">
           <div className="flex flex-col gap-4">
             <h2 className="text-2xl md:text-4xl font-bold lg:text-6xl">
-              Welcome, I&apos;m Joe. <br /> A Software Engineer based in
-              Amsterdam.
+              Welcome, I&apos;m Joe!
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl">
-              I&apos;m a software engineer with a passion for building products
-              that are both functional and beautiful. I&apos;m currently working
-              at{" "}
+            <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+              A Software Engineer based in Amsterdam.
+            </h3>
+            <p className="text-lg md:text-xl lg:text-2xl md:w-4/5">
+              I have a passion for building products that are both functional
+              and beautiful. I&apos;m currently working at{" "}
               <Link
                 href="https://www.booking.com"
                 target="_blank"
