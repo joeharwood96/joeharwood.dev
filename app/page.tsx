@@ -8,19 +8,19 @@ const projects = [
     title: "file-drive",
     description: "A file storage and sharing application.",
     link: "https://github.com/joeharwood96/file-drive",
-    tags: ["Next.js", "Tailwind CSS", "Typescript"],
+    tags: ["Next.js", "Tailwind CSS", "Typescript", "Convex"],
   },
   {
     title: "umami",
     description: "A simple analytics tool for your website.",
     link: "https://github.com/joeharwood96/umami",
-    tags: ["Next.js", "Tailwind CSS", "Node.js"],
+    tags: ["Next.js", "Tailwind CSS", "Node.js", "MongoDB"],
   },
   {
     title: "appical-news",
     description: "A news aggregator.",
     link: "https://github.com/joeharwood96/appical-news",
-    tags: ["Next.js", "Tailwind CSS", "Typescript"],
+    tags: ["Next.js", "Tailwind CSS", "Typescript", "PostgreSQL"],
   },
   {
     title: "simple-bank",
