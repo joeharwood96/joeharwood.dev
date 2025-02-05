@@ -5,16 +5,16 @@ import ProjectCard from "@/components/project-card";
 
 const projects = [
   {
+    title: "Queryhub.ai",
+    description: "AI Agent for database queries.",
+    link: "https://www.queryhub.ai",
+    tags: ["Next.js", "Tailwind CSS", "Typescript", "PostgreSQL"],
+  },
+  {
     title: "file-drive",
     description: "A file storage and sharing application.",
     link: "https://github.com/joeharwood96/file-drive",
     tags: ["Next.js", "Tailwind CSS", "Typescript", "Convex"],
-  },
-  {
-    title: "umami",
-    description: "A simple analytics tool for your website.",
-    link: "https://github.com/joeharwood96/umami",
-    tags: ["Next.js", "Tailwind CSS", "Node.js", "MongoDB"],
   },
   {
     title: "appical-news",

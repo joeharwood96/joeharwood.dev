@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github } from "lucide-react";
+import { ExternalLink, Github } from "lucide-react";
 
 type Project = {
   title: string;
@@ -26,7 +26,12 @@ export default function ProjectCard({ project }: { project: Project }) {
           className="flex gap-2 items-center border border-black rounded-lg px-2 py-1 w-fit"
           target="_blank"
         >
-          <Github className="w-4 h-4" /> View Project
+          {project.link.includes("github") ? (
+            <Github className="w-4 h-4" />
+          ) : (
+            <ExternalLink className="w-4 h-4" />
+          )}
+          View Project
         </Link>
       </div>
     </div>
