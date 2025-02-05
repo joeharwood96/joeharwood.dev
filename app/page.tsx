@@ -20,7 +20,7 @@ const projects = [
     title: "appical-news",
     description: "A news aggregator.",
     link: "https://github.com/joeharwood96/appical-news",
-    tags: ["Next.js", "Tailwind CSS", "Typescript", "PostgreSQL"],
+    tags: ["React", "Typescript", "Node.js", "PostgreSQL"],
   },
   {
     title: "simple-bank",
