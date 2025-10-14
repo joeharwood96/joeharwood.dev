@@ -17,7 +17,6 @@ import {
   SiJest,
   SiDocker,
   SiKubernetes,
-  SiGit,
   SiGithub,
 } from "react-icons/si";
 
@@ -173,7 +172,7 @@ export default function Home() {
               <Link
                 href="/Joseph Harwood - Freelance CV.pdf"
                 target="_blank"
-                className="border border-black rounded-lg px-4 py-2 w-fit flex items-center gap-2 hover:bg-black hover:text-white transition-colors"
+                className="border border-black rounded-lg px-4 py-2 w-fit flex items-center gap-2 bg-white hover:bg-black hover:text-white transition-colors"
               >
                 <Download className="w-4 h-4" />
                 Download CV
@@ -188,7 +187,7 @@ export default function Home() {
             {experiences.map((exp) => (
               <div
                 key={exp.company}
-                className="border border-black rounded-lg p-6 flex flex-col gap-4"
+                className="border border-black rounded-lg p-6 flex flex-col gap-4 bg-white"
               >
                 <div className="flex flex-col gap-2">
                   <h3 className="text-xl md:text-2xl font-bold">{exp.role}</h3>
@@ -209,7 +208,7 @@ export default function Home() {
             {techStack.map((stack) => (
               <div
                 key={stack.category}
-                className="border border-black rounded-lg p-6 flex flex-col gap-4"
+                className="border border-black rounded-lg p-6 flex flex-col gap-4 bg-white"
               >
                 <h3 className="text-xl font-bold bg-[#FFC497] rounded-lg px-3 py-2 w-fit">
                   {stack.category}

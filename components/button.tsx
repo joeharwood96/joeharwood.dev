@@ -14,7 +14,7 @@ export default function Button({
     return (
       <Link
         href={href}
-        className="border border-black rounded-lg px-4 py-2 w-fit"
+        className="border border-black rounded-lg px-4 py-2 w-fit bg-white"
       >
         {children}
       </Link>
@@ -23,7 +23,7 @@ export default function Button({
 
   return (
     <button
-      className="border border-black rounded-lg px-4 py-2 w-fit"
+      className="border border-black rounded-lg px-4 py-2 w-fit bg-white"
       onClick={onClick}
     >
       {children}

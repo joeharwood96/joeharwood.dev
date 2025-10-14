@@ -10,7 +10,7 @@ type Project = {
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="border border-black rounded-lg flex flex-col gap-4 hover:scale-105 transition-all duration-300">
+    <div className="border border-black rounded-lg flex flex-col gap-4 hover:scale-105 transition-all duration-300 bg-white">
       <div className="flex flex-col gap-4 p-4">
         <h3 className="text-2xl font-bold">{project.title}</h3>
         <p>{project.description}</p>
