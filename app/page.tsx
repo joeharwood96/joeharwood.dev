@@ -138,7 +138,7 @@ const projects = [
 export default function Home() {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-      <div className="h-screen flex flex-col relative">
+      <div className="h-screen flex flex-col relative w-full">
         <motion.nav
           className="flex justify-between items-center px-12 py-6 md:px-24 lg:w-4/5 mx-auto w-full"
           initial={{ y: -100, opacity: 0 }}
@@ -181,9 +181,9 @@ export default function Home() {
           </div>
         </motion.nav>
 
-        <div className="flex-1 flex items-center justify-center px-12 md:px-24 lg:w-4/5 mx-auto">
+        <div className="flex-1 flex items-center justify-center w-full">
           <motion.div
-            className="flex flex-col gap-4"
+            className="flex flex-col gap-4 px-12 md:px-24 lg:w-4/5 w-full mx-auto"
             initial="hidden"
             animate="visible"
             variants={{
