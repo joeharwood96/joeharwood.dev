@@ -1,7 +1,9 @@
+"use client";
 import Link from "next/link";
 import { Github, Linkedin, Download } from "lucide-react";
 import Button from "@/components/button";
 import ProjectCard from "@/components/project-card";
+import ScrollIndicator from "@/components/scroll-indicator";
 import {
   SiReact,
   SiNextdotjs,
@@ -19,6 +21,7 @@ import {
   SiKubernetes,
   SiGithub,
 } from "react-icons/si";
+import { motion } from "framer-motion";
 
 const experiences = [
   {
@@ -134,41 +137,107 @@ const projects = [
 
 export default function Home() {
   return (
-    <div className="h-screen">
-      <nav className="flex justify-between items-center px-12 py-12 md:px-24 lg:w-4/5 mx-auto ">
-        <h1 className="text-2xl font-bold">jh.dev</h1>
-        <div className="flex gap-4">
-          <Link
-            href="https://github.com/joeharwood96"
-            target="_blank"
-            className="hover:underline"
-          >
-            <Github className="w-4 h-4" />
-          </Link>
-          <Link
-            href="https://www.linkedin.com/in/josephharwood-3/"
-            target="_blank"
-            className="hover:underline"
-          >
-            <Linkedin className="w-4 h-4" />
-          </Link>
-        </div>
-      </nav>
+    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+      <div className="h-screen flex flex-col relative">
+        <motion.nav
+          className="flex justify-between items-center px-12 py-6 md:px-24 lg:w-4/5 mx-auto w-full"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h1 className="text-2xl font-bold">jh.dev</h1>
+          <div className="flex gap-6 items-center">
+            <div className="hidden md:flex gap-6">
+              <Link href="#experience" className="text-sm hover:underline">
+                Experience
+              </Link>
+              <Link href="#tech-stack" className="text-sm hover:underline">
+                Tech Stack
+              </Link>
+              <Link href="#projects" className="text-sm hover:underline">
+                Projects
+              </Link>
+            </div>
+            <div className="flex gap-4">
+              <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href="https://github.com/joeharwood96"
+                  target="_blank"
+                  className="hover:underline"
+                >
+                  <Github className="w-4 h-4" />
+                </Link>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.2, rotate: 5 }} whileTap={{ scale: 0.9 }}>
+                <Link
+                  href="https://www.linkedin.com/in/josephharwood-3/"
+                  target="_blank"
+                  className="hover:underline"
+                >
+                  <Linkedin className="w-4 h-4" />
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </motion.nav>
 
-      <main className="flex flex-col gap-16 px-12 py-12 md:px-24 lg:w-4/5 mx-auto">
-        <div className="flex md:justify-center md:items-center h-full">
-          <div className="flex flex-col gap-4">
-            <h2 className="text-2xl md:text-4xl font-bold lg:text-6xl">
+        <div className="flex-1 flex items-center justify-center px-12 md:px-24 lg:w-4/5 mx-auto">
+          <motion.div
+            className="flex flex-col gap-4"
+            initial="hidden"
+            animate="visible"
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            <motion.h2
+              className="text-2xl md:text-4xl font-bold lg:text-6xl"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
               Welcome, I&apos;m Joe!
-            </h2>
-            <h3 className="text-lg md:text-xl lg:text-2xl font-bold">
+            </motion.h2>
+            <motion.h3
+              className="text-lg md:text-xl lg:text-2xl font-bold"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
               Freelance Software Engineer based in Amsterdam.
-            </h3>
-            <p className="text-lg md:text-xl lg:text-2xl md:w-4/5">
+            </motion.h3>
+            <motion.p
+              className="text-lg md:text-xl lg:text-2xl md:w-4/5"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
               I deliver full-stack web development services for startups and SMEs with a focus on scalable, performant applications. Previously at Booking.com, Appical, and IBM.
-            </p>
-            <div className="flex gap-4 flex-wrap">
-              <Button href="mailto:joeharwooddev@gmail.com">Let&apos;s Connect</Button>
+            </motion.p>
+            <motion.div
+              className="flex gap-4 flex-wrap"
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <motion.a
+                href="mailto:joeharwooddev@gmail.com"
+                className="border border-black rounded-lg px-4 py-2 w-fit bg-white hover:bg-black hover:text-white transition-colors"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                joeharwooddev@gmail.com
+              </motion.a>
               <Link
                 href="/Joseph Harwood - Freelance CV.pdf"
                 target="_blank"
@@ -177,17 +246,34 @@ export default function Home() {
                 <Download className="w-4 h-4" />
                 Download CV
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
+        <ScrollIndicator />
+      </div>
+
+      <main className="flex flex-col gap-16 px-12 py-12 md:px-24 lg:w-4/5 mx-auto">
         <div className="flex flex-col gap-8" id="experience">
-          <h2 className="text-2xl md:text-4xl font-bold">Experience</h2>
+          <motion.h2
+            className="text-2xl md:text-4xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Experience
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {experiences.map((exp) => (
-              <div
+            {experiences.map((exp, index) => (
+              <motion.div
                 key={exp.company}
                 className="border border-black rounded-lg p-6 flex flex-col gap-4 bg-white"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
               >
                 <div className="flex flex-col gap-2">
                   <h3 className="text-xl md:text-2xl font-bold">{exp.role}</h3>
@@ -197,43 +283,89 @@ export default function Home() {
                   </p>
                 </div>
                 <p className="text-sm md:text-base">{exp.summary}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         <div className="flex flex-col gap-8" id="tech-stack">
-          <h2 className="text-2xl md:text-4xl font-bold">What I Use</h2>
+          <motion.h2
+            className="text-2xl md:text-4xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            What I Use
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {techStack.map((stack) => (
-              <div
+            {techStack.map((stack, stackIndex) => (
+              <motion.div
                 key={stack.category}
                 className="border border-black rounded-lg p-6 flex flex-col gap-4 bg-white"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: stackIndex * 0.1 }}
               >
-                <h3 className="text-xl font-bold bg-[#FFC497] rounded-lg px-3 py-2 w-fit">
+                <motion.h3
+                  className="text-xl font-bold bg-[#FFC497] rounded-lg px-3 py-2 w-fit"
+                  whileHover={{ scale: 1.05 }}
+                >
                   {stack.category}
-                </h3>
-                <div className="flex flex-col gap-3">
+                </motion.h3>
+                <motion.div
+                  className="flex flex-col gap-3"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: {
+                      opacity: 1,
+                      transition: {
+                        staggerChildren: 0.1,
+                      },
+                    },
+                  }}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                >
                   {stack.technologies.map((tech) => {
                     const Icon = tech.icon;
                     return (
-                      <div key={tech.name} className="flex items-start gap-3">
-                        <Icon className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                      <motion.div
+                        key={tech.name}
+                        className="flex items-start gap-3"
+                        variants={{
+                          hidden: { opacity: 0, x: -20 },
+                          visible: { opacity: 1, x: 0 },
+                        }}
+                      >
+                        <motion.div whileHover={{ scale: 1.2, rotate: 360 }} transition={{ duration: 0.3 }}>
+                          <Icon className="w-6 h-6 flex-shrink-0 mt-0.5" />
+                        </motion.div>
                         <div className="flex flex-col gap-1">
                           <p className="font-semibold text-base">{tech.name}</p>
                           <p className="text-sm text-gray-600">{tech.description}</p>
                         </div>
-                      </div>
+                      </motion.div>
                     );
                   })}
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             ))}
           </div>
         </div>
 
         <div className="flex flex-col gap-8" id="projects">
-          <h2 className="text-2xl md:text-4xl font-bold">Projects</h2>
+          <motion.h2
+            className="text-2xl md:text-4xl font-bold"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Projects
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project) => (
               <ProjectCard key={project.title} project={project} />
@@ -243,9 +375,9 @@ export default function Home() {
       </main>
       <footer className="flex justify-center items-center py-8">
         <p className="text-sm">
-          &copy; {new Date().getFullYear()} Joe Harwood. All rights reserved.
+          &copy; 2025 Joe Harwood. All rights reserved.
         </p>
       </footer>
-    </div>
+    </motion.div>
   );
 }
