@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { Github, Linkedin, Download } from "lucide-react";
-import Button from "@/components/button";
 import ProjectCard from "@/components/project-card";
 import ScrollIndicator from "@/components/scroll-indicator";
 import {
