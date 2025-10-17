@@ -174,14 +174,14 @@ const projects = [
     description:
       "Local club discovery platform for Amsterdam, connecting people through interest-based communities from book clubs to sports groups.",
     link: "https://weeknights.nl/",
-    tags: ["Next.js", "TypeScript", "Community"],
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
     image: "/weeknights.png",
   },
   {
     title: "Queryhub.ai",
     description: "AI Agent for database queries.",
     link: "https://github.com/joeharwood96/queryhub.ai",
-    tags: ["Next.js", "Tailwind CSS", "Typescript", "PostgreSQL"],
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js", "PostgreSQL"],
     video: "https://www.youtube.com/embed/Mt9EzgNsm6M",
   },
 ];
