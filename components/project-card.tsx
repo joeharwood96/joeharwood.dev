@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -8,12 +9,14 @@ type Project = {
   description: string;
   link: string;
   tags: string[];
+  image?: string;
+  video?: string;
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
   return (
     <motion.div
-      className="border border-black rounded-lg flex flex-col gap-4 bg-white"
+      className="border border-black rounded-lg flex flex-col overflow-hidden bg-white"
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
@@ -26,9 +29,29 @@ export default function ProjectCard({ project }: { project: Project }) {
       }}
       style={{ transformStyle: "preserve-3d" }}
     >
-      <div className="flex flex-col gap-4 p-4">
+      {project.video ? (
+        <div className="relative w-full aspect-video">
+          <iframe
+            src={project.video}
+            title={project.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+          />
+        </div>
+      ) : project.image ? (
+        <div className="relative w-full aspect-video">
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            className="object-cover"
+          />
+        </div>
+      ) : null}
+      <div className="flex flex-col gap-4 p-4 flex-1">
         <h3 className="text-2xl font-bold">{project.title}</h3>
-        <p>{project.description}</p>
+        <p className="flex-1">{project.description}</p>
         <motion.div
           className="flex flex-wrap gap-2"
           variants={{
