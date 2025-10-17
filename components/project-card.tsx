@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 type Project = {
   title: string;
   description: string;
-  link: string;
+  link?: string;
   tags: string[];
   image?: string;
   video?: string;
@@ -81,20 +81,22 @@ export default function ProjectCard({ project }: { project: Project }) {
             </motion.p>
           ))}
         </motion.div>
-        <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
-          <Link
-            href={project.link}
-            className="flex gap-2 items-center border border-black rounded-lg px-2 py-1 w-fit hover:bg-black hover:text-white transition-colors"
-            target="_blank"
-          >
-            {project.link.includes("github") ? (
-              <Github className="w-4 h-4" />
-            ) : (
-              <ExternalLink className="w-4 h-4" />
-            )}
-            View Project
-          </Link>
-        </motion.div>
+        {project.link && (
+          <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.2 }}>
+            <Link
+              href={project.link}
+              className="flex gap-2 items-center border border-black rounded-lg px-2 py-1 w-fit hover:bg-black hover:text-white transition-colors"
+              target="_blank"
+            >
+              {project.link.includes("github") ? (
+                <Github className="w-4 h-4" />
+              ) : (
+                <ExternalLink className="w-4 h-4" />
+              )}
+              View Project
+            </Link>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   );
