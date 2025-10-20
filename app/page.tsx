@@ -177,6 +177,14 @@ const projects = [
     image: "/bookingcom.png",
   },
   {
+    title: "RailGPT",
+    description:
+      "AI-powered train travel assistant for the Netherlands. Find trains, check schedules, and plan journeys using natural language queries.",
+    link: "https://www.railgpt.app",
+    tags: ["Next.js", "TypeScript", "AI", "OpenAI"],
+    image: "/railgpt.png",
+  },
+  {
     title: "Weeknights",
     description:
       "Local club discovery platform for Amsterdam, connecting people through interest-based communities from book clubs to sports groups.",
