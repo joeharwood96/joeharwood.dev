@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { Github, Linkedin, Download } from "lucide-react";
 import ProjectCard from "@/components/project-card";
 import ScrollIndicator from "@/components/scroll-indicator";
@@ -215,7 +216,14 @@ export default function Home() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-2xl font-bold">jh.dev</h1>
+          <Image
+            src="/dev-joe.png"
+            alt="DevJoe"
+            width={150}
+            height={31}
+            priority
+            unoptimized
+          />
           <div className="flex gap-6 items-center">
             <div className="hidden md:flex gap-6">
               <Link href="#experience" className="text-sm hover:underline">
