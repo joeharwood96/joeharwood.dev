@@ -171,11 +171,12 @@ const techStack = [
 
 const projects = [
   {
-    title: "Year in Travel",
+    title: "Weeknights",
     description:
-      "Personalized travel statistics feature for Booking.com users, similar to Spotify Wrapped. Won 1st place in Booking.com's internal hackathon.",
-    tags: ["React", "TypeScript", "Node.js", "Java"],
-    image: "/bookingcom.png",
+      "Local club discovery platform for Amsterdam, connecting people through interest-based communities from book clubs to sports groups.",
+    link: "https://weeknights.nl/",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
+    image: "/weeknights.png",
   },
   {
     title: "RailGPT",
@@ -186,12 +187,11 @@ const projects = [
     image: "/railgpt.png",
   },
   {
-    title: "Weeknights",
+    title: "Year in Travel",
     description:
-      "Local club discovery platform for Amsterdam, connecting people through interest-based communities from book clubs to sports groups.",
-    link: "https://weeknights.nl/",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
-    image: "/weeknights.png",
+      "Personalized travel statistics feature for Booking.com users, similar to Spotify Wrapped. Won 1st place in Booking.com's internal hackathon.",
+    tags: ["React", "TypeScript", "Node.js", "Java"],
+    image: "/bookingcom.png",
   },
   {
     title: "Queryhub.ai",
