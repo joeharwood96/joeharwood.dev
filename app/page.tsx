@@ -208,6 +208,7 @@ export default function Home() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
+      style={{ background: "var(--background)" }}
     >
       <div className="h-screen flex flex-col relative w-full">
         <motion.nav
