@@ -316,7 +316,7 @@ export default function Home() {
 
       <main className="flex flex-col gap-16 md:gap-24 lg:gap-32 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 mx-auto mb-16 md:mb-24">
         <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12 -mt-12 md:-mt-16"
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12 -mt-4 sm:-mt-8 md:-mt-16"
           id="experience"
           aria-label="Experience and Companies"
         >
