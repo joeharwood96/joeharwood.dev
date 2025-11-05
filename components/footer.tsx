@@ -50,6 +50,12 @@ export default function Footer() {
               >
                 Tech Stack
               </Link>
+              <Link
+                href="/#contact"
+                className="text-sm text-[#6B7280] hover:text-black transition-colors"
+              >
+                Contact
+              </Link>
             </div>
 
             <div className="flex flex-col gap-3">

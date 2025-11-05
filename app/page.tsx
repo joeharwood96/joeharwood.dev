@@ -6,6 +6,7 @@ import ProjectCard from "@/components/project-card";
 import LogoCarousel from "@/components/logo-carousel";
 import AnimatedGridBackground from "@/components/animated-grid-background";
 import Footer from "@/components/footer";
+import ContactForm from "@/components/contact-form";
 import { projects } from "@/data/projects";
 import {
   SiReact,
@@ -255,6 +256,12 @@ export default function Home() {
               >
                 Tech Stack
               </Link>
+              <Link
+                href="#contact"
+                className="text-sm hover:opacity-60 transition-opacity"
+              >
+                Contact
+              </Link>
             </div>
             <div className="flex gap-3 md:gap-4">
               <Link
@@ -314,13 +321,13 @@ export default function Home() {
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              <a
-                href="mailto:joeharwooddev@gmail.com"
+              <Link
+                href="#contact"
                 className="relative bg-black text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors overflow-hidden group"
               >
                 <span className="relative z-10">Get in touch</span>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-              </a>
+              </Link>
               <Link
                 href="/Joseph Harwood - Freelance CV.pdf"
                 target="_blank"
@@ -419,6 +426,23 @@ export default function Home() {
               })
             )}
           </motion.div>
+        </section>
+
+        <section
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
+          id="contact"
+          aria-label="Contact Form"
+        >
+          <motion.p
+            className="text-sm text-[#6B7280]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            Get In Touch
+          </motion.p>
+          <ContactForm />
         </section>
       </main>
       <Footer />
