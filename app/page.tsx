@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Download } from "lucide-react";
+import { Download, Github, Linkedin } from "lucide-react";
 import ProjectCard from "@/components/project-card";
 import LogoMarquee from "@/components/logo-marquee";
 import AnimatedGridBackground from "@/components/animated-grid-background";
@@ -239,6 +239,22 @@ export default function Home() {
               unoptimized
             />
           </Link>
+          <div className="flex gap-3 md:hidden">
+            <Link
+              href="https://github.com/joeharwood96"
+              target="_blank"
+              className="hover:opacity-60 transition-opacity"
+            >
+              <Github className="w-5 h-5" />
+            </Link>
+            <Link
+              href="https://www.linkedin.com/in/josephharwood-3/"
+              target="_blank"
+              className="hover:opacity-60 transition-opacity"
+            >
+              <Linkedin className="w-5 h-5" />
+            </Link>
+          </div>
         </motion.nav>
 
         <div className="flex-1 flex items-center justify-center w-full">
