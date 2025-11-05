@@ -1,12 +1,13 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Github, Linkedin, Download } from "lucide-react";
+import { Download } from "lucide-react";
 import ProjectCard from "@/components/project-card";
 import LogoMarquee from "@/components/logo-marquee";
 import AnimatedGridBackground from "@/components/animated-grid-background";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
+import NavigationDock from "@/components/navigation-dock";
 import { BlurFade } from "@/components/ui/blur-fade";
 import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { projects } from "@/data/projects";
@@ -238,50 +239,6 @@ export default function Home() {
               unoptimized
             />
           </Link>
-          <div className="flex gap-6 md:gap-8 items-center">
-            <div className="hidden md:flex gap-8">
-              <Link
-                href="#experience"
-                className="text-sm hover:opacity-60 transition-opacity"
-              >
-                Experience
-              </Link>
-              <Link
-                href="#projects"
-                className="text-sm hover:opacity-60 transition-opacity"
-              >
-                Projects
-              </Link>
-              <Link
-                href="#tech-stack"
-                className="text-sm hover:opacity-60 transition-opacity"
-              >
-                Tech Stack
-              </Link>
-              <Link
-                href="#contact"
-                className="text-sm hover:opacity-60 transition-opacity"
-              >
-                Contact
-              </Link>
-            </div>
-            <div className="flex gap-3 md:gap-4">
-              <Link
-                href="https://github.com/joeharwood96"
-                target="_blank"
-                className="hover:opacity-60 transition-opacity"
-              >
-                <Github className="w-5 h-5" />
-              </Link>
-              <Link
-                href="https://www.linkedin.com/in/josephharwood-3/"
-                target="_blank"
-                className="hover:opacity-60 transition-opacity"
-              >
-                <Linkedin className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
         </motion.nav>
 
         <div className="flex-1 flex items-center justify-center w-full">
@@ -419,6 +376,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+      <NavigationDock />
     </motion.div>
   );
 }
