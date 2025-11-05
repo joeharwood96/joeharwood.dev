@@ -3,8 +3,6 @@ import localFont from "next/font/local";
 import { Pixelify_Sans } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
-import ScrollProgress from "@/components/scroll-progress";
-import VideoIntro from "@/components/video-intro";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -38,8 +36,6 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${pixelifySans.variable} antialiased`}
         suppressHydrationWarning
       >
-        <VideoIntro />
-        <ScrollProgress />
         {children}
         <Analytics />
       </body>
