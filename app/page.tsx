@@ -220,7 +220,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="min-h-[70vh] flex flex-col relative w-full">
+      <div className="min-h-[80vh] flex flex-col relative w-full pb-16 sm:pb-20 md:pb-24">
         <AnimatedGridBackground />
         <motion.nav
           className="flex justify-between items-center px-6 py-6 sm:px-8 md:px-12 md:py-8 lg:px-24 lg:w-4/5 mx-auto w-full"
@@ -259,7 +259,7 @@ export default function Home() {
 
         <div className="flex-1 flex items-center justify-center w-full">
           <motion.div
-            className="flex flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 w-full mx-auto"
+            className="flex flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 w-full mx-auto py-8"
             initial="hidden"
             animate="visible"
             variants={{
@@ -316,7 +316,7 @@ export default function Home() {
 
       <main className="flex flex-col gap-16 md:gap-24 lg:gap-32 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 mx-auto mb-16 md:mb-24">
         <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12 -mt-4 sm:-mt-8 md:-mt-16"
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
           id="experience"
           aria-label="Experience and Companies"
         >
