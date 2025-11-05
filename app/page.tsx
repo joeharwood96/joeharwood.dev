@@ -125,6 +125,86 @@ const techStack = [
 ];
 
 export default function Home() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        "@id": "https://joeharwood.dev/#person",
+        name: "Joe Harwood",
+        url: "https://joeharwood.dev",
+        image: "https://joeharwood.dev/dev-joe.png",
+        jobTitle: "Freelance Software Engineer",
+        description:
+          "Freelance Software Engineer based in Amsterdam, delivering full-stack solutions for startups and SMEs.",
+        email: "joeharwooddev@gmail.com",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Amsterdam",
+          addressCountry: "NL",
+        },
+        sameAs: [
+          "https://github.com/joeharwood96",
+          "https://www.linkedin.com/in/josephharwood-3/",
+        ],
+        knowsAbout: [
+          "React",
+          "Next.js",
+          "TypeScript",
+          "Node.js",
+          "Java",
+          "Python",
+          "Full-Stack Development",
+          "Web Development",
+        ],
+        alumniOf: [
+          {
+            "@type": "Organization",
+            name: "Booking.com",
+          },
+          {
+            "@type": "Organization",
+            name: "IBM",
+          },
+          {
+            "@type": "Organization",
+            name: "Appical",
+          },
+        ],
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://joeharwood.dev/#website",
+        url: "https://joeharwood.dev",
+        name: "DevJoe - Freelance Software Engineer",
+        description:
+          "Portfolio and services of Joe Harwood, a freelance software engineer based in Amsterdam.",
+        publisher: {
+          "@id": "https://joeharwood.dev/#person",
+        },
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://joeharwood.dev/#projects",
+        name: "Featured Projects",
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          item: {
+            "@type": "CreativeWork",
+            name: project.title,
+            description: project.description,
+            url: `https://joeharwood.dev/projects/${project.slug}`,
+            author: {
+              "@id": "https://joeharwood.dev/#person",
+            },
+            keywords: project.tags.join(", "),
+          },
+        })),
+      },
+    ],
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -132,6 +212,10 @@ export default function Home() {
       transition={{ duration: 0.5 }}
       style={{ background: "var(--background)" }}
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="min-h-[70vh] flex flex-col relative w-full">
         <AnimatedGridBackground />
         <motion.nav
@@ -251,7 +335,11 @@ export default function Home() {
       </div>
 
       <main className="flex flex-col gap-16 md:gap-24 lg:gap-32 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 mx-auto mb-16 md:mb-24">
-        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12 -mt-12 md:-mt-16" id="experience">
+        <section
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12 -mt-12 md:-mt-16"
+          id="experience"
+          aria-label="Experience and Companies"
+        >
           <motion.div
             className="flex flex-col gap-4"
             initial={{ opacity: 0, y: 20 }}
@@ -262,9 +350,13 @@ export default function Home() {
             <p className="text-sm text-[#6B7280]">Trusted By</p>
           </motion.div>
           <LogoCarousel />
-        </div>
+        </section>
 
-        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12" id="projects">
+        <section
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
+          id="projects"
+          aria-label="Featured Projects"
+        >
           <motion.p
             className="text-sm text-[#6B7280]"
             initial={{ opacity: 0, y: 20 }}
@@ -279,9 +371,13 @@ export default function Home() {
               <ProjectCard key={project.title} project={project} />
             ))}
           </div>
-        </div>
+        </section>
 
-        <div className="flex flex-col gap-8 sm:gap-10 md:gap-12" id="tech-stack">
+        <section
+          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
+          id="tech-stack"
+          aria-label="Technology Stack"
+        >
           <motion.p
             className="text-sm text-[#6B7280]"
             initial={{ opacity: 0, y: 20 }}
@@ -323,7 +419,7 @@ export default function Home() {
               })
             )}
           </motion.div>
-        </div>
+        </section>
       </main>
       <Footer />
     </motion.div>

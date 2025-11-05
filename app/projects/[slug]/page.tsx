@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Footer from "@/components/footer";
 import { projects } from "@/data/projects";
+import { Metadata } from "next";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -11,15 +12,135 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function ProjectPage({ params }: { params: { slug: string } }) {
-  const project = projects.find((p) => p.slug === params.slug);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) {
+    return {
+      title: "Project Not Found",
+    };
+  }
+
+  const baseUrl = "https://joeharwood.dev";
+  const projectUrl = `${baseUrl}/projects/${project.slug}`;
+  const ogImage = project.image
+    ? `${baseUrl}${project.image}`
+    : `${baseUrl}/og-image.png`;
+
+  return {
+    title: `${project.title} - ${project.company} | DevJoe`,
+    description: project.description,
+    keywords: [
+      ...project.tags,
+      project.company,
+      "web development",
+      "software engineering",
+      "Joe Harwood",
+    ],
+    authors: [{ name: "Joe Harwood", url: baseUrl }],
+    openGraph: {
+      type: "article",
+      url: projectUrl,
+      title: `${project.title} - ${project.company}`,
+      description: project.description,
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: project.title,
+        },
+      ],
+      siteName: "DevJoe",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${project.title} - ${project.company}`,
+      description: project.description,
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: projectUrl,
+    },
+  };
+}
+
+export default async function ProjectPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
 
   if (!project) {
     notFound();
   }
 
+  const baseUrl = "https://joeharwood.dev";
+  const projectUrl = `${baseUrl}/projects/${project.slug}`;
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: baseUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Projects",
+            item: `${baseUrl}/#projects`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: project.title,
+            item: projectUrl,
+          },
+        ],
+      },
+      {
+        "@type": "CreativeWork",
+        "@id": projectUrl,
+        name: project.title,
+        description: project.fullDescription,
+        url: projectUrl,
+        image: project.image ? `${baseUrl}${project.image}` : undefined,
+        author: {
+          "@type": "Person",
+          name: "Joe Harwood",
+          url: baseUrl,
+        },
+        creator: {
+          "@type": "Person",
+          name: "Joe Harwood",
+        },
+        keywords: project.tags.join(", "),
+        about: project.features.join(", "),
+        applicationCategory: "WebApplication",
+        ...(project.link && { sameAs: project.link }),
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen bg-white">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Navigation */}
       <nav className="flex justify-between items-center px-12 py-8 md:px-24 lg:w-4/5 mx-auto w-full">
         <Link href="/">
@@ -42,7 +163,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       </nav>
 
       {/* Hero Section */}
-      <div className="px-12 py-12 md:px-24 lg:w-4/5 mx-auto">
+      <article className="px-12 py-12 md:px-24 lg:w-4/5 mx-auto">
         <div className="flex flex-col gap-8 mb-12">
           <div className="flex flex-col gap-4">
             <p className="text-sm text-[#6B7280] uppercase tracking-wider font-semibold">
@@ -160,7 +281,7 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             </div>
           </div>
         </div>
-      </div>
+      </article>
 
       {/* Footer */}
       <div className="mt-24">

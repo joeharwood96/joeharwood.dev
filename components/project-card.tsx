@@ -35,7 +35,7 @@ export default function ProjectCard({ project }: { project: Project }) {
               src={project.image}
               alt={project.title}
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
               className="object-cover transition-transform duration-700 group-hover:scale-110"
               quality={100}
               priority
