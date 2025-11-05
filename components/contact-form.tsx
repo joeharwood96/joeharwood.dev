@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -58,13 +59,9 @@ export default function ContactForm() {
   };
 
   return (
-    <motion.form
+    <form
       onSubmit={handleSubmit}
       className="w-full max-w-2xl flex flex-col gap-6"
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
     >
       <div className="flex flex-col gap-2">
         <label htmlFor="name" className="text-sm font-medium">
@@ -118,13 +115,13 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col gap-4">
-        <button
+        <ShimmerButton
           type="submit"
           disabled={status === "loading"}
-          className="bg-black text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors disabled:opacity-50 disabled:cursor-not-allowed w-fit"
+          className="text-sm font-medium w-fit"
         >
           {status === "loading" ? "Sending..." : "Send Message"}
-        </button>
+        </ShimmerButton>
 
         {status === "success" && (
           <motion.p
@@ -146,6 +143,6 @@ export default function ContactForm() {
           </motion.p>
         )}
       </div>
-    </motion.form>
+    </form>
   );
 }

@@ -3,10 +3,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Github, Linkedin, Download } from "lucide-react";
 import ProjectCard from "@/components/project-card";
-import LogoCarousel from "@/components/logo-carousel";
+import LogoMarquee from "@/components/logo-marquee";
 import AnimatedGridBackground from "@/components/animated-grid-background";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
+import { BlurFade } from "@/components/ui/blur-fade";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { projects } from "@/data/projects";
 import {
   SiReact,
@@ -321,13 +323,11 @@ export default function Home() {
                 visible: { opacity: 1, y: 0 },
               }}
             >
-              <Link
-                href="#contact"
-                className="relative bg-black text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors overflow-hidden group"
-              >
-                <span className="relative z-10">Get in touch</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-              </Link>
+              <a href="#contact">
+                <ShimmerButton className="text-sm font-medium">
+                  Get in touch
+                </ShimmerButton>
+              </a>
               <Link
                 href="/Joseph Harwood - Freelance CV.pdf"
                 target="_blank"
@@ -347,16 +347,12 @@ export default function Home() {
           id="experience"
           aria-label="Experience and Companies"
         >
-          <motion.div
-            className="flex flex-col gap-4"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <BlurFade delay={0.2} inView>
             <p className="text-sm text-[#6B7280]">Trusted By</p>
-          </motion.div>
-          <LogoCarousel />
+          </BlurFade>
+          <BlurFade delay={0.4} inView>
+            <LogoMarquee />
+          </BlurFade>
         </section>
 
         <section
@@ -364,18 +360,14 @@ export default function Home() {
           id="projects"
           aria-label="Featured Projects"
         >
-          <motion.p
-            className="text-sm text-[#6B7280]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Featured Work
-          </motion.p>
+          <BlurFade delay={0.2} inView>
+            <p className="text-sm text-[#6B7280]">Featured Work</p>
+          </BlurFade>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            {projects.map((project) => (
-              <ProjectCard key={project.title} project={project} />
+            {projects.map((project, idx) => (
+              <BlurFade key={project.title} delay={0.2 + idx * 0.1} inView>
+                <ProjectCard project={project} />
+              </BlurFade>
             ))}
           </div>
         </section>
@@ -385,47 +377,32 @@ export default function Home() {
           id="tech-stack"
           aria-label="Technology Stack"
         >
-          <motion.p
-            className="text-sm text-[#6B7280]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Tech Stack
-          </motion.p>
+          <BlurFade delay={0.2} inView>
+            <p className="text-sm text-[#6B7280]">Tech Stack</p>
+          </BlurFade>
 
-          <motion.div
-            className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 sm:gap-8 md:gap-12 w-full"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 sm:gap-8 md:gap-12 w-full">
             {techStack.flatMap((stack) =>
               stack.technologies.map((tech, index) => {
                 const Icon = tech.icon;
                 return (
-                  <motion.div
-                    key={tech.name}
-                    className="flex flex-col items-center gap-3 group"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
-                    whileHover={{ scale: 1.1 }}
-                  >
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-3xl bg-[#F5F5F5] group-hover:bg-white transition-colors border border-black/5 group-hover:border-black/10 group-hover:shadow-lg">
-                      <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#6B7280] group-hover:text-black transition-colors" />
-                    </div>
-                    <span className="text-xs font-medium text-[#6B7280] group-hover:text-black transition-colors">
-                      {tech.name}
-                    </span>
-                  </motion.div>
+                  <BlurFade key={tech.name} delay={0.2 + index * 0.02} inView>
+                    <motion.div
+                      className="flex flex-col items-center gap-3 group"
+                      whileHover={{ scale: 1.1 }}
+                    >
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-3xl bg-[#F5F5F5] group-hover:bg-white transition-colors border border-black/5 group-hover:border-black/10 group-hover:shadow-lg">
+                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#6B7280] group-hover:text-black transition-colors" />
+                      </div>
+                      <span className="text-xs font-medium text-[#6B7280] group-hover:text-black transition-colors">
+                        {tech.name}
+                      </span>
+                    </motion.div>
+                  </BlurFade>
                 );
               })
             )}
-          </motion.div>
+          </div>
         </section>
 
         <section
@@ -433,16 +410,12 @@ export default function Home() {
           id="contact"
           aria-label="Contact Form"
         >
-          <motion.p
-            className="text-sm text-[#6B7280]"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            Get In Touch
-          </motion.p>
-          <ContactForm />
+          <BlurFade delay={0.2} inView>
+            <p className="text-sm text-[#6B7280]">Get In Touch</p>
+          </BlurFade>
+          <BlurFade delay={0.4} inView>
+            <ContactForm />
+          </BlurFade>
         </section>
       </main>
       <Footer />
