@@ -25,7 +25,7 @@ export default function NavigationDock() {
   return (
     <div className="fixed left-4 top-1/2 -translate-y-1/2 z-50 hidden md:block">
       <TooltipProvider>
-        <Dock direction="middle" className="flex-col h-max w-[58px]">
+        <Dock direction="middle" className="flex-col h-max w-[58px]" disableMagnification={true}>
           <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -40,7 +40,7 @@ export default function NavigationDock() {
                   <Home className="size-4" />
                 </a>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Home</p>
               </TooltipContent>
             </Tooltip>
@@ -59,7 +59,7 @@ export default function NavigationDock() {
                   <Briefcase className="size-4" />
                 </a>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Experience</p>
               </TooltipContent>
             </Tooltip>
@@ -78,7 +78,7 @@ export default function NavigationDock() {
                   <Folder className="size-4" />
                 </a>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Projects</p>
               </TooltipContent>
             </Tooltip>
@@ -97,7 +97,7 @@ export default function NavigationDock() {
                   <Code2 className="size-4" />
                 </a>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Tech Stack</p>
               </TooltipContent>
             </Tooltip>
@@ -116,7 +116,7 @@ export default function NavigationDock() {
                   <Mail className="size-4" />
                 </a>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Contact</p>
               </TooltipContent>
             </Tooltip>
@@ -137,7 +137,7 @@ export default function NavigationDock() {
                   <Github className="size-4" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>GitHub</p>
               </TooltipContent>
             </Tooltip>
@@ -157,7 +157,7 @@ export default function NavigationDock() {
                   <Linkedin className="size-4" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>LinkedIn</p>
               </TooltipContent>
             </Tooltip>
@@ -177,7 +177,7 @@ export default function NavigationDock() {
                   <Download className="size-4" />
                 </Link>
               </TooltipTrigger>
-              <TooltipContent>
+              <TooltipContent side="right">
                 <p>Download CV</p>
               </TooltipContent>
             </Tooltip>
