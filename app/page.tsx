@@ -220,7 +220,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="min-h-[80vh] flex flex-col relative w-full pb-16 sm:pb-20 md:pb-24">
+      <div className="relative w-full">
         <AnimatedGridBackground />
         <motion.nav
           className="flex justify-between items-center px-6 py-6 sm:px-8 md:px-12 md:py-8 lg:px-24 lg:w-4/5 mx-auto w-full"
@@ -257,9 +257,9 @@ export default function Home() {
           </div>
         </motion.nav>
 
-        <div className="flex-1 flex items-center justify-center w-full">
+        <div className="w-full">
           <motion.div
-            className="flex flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 w-full mx-auto py-8"
+            className="flex flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 w-full mx-auto pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-32"
             initial="hidden"
             animate="visible"
             variants={{
