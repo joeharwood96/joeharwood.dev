@@ -46,7 +46,7 @@ export default function Footer() {
               joeharwooddev@gmail.com
             </a>
             <Link
-              href="/Joseph Harwood - Freelance CV.pdf"
+              href="/Joseph_Harwood_CV.pdf"
               target="_blank"
               className="text-white/80 hover:text-white transition-colors duration-500 link-underline w-fit"
             >
