@@ -3,6 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import Footer from "@/components/footer";
+import CustomCursor from "@/components/custom-cursor";
 import { projects } from "@/data/projects";
 import { Metadata } from "next";
 
@@ -136,53 +137,62 @@ export default async function ProjectPage({
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
+
+      <CustomCursor />
+
       {/* Navigation */}
-      <nav className="flex justify-between items-center px-12 py-8 md:px-24 lg:w-4/5 mx-auto w-full">
+      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 mix-blend-difference">
         <Link href="/">
           <Image
             src="/dev-joe.png"
             alt="DevJoe"
-            width={150}
-            height={31}
+            width={120}
+            height={25}
+            className="invert"
             priority
             unoptimized
           />
         </Link>
         <Link
-          href="/#projects"
-          className="flex items-center gap-2 text-sm hover:opacity-60 transition-opacity"
+          href="/#work"
+          className="flex items-center gap-2 text-sm text-white hover:opacity-60 transition-opacity duration-500"
         >
           <ArrowLeft className="w-4 h-4" />
-          Back to Projects
+          Back
         </Link>
       </nav>
 
       {/* Hero Section */}
-      <article className="px-12 py-12 md:px-24 lg:w-4/5 mx-auto">
-        <div className="flex flex-col gap-8 mb-12">
-          <div className="flex flex-col gap-4">
-            <p className="text-sm text-[#6B7280] uppercase tracking-wider font-semibold">
-              {project.company}
-            </p>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold">
-              {project.title}
-            </h1>
-            <p className="text-xl md:text-2xl text-[#6B7280] max-w-3xl">
-              {project.description}
-            </p>
+      <article className="pt-32 pb-24">
+        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto">
+          {/* Meta */}
+          <div className="flex items-center gap-4 mb-8">
+            <span className="mono-text text-[#525252]">{project.company}</span>
+            <span className="mono-text text-[#737373]">{project.year}</span>
           </div>
 
+          {/* Title */}
+          <h1 className="headline text-5xl md:text-7xl lg:text-8xl mb-8">
+            {project.title}
+          </h1>
+
+          {/* Description */}
+          <p className="text-xl md:text-2xl text-[#525252] body-text max-w-3xl mb-12">
+            {project.description}
+          </p>
+
+          {/* CTA */}
           {project.link && (
             <a
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-black text-white rounded-full px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors w-fit"
+              className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors duration-500"
             >
               View Live Project
               <ExternalLink className="w-4 h-4" />
@@ -190,103 +200,139 @@ export default async function ProjectPage({
           )}
         </div>
 
-        {/* Project Image/Video */}
+        {/* Media: video or image */}
         {project.video ? (
-          <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl mb-16">
-            <iframe
-              src={project.video}
-              title={project.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
+          <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
+            <div className="relative w-full aspect-video overflow-hidden">
+              <iframe
+                src={project.video}
+                title={project.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </div>
         ) : project.image ? (
-          <div className="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl mb-16">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover"
-              quality={100}
-              priority
-            />
+          <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
+            <div className="relative w-full aspect-video overflow-hidden">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover"
+                quality={100}
+                priority
+              />
+            </div>
           </div>
         ) : null}
 
-        {/* Project Details */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-16">
-          {/* Overview */}
-          <div className="md:col-span-2 flex flex-col gap-12">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">Overview</h2>
-              <p className="text-lg text-[#6B7280] leading-relaxed">
-                {project.fullDescription}
-              </p>
-            </div>
+        {/* Divider */}
+        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-24">
+          <div className="border-t border-black/10" />
+        </div>
 
-            {/* Features */}
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                Key Features
-              </h2>
-              <ul className="space-y-4">
-                {project.features.map((feature, index) => (
-                  <li key={index} className="flex gap-3">
-                    <span className="text-black font-bold mt-1">•</span>
-                    <span className="text-lg text-[#6B7280]">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Outcomes */}
-            {project.outcomes && (
+        {/* Content Grid */}
+        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
+            {/* Main content */}
+            <div className="md:col-span-2 flex flex-col gap-16">
+              {/* Overview */}
               <div>
-                <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                  Outcomes
-                </h2>
-                <p className="text-lg text-[#6B7280] leading-relaxed">
-                  {project.outcomes}
+                <p className="mono-text text-[#525252] mb-6">Overview</p>
+                <p className="text-lg text-[#525252] body-text leading-relaxed">
+                  {project.fullDescription}
                 </p>
               </div>
-            )}
-          </div>
 
-          {/* Sidebar - Technologies */}
-          <div className="flex flex-col gap-8">
-            <div className="bg-[#F5F5F5] rounded-3xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Technologies</h3>
-              <ul className="space-y-3">
-                {project.technologies.map((tech, index) => (
-                  <li key={index} className="text-sm text-[#6B7280]">
-                    {tech}
-                  </li>
-                ))}
-              </ul>
+              {/* Features */}
+              <div>
+                <p className="mono-text text-[#525252] mb-6">Key Features</p>
+                <ul className="space-y-4">
+                  {project.features.map((feature, index) => (
+                    <li key={index} className="flex gap-4">
+                      <span className="mono-text text-[#737373] text-xs mt-1">
+                        {String(index + 1).padStart(2, "0")}
+                      </span>
+                      <span className="text-lg text-[#525252] body-text">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Outcomes */}
+              {project.outcomes && (
+                <div>
+                  <p className="mono-text text-[#525252] mb-6">Outcomes</p>
+                  <p className="text-lg text-[#525252] body-text leading-relaxed">
+                    {project.outcomes}
+                  </p>
+                </div>
+              )}
             </div>
 
-            <div className="bg-[#F5F5F5] rounded-3xl p-8">
-              <h3 className="text-2xl font-bold mb-6">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs text-[#6B7280] px-3 py-1 border border-black/10 rounded-full bg-white"
-                  >
-                    {tag}
-                  </span>
-                ))}
+            {/* Sidebar */}
+            <div className="flex flex-col gap-12">
+              {/* Technologies */}
+              <div>
+                <p className="mono-text text-[#525252] mb-6">Technologies</p>
+                <ul className="space-y-3">
+                  {project.technologies.map((tech, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-[#525252] body-text pb-3 border-b border-black/5 last:border-0"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Tags */}
+              <div>
+                <p className="mono-text text-[#525252] mb-6">Stack</p>
+                <div className="flex flex-wrap gap-x-4 gap-y-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="mono-text text-[#737373] hover:text-black transition-colors duration-500"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </article>
 
-      {/* Footer */}
-      <div className="mt-24">
-        <Footer />
-      </div>
+      {/* Next Project */}
+      {(() => {
+        const currentIndex = projects.findIndex((p) => p.slug === project.slug);
+        const nextProject = projects[(currentIndex + 1) % projects.length];
+        return (
+          <section className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto py-24 border-t border-black/10">
+            <p className="mono-text text-[#525252] mb-4">Next Project</p>
+            <Link
+              href={`/projects/${nextProject.slug}`}
+              className="group flex items-center justify-between"
+            >
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter group-hover:opacity-60 transition-opacity duration-500">
+                {nextProject.title}
+              </h2>
+              <span className="mono-text text-[#737373] group-hover:text-black transition-colors duration-500">
+                View
+              </span>
+            </Link>
+          </section>
+        );
+      })()}
+
+      <Footer />
     </div>
   );
 }

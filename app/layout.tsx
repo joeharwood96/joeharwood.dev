@@ -1,38 +1,36 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { Pixelify_Sans } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
   weight: "100 900",
 });
-const pixelifySans = Pixelify_Sans({
-  subsets: ["latin"],
-  variable: "--font-pixelify-sans",
-  weight: ["400", "500", "600", "700"],
-});
 
 export const metadata: Metadata = {
-  title: "DevJoe - Freelance Software Engineer | Amsterdam",
+  title: "DevJoe - Freelance Next.js Developer | Amsterdam",
   description:
-    "Freelance Software Engineer based in Amsterdam, delivering full-stack solutions for startups and SMEs. Previously at Booking.com, Appical, and IBM. Expert in React, Next.js, TypeScript, and Node.js.",
+    "Freelance Next.js developer based in Amsterdam. Specialising in Next.js, headless CMS, TypeScript, and Node.js. Previously at Booking.com, IBM, and Appical.",
   keywords: [
-    "freelance software engineer",
-    "full-stack developer",
-    "Amsterdam developer",
-    "React developer",
     "Next.js developer",
+    "freelance Next.js developer",
+    "headless CMS developer",
     "TypeScript developer",
-    "web development Amsterdam",
+    "Next.js developer Amsterdam",
+    "freelance developer Amsterdam",
     "freelance developer Netherlands",
+    "React developer",
+    "full-stack developer",
+    "Node.js developer",
     "Joe Harwood",
     "DevJoe",
   ],
@@ -43,24 +41,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://joeharwood.dev",
-    title: "DevJoe - Freelance Software Engineer | Amsterdam",
+    title: "DevJoe - Freelance Next.js Developer | Amsterdam",
     description:
-      "Freelance Software Engineer based in Amsterdam, delivering full-stack solutions for startups and SMEs. Previously at Booking.com, Appical, and IBM.",
+      "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
     siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevJoe - Freelance Software Engineer",
+        alt: "DevJoe - Freelance Next.js Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevJoe - Freelance Software Engineer | Amsterdam",
+    title: "DevJoe - Freelance Next.js Developer | Amsterdam",
     description:
-      "Freelance Software Engineer based in Amsterdam. Full-stack web development services for startups and SMEs.",
+      "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -84,7 +82,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pixelifySans.variable} antialiased`}
+        className={`${inter.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
         {children}

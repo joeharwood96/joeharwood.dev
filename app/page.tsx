@@ -1,134 +1,50 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Download, Github, Linkedin } from "lucide-react";
+import { Plus } from "lucide-react";
 import ProjectCard from "@/components/project-card";
-import LogoMarquee from "@/components/logo-marquee";
-import AnimatedGridBackground from "@/components/animated-grid-background";
+import ProjectMarquee from "@/components/project-marquee";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
-import NavigationDock from "@/components/navigation-dock";
-import { BlurFade } from "@/components/ui/blur-fade";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
+import CustomCursor from "@/components/custom-cursor";
 import { projects } from "@/data/projects";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTypescript,
-  SiTailwindcss,
-  SiNodedotjs,
-  SiOpenjdk,
-  SiGo,
-  SiPython,
-  SiPostgresql,
-  SiMysql,
-  SiSupabase,
-  SiJest,
-  SiDocker,
-  SiKubernetes,
-  SiGithub,
-} from "react-icons/si";
-import { motion } from "framer-motion";
 
-const techStack = [
-  {
-    category: "Frontend",
-    technologies: [
-      {
-        name: "React",
-        description: "For building fast, interactive UIs",
-        icon: SiReact,
-      },
-      {
-        name: "Next.js",
-        description: "React framework with routing & SSR",
-        icon: SiNextdotjs,
-      },
-      {
-        name: "TypeScript",
-        description: "Typed JavaScript for safer code",
-        icon: SiTypescript,
-      },
-      {
-        name: "Tailwind CSS",
-        description: "Utility-first CSS framework",
-        icon: SiTailwindcss,
-      },
-    ],
-  },
-  {
-    category: "Backend",
-    technologies: [
-      {
-        name: "Node.js",
-        description: "JavaScript runtime for servers",
-        icon: SiNodedotjs,
-      },
-      {
-        name: "Java",
-        description: "Enterprise backend development",
-        icon: SiOpenjdk,
-      },
-      {
-        name: "GoLang",
-        description: "High-performance backend systems",
-        icon: SiGo,
-      },
-      {
-        name: "Python",
-        description: "Scripting and automation",
-        icon: SiPython,
-      },
-    ],
-  },
-  {
-    category: "Database",
-    technologies: [
-      {
-        name: "PostgreSQL",
-        description: "Powerful relational database",
-        icon: SiPostgresql,
-      },
-      {
-        name: "MySQL",
-        description: "Popular open-source database",
-        icon: SiMysql,
-      },
-      {
-        name: "Supabase",
-        description: "Open-source Firebase alternative",
-        icon: SiSupabase,
-      },
-    ],
-  },
-  {
-    category: "Tools & DevOps",
-    technologies: [
-      {
-        name: "Jest",
-        description: "JavaScript testing framework",
-        icon: SiJest,
-      },
-      {
-        name: "Docker",
-        description: "Containers for isolated environments",
-        icon: SiDocker,
-      },
-      {
-        name: "Kubernetes",
-        description: "Container orchestration",
-        icon: SiKubernetes,
-      },
-      {
-        name: "Git & GitHub",
-        description: "Version control and collaboration",
-        icon: SiGithub,
-      },
-    ],
-  },
-];
+// Animated line component for hero - reveals whole lines to avoid glyph clipping
+function AnimatedLine({
+  text,
+  delay = 0
+}: {
+  text: string;
+  delay?: number;
+}) {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsVisible(true), delay);
+    return () => clearTimeout(timer);
+  }, [delay]);
+
+  return (
+    <span
+      className="block px-[0.05em]"
+      style={{ clipPath: "inset(-5% -5% -15% -5%)" }}
+    >
+      <span
+        className={`block transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isVisible ? "translate-y-0" : "translate-y-[115%]"
+        }`}
+      >
+        {text}
+      </span>
+    </span>
+  );
+}
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -138,9 +54,9 @@ export default function Home() {
         name: "Joe Harwood",
         url: "https://joeharwood.dev",
         image: "https://joeharwood.dev/dev-joe.png",
-        jobTitle: "Freelance Software Engineer",
+        jobTitle: "Freelance Next.js Developer",
         description:
-          "Freelance Software Engineer based in Amsterdam, delivering full-stack solutions for startups and SMEs.",
+          "Freelance Next.js developer based in Amsterdam, specialising in Next.js, headless CMS, TypeScript, and full-stack web applications.",
         email: "joeharwooddev@gmail.com",
         address: {
           "@type": "PostalAddress",
@@ -152,40 +68,30 @@ export default function Home() {
           "https://www.linkedin.com/in/josephharwood-3/",
         ],
         knowsAbout: [
-          "React",
           "Next.js",
+          "React",
           "TypeScript",
           "Node.js",
-          "Java",
-          "Python",
+          "Headless CMS",
+          "Tailwind CSS",
           "Full-Stack Development",
           "Web Development",
         ],
         alumniOf: [
-          {
-            "@type": "Organization",
-            name: "Booking.com",
-          },
-          {
-            "@type": "Organization",
-            name: "IBM",
-          },
-          {
-            "@type": "Organization",
-            name: "Appical",
-          },
+          { "@type": "Organization", name: "Booking.com" },
+          { "@type": "Organization", name: "IBM" },
+          { "@type": "Organization", name: "Post Office" },
+          { "@type": "Organization", name: "Appical" },
         ],
       },
       {
         "@type": "WebSite",
         "@id": "https://joeharwood.dev/#website",
         url: "https://joeharwood.dev",
-        name: "DevJoe - Freelance Software Engineer",
+        name: "DevJoe - Freelance Next.js Developer",
         description:
-          "Portfolio and services of Joe Harwood, a freelance software engineer based in Amsterdam.",
-        publisher: {
-          "@id": "https://joeharwood.dev/#person",
-        },
+          "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
+        publisher: { "@id": "https://joeharwood.dev/#person" },
       },
       {
         "@type": "ItemList",
@@ -199,9 +105,7 @@ export default function Home() {
             name: project.title,
             description: project.description,
             url: `https://joeharwood.dev/projects/${project.slug}`,
-            author: {
-              "@id": "https://joeharwood.dev/#person",
-            },
+            author: { "@id": "https://joeharwood.dev/#person" },
             keywords: project.tags.join(", "),
           },
         })),
@@ -210,189 +114,202 @@ export default function Home() {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      style={{ background: "var(--background)" }}
-    >
+    <div className="bg-white text-black">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="relative w-full">
-        <AnimatedGridBackground />
-        <motion.nav
-          className="flex justify-between items-center px-6 py-6 sm:px-8 md:px-12 md:py-8 lg:px-24 lg:w-4/5 mx-auto w-full"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <Link href="/">
+
+      <CustomCursor />
+
+      {/* Fixed Header */}
+      <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
+        <nav className="flex justify-between items-center px-6 py-6 md:px-12">
+          <Link href="/" className="relative">
             <Image
               src="/dev-joe.png"
               alt="DevJoe"
               width={120}
               height={25}
-              className="md:w-[150px] md:h-[31px]"
+              className="invert"
               priority
               unoptimized
             />
           </Link>
-          <div className="flex gap-3 md:hidden">
-            <Link
-              href="https://github.com/joeharwood96"
-              target="_blank"
-              className="hover:opacity-60 transition-opacity"
-            >
-              <Github className="w-5 h-5" />
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/josephharwood-3/"
-              target="_blank"
-              className="hover:opacity-60 transition-opacity"
-            >
-              <Linkedin className="w-5 h-5" />
-            </Link>
-          </div>
-        </motion.nav>
-
-        <div className="w-full">
-          <motion.div
-            className="flex flex-col gap-8 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 w-full mx-auto pt-12 sm:pt-16 md:pt-20 pb-16 sm:pb-20 md:pb-24 lg:pb-32"
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0 },
-              visible: {
-                opacity: 1,
-                transition: {
-                  staggerChildren: 0.2,
-                },
-              },
-            }}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="w-10 h-10 flex items-center justify-center text-white hover:opacity-70 transition-opacity duration-500"
+            aria-label="Toggle menu"
           >
-            <motion.div
-              className="flex flex-col gap-4"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
+            <Plus
+              className={`w-6 h-6 transition-transform duration-500 ${
+                menuOpen ? "rotate-45" : ""
+              }`}
+            />
+          </button>
+        </nav>
+      </header>
+
+      {/* Menu Overlay */}
+      <div
+        className={`fixed inset-0 bg-black z-40 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          menuOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+      >
+        <div className="flex flex-col justify-center items-center h-full gap-8">
+          {[
+            { href: "#about", label: "About" },
+            { href: "#services", label: "Services" },
+            { href: "#work", label: "Work" },
+            { href: "#contact", label: "Contact" },
+          ].map((item, index) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className={`text-5xl md:text-7xl font-bold text-white tracking-tighter hover:opacity-50 transition-all duration-500 ${
+                menuOpen
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-8 opacity-0"
+              }`}
+              style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
             >
-              <p className="text-sm text-[#6B7280]">Full-Stack Development</p>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight">
-                Build scalable web applications with expert engineering.
-              </h1>
-              <p className="text-lg sm:text-xl md:text-2xl text-[#6B7280] max-w-3xl mt-4">
-                Freelance Software Engineer based in Amsterdam, delivering
-                full-stack solutions for startups and SMEs. Previously at
-                Booking.com, Appical, and IBM.
-              </p>
-            </motion.div>
-            <motion.div
-              className="flex gap-4 flex-wrap mt-4"
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              <a href="#contact">
-                <ShimmerButton className="text-sm font-medium">
-                  Get in touch
-                </ShimmerButton>
-              </a>
-              <Link
-                href="/Joseph Harwood - Freelance CV.pdf"
-                target="_blank"
-                className="border border-black rounded-full px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition-colors flex items-center gap-2"
-              >
-                <Download className="w-4 h-4" />
-                Download CV
-              </Link>
-            </motion.div>
-          </motion.div>
+              {item.label}
+            </a>
+          ))}
         </div>
       </div>
 
-      <main className="flex flex-col gap-16 md:gap-24 lg:gap-32 px-6 sm:px-8 md:px-12 lg:px-24 lg:w-4/5 mx-auto mb-16 md:mb-24">
-        <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
-          id="experience"
-          aria-label="Experience and Companies"
-        >
-          <BlurFade delay={0.2} inView>
-            <p className="text-sm text-[#6B7280]">Trusted By</p>
-          </BlurFade>
-          <BlurFade delay={0.4} inView>
-            <LogoMarquee />
-          </BlurFade>
-        </section>
-
-        <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
-          id="projects"
-          aria-label="Featured Projects"
-        >
-          <BlurFade delay={0.2} inView>
-            <p className="text-sm text-[#6B7280]">Featured Work</p>
-          </BlurFade>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
-            {projects.map((project, idx) => (
-              <BlurFade key={project.title} delay={0.2 + idx * 0.1} inView>
-                <ProjectCard project={project} />
-              </BlurFade>
-            ))}
+      {/* Hero Section */}
+      <section className="min-h-[80vh] flex flex-col justify-center items-center px-6 md:px-12 pt-32">
+        <div className="text-center">
+          <h1 className="headline text-[12vw] md:text-[10vw] leading-[1]">
+            <AnimatedLine text="Modern Web" delay={100} />
+            <AnimatedLine text="Development" delay={300} />
+          </h1>
+          <p className="text-xl md:text-2xl text-[#525252] mt-8 max-w-2xl mx-auto body-text opacity-0 animate-fade-in" style={{ animationDelay: "1s" }}>
+            Freelance developer based in Amsterdam, specialising in Next.js, headless CMS, and TypeScript applications.
+          </p>
+          <div className="flex gap-4 justify-center mt-10 opacity-0 animate-fade-in" style={{ animationDelay: "1.3s" }}>
+            <a
+              href="#contact"
+              className="bg-black text-white px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors duration-500"
+            >
+              Get in touch
+            </a>
+            <a
+              href="#work"
+              className="border border-black px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-500"
+            >
+              View work
+            </a>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
-          id="tech-stack"
-          aria-label="Technology Stack"
-        >
-          <BlurFade delay={0.2} inView>
-            <p className="text-sm text-[#6B7280]">Tech Stack</p>
-          </BlurFade>
+      {/* Project Marquee */}
+      <ProjectMarquee />
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-6 sm:gap-8 md:gap-12 w-full">
-            {techStack.flatMap((stack) =>
-              stack.technologies.map((tech, index) => {
-                const Icon = tech.icon;
-                return (
-                  <BlurFade key={tech.name} delay={0.2 + index * 0.02} inView>
-                    <motion.div
-                      className="flex flex-col items-center gap-3 group"
-                      whileHover={{ scale: 1.1 }}
-                    >
-                      <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center rounded-3xl bg-[#F5F5F5] group-hover:bg-white transition-colors border border-black/5 group-hover:border-black/10 group-hover:shadow-lg">
-                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 text-[#6B7280] group-hover:text-black transition-colors" />
-                      </div>
-                      <span className="text-xs font-medium text-[#6B7280] group-hover:text-black transition-colors">
-                        {tech.name}
-                      </span>
-                    </motion.div>
-                  </BlurFade>
-                );
-              })
+      {/* About Section */}
+      <section id="about" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto">
+          <p className="mono-text text-[#525252] mb-6">About</p>
+          <p className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
+            I build fast, scalable web applications with{" "}
+            <span className="text-[#525252]">Next.js</span>,{" "}
+            <span className="text-[#525252]">headless CMS</span>, and{" "}
+            <span className="text-[#525252]">TypeScript</span>.
+          </p>
+          <p className="text-lg md:text-xl text-[#525252] body-text mt-8 max-w-3xl leading-relaxed">
+            Previously engineering at Booking.com, IBM, Post Office, and Appical. Now I help startups and businesses ship modern web products — from marketing sites with headless CMS to full-stack SaaS applications.
+          </p>
+          <div className="flex flex-wrap gap-4 mt-12">
+            {["Next.js", "React", "TypeScript", "Node.js", "Headless CMS", "Tailwind CSS", "Supabase", "PostgreSQL"].map(
+              (tech) => (
+                <span
+                  key={tech}
+                  className="mono-text text-[#737373] hover:text-black transition-colors duration-500"
+                >
+                  {tech}
+                </span>
+              )
             )}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section
-          className="flex flex-col gap-8 sm:gap-10 md:gap-12"
-          id="contact"
-          aria-label="Contact Form"
-        >
-          <BlurFade delay={0.2} inView>
-            <p className="text-sm text-[#6B7280]">Get In Touch</p>
-          </BlurFade>
-          <BlurFade delay={0.4} inView>
-            <ContactForm />
-          </BlurFade>
-        </section>
-      </main>
+      {/* Services Section */}
+      <section id="services" className="px-6 md:px-12 lg:px-24 py-24 md:py-32 border-t border-black/5">
+        <div className="max-w-7xl mx-auto">
+          <p className="mono-text text-[#525252] mb-6">What I Do</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-16">
+            Services
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            {[
+              {
+                title: "Next.js Development",
+                description: "High-performance web applications built with Next.js — server-side rendering, static generation, API routes, and the App Router.",
+              },
+              {
+                title: "Headless CMS Integration",
+                description: "Content-driven websites powered by Sanity, Contentful, or Strapi. Fully editable by your team, fast for your users.",
+              },
+              {
+                title: "Full-Stack Applications",
+                description: "End-to-end product development from database design to deployment. Authentication, payments, real-time features — the full stack.",
+              },
+              {
+                title: "API & Backend Development",
+                description: "RESTful and GraphQL APIs built with Node.js and TypeScript. Third-party integrations, data pipelines, and microservices.",
+              },
+            ].map((service) => (
+              <div key={service.title} className="flex flex-col gap-4 group">
+                <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
+                  {service.title}
+                </h3>
+                <p className="text-[#525252] body-text leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section id="work" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex justify-between items-end mb-16">
+            <div>
+              <p className="mono-text text-[#525252] mb-6">Featured Work</p>
+              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
+                Selected Projects
+              </h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section id="contact" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
+        <div className="max-w-7xl mx-auto">
+          <p className="mono-text text-[#525252] mb-6">Get In Touch</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-16">
+            Let&apos;s work together
+          </h2>
+          <ContactForm />
+        </div>
+      </section>
+
       <Footer />
-      <NavigationDock />
-    </motion.div>
+    </div>
   );
 }

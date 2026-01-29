@@ -2,6 +2,7 @@ export type Project = {
   slug: string;
   title: string;
   company: string;
+  year: string;
   description: string;
   fullDescription: string;
   link?: string;
@@ -18,18 +19,19 @@ export const projects: Project[] = [
     slug: "weeknights",
     title: "Weeknights",
     company: "Personal Project",
+    year: "2025",
     description:
-      "Local club discovery platform for Amsterdam, connecting people through interest-based communities from book clubs to sports groups.",
+      "Social discovery platform for Amsterdam. Find and join local clubs — book clubs, running groups, cooking classes, language practice, board games, and more.",
     fullDescription:
-      "Weeknights is a community-driven platform designed to help Amsterdam residents discover and join local clubs and interest groups. The platform connects people with shared interests, from book clubs to sports teams, making it easy to build meaningful connections in the city.",
+      "Weeknights is a social discovery platform that helps Amsterdam residents find and join local clubs and community events. The platform offers a comprehensive directory of clubs across categories including art and crafts, running, book clubs, sports and fitness, language exchange, and business networking. Each club has a detailed profile with descriptions, images, and upcoming events, making it easy to connect with like-minded people and build lasting friendships through shared interests.",
     link: "https://weeknights.nl/",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
     image: "/weeknights-new.png",
     features: [
-      "Browse and search local clubs by interest category",
-      "User authentication and profile management",
-      "Real-time updates on club activities and events",
-      "Responsive design for mobile and desktop",
+      "Club directory with categories spanning art, sports, social, language, and networking",
+      "Detailed club profiles with descriptions, images, and event listings",
+      "Event discovery for workshops, meetups, and group activities",
+      "Location-focused community building for Amsterdam residents",
     ],
     technologies: [
       "Next.js 15 for server-side rendering and routing",
@@ -37,24 +39,25 @@ export const projects: Project[] = [
       "Supabase for authentication and database",
       "Tailwind CSS for styling",
     ],
-    outcomes: "Successfully launched with active user base in Amsterdam",
+    outcomes: "Successfully launched with active user base in Amsterdam, helping people combat social isolation by connecting through shared interests",
   },
   {
     slug: "railgpt",
     title: "RailGPT",
     company: "Personal Project",
+    year: "2024",
     description:
-      "AI-powered train travel assistant for the Netherlands. Find trains, check schedules, and plan journeys using natural language queries.",
+      "Conversational AI assistant for Dutch train travel. Ask questions like \"next train from Rotterdam to The Hague\" and get instant schedule results.",
     fullDescription:
-      "RailGPT transforms the way Dutch travelers plan their train journeys by leveraging AI to provide natural language queries for train schedules, route planning, and real-time updates. The platform integrates with NS (Dutch Railways) API to deliver accurate and up-to-date information.",
+      "RailGPT is a conversational AI assistant that makes planning train travel in the Netherlands effortless. Instead of navigating timetable apps, users simply ask natural language questions — like \"Find trains from Amsterdam to Utrecht tomorrow at 9am\" or \"What time is the next train from Eindhoven to Maastricht?\" — and get instant, accurate schedule results powered by the NS (Dutch Railways) API.",
     link: "https://www.railgpt.app",
     tags: ["Next.js", "TypeScript", "AI", "OpenAI"],
     image: "/railgpt-new.png",
     features: [
-      "Natural language queries for train schedules",
-      "Real-time train departure and arrival information",
-      "Multi-route journey planning with transfers",
-      "Integration with OpenAI for intelligent responses",
+      "Conversational natural language interface for train queries",
+      "Time-specific schedule searches across all Dutch stations",
+      "Real-time departure and arrival information from NS API",
+      "Multi-city route planning with transfer details",
     ],
     technologies: [
       "Next.js for full-stack application",
@@ -62,12 +65,13 @@ export const projects: Project[] = [
       "NS API integration for real-time data",
       "TypeScript for type safety",
     ],
-    outcomes: "Helping travelers plan journeys more intuitively",
+    outcomes: "Making Dutch train travel planning conversational and intuitive, removing the friction of traditional timetable interfaces",
   },
   {
     slug: "year-in-travel",
     title: "Year in Travel",
     company: "Booking.com",
+    year: "2023",
     description:
       "Personalized travel statistics feature for Booking.com users, similar to Spotify Wrapped. Won 1st place in Booking.com's internal hackathon.",
     fullDescription:
@@ -93,7 +97,8 @@ export const projects: Project[] = [
     slug: "queryhub",
     title: "Queryhub.ai",
     company: "Personal Project",
-    description: "AI Agent for database queries.",
+    year: "2024",
+    description: "AI-powered database query assistant. Write SQL using natural language — connect your database, ask a question, and get optimised queries instantly.",
     fullDescription:
       "Queryhub.ai is an intelligent database query assistant that helps developers and data analysts write SQL queries using natural language. The platform leverages AI to understand intent and generate optimized database queries.",
     link: "https://github.com/joeharwood96/queryhub.ai",

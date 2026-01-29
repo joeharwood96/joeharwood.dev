@@ -13,6 +13,10 @@ export default {
   ],
   theme: {
   	extend: {
+  		fontFamily: {
+  			sans: ['var(--font-inter)', 'Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+  			mono: ['var(--font-geist-mono)', 'Geist Mono', 'SF Mono', 'Monaco', 'monospace'],
+  		},
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
@@ -60,12 +64,18 @@ export default {
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
   		},
+  		transitionTimingFunction: {
+  			'expo-out': 'cubic-bezier(0.16, 1, 0.3, 1)',
+  		},
   		animation: {
   			'shimmer-slide': 'shimmer-slide var(--speed) ease-in-out infinite alternate',
   			'spin-around': 'spin-around calc(var(--speed) * 2) infinite linear',
   			'marquee': 'marquee var(--duration) linear infinite',
   			'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
   			'aurora': 'aurora 8s ease-in-out infinite alternate',
+  			'text-reveal': 'text-reveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+  			'fade-in': 'fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+  			'slide-up': 'slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
   		},
   		keyframes: {
   			'shimmer-slide': {
@@ -123,6 +133,34 @@ export default {
   				'100%': {
   					backgroundPosition: '0% 50%',
   					transform: 'rotate(-5deg) scale(0.9)',
+  				},
+  			},
+  			'text-reveal': {
+  				from: {
+  					transform: 'translateY(100%)',
+  					opacity: '0',
+  				},
+  				to: {
+  					transform: 'translateY(0)',
+  					opacity: '1',
+  				},
+  			},
+  			'fade-in': {
+  				from: {
+  					opacity: '0',
+  				},
+  				to: {
+  					opacity: '1',
+  				},
+  			},
+  			'slide-up': {
+  				from: {
+  					transform: 'translateY(40px)',
+  					opacity: '0',
+  				},
+  				to: {
+  					transform: 'translateY(0)',
+  					opacity: '1',
   				},
   			},
   		}

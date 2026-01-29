@@ -1,26 +1,19 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-import { motion } from "framer-motion";
 import { Project } from "@/data/projects";
 
 export default function ProjectCard({ project }: { project: Project }) {
+  const hasMedia = project.video || project.image;
+
   return (
-    <Link href={`/projects/${project.slug}`}>
-      <motion.div
-        className="relative rounded-3xl overflow-hidden bg-white flex flex-col group cursor-pointer"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-100px" }}
-        transition={{ duration: 0.5 }}
-        whileHover={{
-          scale: 1.02,
-        }}
-      >
-        {/* Visual content */}
-        {project.video ? (
-          <div className="relative w-full aspect-video overflow-hidden rounded-b-3xl">
+    <Link href={`/projects/${project.slug}`} className="group block">
+      <article className="flex flex-col">
+        {/* Card area */}
+        <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm">
+          {project.video ? (
             <iframe
               src={project.video}
               title={project.title}
@@ -28,43 +21,62 @@ export default function ProjectCard({ project }: { project: Project }) {
               allowFullScreen
               className="w-full h-full"
             />
-          </div>
-        ) : project.image ? (
-          <div className="relative w-full aspect-video overflow-hidden rounded-b-3xl">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-110"
-              quality={100}
-              priority
-            />
-            {/* Dark overlay that appears on hover */}
-            <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-          </div>
-        ) : null}
+          ) : project.image ? (
+            <>
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover img-grayscale"
+                priority
+              />
+              {/* Hover overlay */}
+              <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
+            </>
+          ) : (
+            /* Fallback: typographic card for projects without media */
+            <div className="w-full h-full bg-[#F5F5F5] flex flex-col justify-between p-8 md:p-10">
+              <div className="flex justify-between items-start">
+                <span className="mono-text text-[#737373] text-xs">{project.company}</span>
+                <span className="mono-text text-[#737373] text-xs">{project.year}</span>
+              </div>
+              <div className="flex-1 flex items-center justify-center">
+                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tighter text-center text-black group-hover:opacity-60 transition-opacity duration-500">
+                  {project.title}
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2 justify-center">
+                {project.tags.slice(0, 3).map((tag) => (
+                  <span key={tag} className="mono-text text-[#737373] text-[11px]">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
 
-        {/* Content */}
-        <div className="flex flex-col gap-2 p-4 sm:py-6 md:py-8">
-          <p className="text-xs font-semibold uppercase tracking-wider text-[#6B7280] transition-colors group-hover:text-black">
-            {project.company}
-          </p>
-          <h3 className="text-2xl md:text-3xl font-bold">{project.title}</h3>
+          {/* Arrow icon - appears on hover */}
+          <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+            <div className={`w-10 h-10 rounded-full flex items-center justify-center ${hasMedia ? "bg-white" : "bg-black"}`}>
+              <ArrowUpRight className={`w-5 h-5 ${hasMedia ? "text-black" : "text-white"}`} />
+            </div>
+          </div>
         </div>
 
-        {/* Hover Arrow */}
-        <motion.div
-          className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileHover={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            <ArrowUpRight className="w-5 h-5 text-white" />
+        {/* Metadata row */}
+        <div className="flex items-center justify-between pt-4 mt-4 border-t border-black/10">
+          <div className="flex flex-col gap-1">
+            <h3 className="text-xl md:text-2xl font-bold tracking-tight group-hover:opacity-70 transition-opacity duration-500">
+              {project.title}
+            </h3>
+            <div className="flex items-center gap-4">
+              <span className="mono-text text-[#525252]">{project.company}</span>
+              <span className="mono-text text-[#737373]">{project.year}</span>
+            </div>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </article>
     </Link>
   );
 }

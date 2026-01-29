@@ -1,7 +1,6 @@
 "use client";
+
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { ShimmerButton } from "@/components/ui/shimmer-button";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -35,13 +34,11 @@ export default function ContactForm() {
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
 
-      // Reset success message after 5 seconds
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
       setStatus("error");
       setErrorMessage(error instanceof Error ? error.message : "Failed to send message");
 
-      // Reset error message after 5 seconds
       setTimeout(() => {
         setStatus("idle");
         setErrorMessage("");
@@ -61,10 +58,10 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full max-w-2xl flex flex-col gap-6"
+      className="w-full max-w-2xl flex flex-col gap-8"
     >
       <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="text-sm font-medium">
+        <label htmlFor="name" className="mono-text text-[#525252]">
           Name
         </label>
         <input
@@ -75,13 +72,13 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "loading"}
-          className="px-4 py-3 border border-black/10 rounded-2xl focus:outline-none focus:border-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
           placeholder="Your name"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="text-sm font-medium">
+        <label htmlFor="email" className="mono-text text-[#525252]">
           Email
         </label>
         <input
@@ -92,13 +89,13 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "loading"}
-          className="px-4 py-3 border border-black/10 rounded-2xl focus:outline-none focus:border-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
           placeholder="your.email@example.com"
         />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="text-sm font-medium">
+        <label htmlFor="message" className="mono-text text-[#525252]">
           Message
         </label>
         <textarea
@@ -108,39 +105,31 @@ export default function ContactForm() {
           onChange={handleChange}
           required
           disabled={status === "loading"}
-          rows={6}
-          className="px-4 py-3 border border-black/10 rounded-2xl focus:outline-none focus:border-black transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
+          rows={4}
+          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
           placeholder="Tell me about your project..."
         />
       </div>
 
-      <div className="flex flex-col gap-4">
-        <ShimmerButton
+      <div className="flex flex-col gap-4 mt-4">
+        <button
           type="submit"
           disabled={status === "loading"}
-          className="text-sm font-medium w-fit"
+          className="bg-black text-white px-8 py-4 font-medium hover:bg-black/80 transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed w-fit"
         >
           {status === "loading" ? "Sending..." : "Send Message"}
-        </ShimmerButton>
+        </button>
 
         {status === "success" && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-sm text-green-600"
-          >
+          <p className="text-sm text-black">
             Thanks! Your message has been sent successfully.
-          </motion.p>
+          </p>
         )}
 
         {status === "error" && (
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-sm text-red-600"
-          >
+          <p className="text-sm text-red-600">
             {errorMessage || "Failed to send message. Please try again."}
-          </motion.p>
+          </p>
         )}
       </div>
     </form>
