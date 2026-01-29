@@ -13,15 +13,7 @@ export default function ProjectCard({ project }: { project: Project }) {
       <article className="flex flex-col">
         {/* Card area */}
         <div className="relative w-full aspect-[4/3] overflow-hidden rounded-sm">
-          {project.video ? (
-            <iframe
-              src={project.video}
-              title={project.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
-          ) : project.image ? (
+          {project.image ? (
             <>
               <Image
                 src={project.image}

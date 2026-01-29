@@ -26,7 +26,7 @@ export const projects: Project[] = [
       "Weeknights is a social discovery platform that helps Amsterdam residents find and join local clubs and community events. The platform offers a comprehensive directory of clubs across categories including art and crafts, running, book clubs, sports and fitness, language exchange, and business networking. Each club has a detailed profile with descriptions, images, and upcoming events, making it easy to connect with like-minded people and build lasting friendships through shared interests.",
     link: "https://weeknights.nl/",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
-    image: "/weeknights-new.png",
+    image: "/weeknights-dj.png",
     features: [
       "Club directory with categories spanning art, sports, social, language, and networking",
       "Detailed club profiles with descriptions, images, and event listings",
@@ -52,7 +52,7 @@ export const projects: Project[] = [
       "RailGPT is a conversational AI assistant that makes planning train travel in the Netherlands effortless. Instead of navigating timetable apps, users simply ask natural language questions — like \"Find trains from Amsterdam to Utrecht tomorrow at 9am\" or \"What time is the next train from Eindhoven to Maastricht?\" — and get instant, accurate schedule results powered by the NS (Dutch Railways) API.",
     link: "https://www.railgpt.app",
     tags: ["Next.js", "TypeScript", "AI", "OpenAI"],
-    image: "/railgpt-new.png",
+    image: "/railgpt.png",
     features: [
       "Conversational natural language interface for train queries",
       "Time-specific schedule searches across all Dutch stations",
@@ -77,7 +77,7 @@ export const projects: Project[] = [
     fullDescription:
       "Year in Travel is an innovative feature that provides Booking.com users with a personalized summary of their travel year, inspired by Spotify Wrapped. The project won first place in Booking.com's internal hackathon and showcases user travel statistics in an engaging, shareable format.",
     tags: ["React", "TypeScript", "Node.js", "Java"],
-    image: "/bookingcom.png",
+    image: "/bookingyit.png",
     features: [
       "Personalized travel statistics and insights",
       "Beautiful data visualizations",
@@ -103,6 +103,7 @@ export const projects: Project[] = [
       "Queryhub.ai is an intelligent database query assistant that helps developers and data analysts write SQL queries using natural language. The platform leverages AI to understand intent and generate optimized database queries.",
     link: "https://github.com/joeharwood96/queryhub.ai",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js", "PostgreSQL"],
+    image: "/queryhub-dj.png",
     video: "https://www.youtube.com/embed/Mt9EzgNsm6M",
     features: [
       "Natural language to SQL conversion",
