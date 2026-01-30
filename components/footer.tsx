@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -8,9 +9,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-16">
           {/* Column 1-2: Brand and bio */}
           <div className="lg:col-span-2 flex flex-col gap-6">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
-              DevJoe
-            </h2>
+            <Image
+              src="/dev-joe.png"
+              alt="DevJoe"
+              width={200}
+              height={42}
+              className="invert"
+              unoptimized
+            />
             <p className="text-white/60 max-w-md body-text">
               Freelance Next.js developer based in Amsterdam. Specialising in
               headless CMS, TypeScript, and full-stack web applications.
@@ -58,7 +64,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
           <p className="text-sm text-white/40">
-            &copy; {new Date().getFullYear()} Joe Harwood. All rights reserved.
+            &copy; {new Date().getFullYear()} DevJoe. All rights reserved.
           </p>
           <p className="text-sm text-white/40">Amsterdam, Netherlands</p>
         </div>
