@@ -171,7 +171,7 @@ export default function Home() {
       <section className="py-12 border-y border-border bg-muted/30">
         <div className="max-w-6xl mx-auto px-6">
           <p className="text-center text-sm text-muted-foreground mb-8">
-            Previously at
+            Worked with
           </p>
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {companies.map((company) => (
