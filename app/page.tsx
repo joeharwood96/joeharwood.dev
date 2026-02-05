@@ -338,9 +338,6 @@ export default function Home() {
             ].map((item, index) => (
               <BlurFade key={item.step} delay={0.1 + index * 0.1}>
                 <div className="relative">
-                  {index < 3 && (
-                    <div className="hidden md:block absolute top-6 left-full w-full h-px bg-border" />
-                  )}
                   <div className="text-4xl font-bold text-muted-foreground/20 mb-4">
                     {item.step}
                   </div>
