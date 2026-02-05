@@ -19,7 +19,7 @@ import { cn } from "@/lib/utils";
 const companies = [
   { name: "Booking.com", logo: "/logos/Booking.com/Booking.com_Logo_1.png" },
   { name: "IBM", logo: "/logos/ibm-logo-18910.png" },
-  { name: "Post Office", logo: "/logos/Post Office/Post Office_idXyh21KYa_0.png" },
+  { name: "Post Office", logo: "/logos/Post%20Office/Post%20Office_idXyh21KYa_0.png" },
   { name: "Appical", logo: "/logos/Appical/Appical_idtsDOMAEO_0.png" },
 ];
 
