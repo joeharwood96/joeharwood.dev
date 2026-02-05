@@ -18,7 +18,7 @@ import { cn } from "@/lib/utils";
 const companies = [
   { name: "Booking.com", logo: "/logos/Booking.com/Booking.com_Logo_1.png" },
   { name: "IBM", logo: "/logos/ibm-logo-18910.png" },
-  { name: "Post Office", logo: "/logos/Post%20Office/Post%20Office_idXyh21KYa_0.png" },
+  { name: "Weeknights", logo: "/logos/WEEKNIGHTS-LOGO-ORANGE copy.png" },
   { name: "Appical", logo: "/logos/Appical/Appical_idtsDOMAEO_0.png" },
 ];
 
@@ -230,10 +230,10 @@ export default function Home() {
             <BlurFade delay={0.2}>
               <div className="space-y-4">
                 {[
-                  { company: "Booking.com", role: "Software Engineer", period: "2021-2024" },
-                  { company: "IBM", role: "Full Stack Developer", period: "2019-2021" },
-                  { company: "Post Office", role: "Frontend Developer", period: "2018-2019" },
-                  { company: "Appical", role: "Web Developer", period: "2017-2018" },
+                  { company: "Weeknights", role: "Co-Founder", period: "2025-Present" },
+                  { company: "Booking.com", role: "Software Engineer II", period: "2022-2025" },
+                  { company: "Appical", role: "Software Engineer I", period: "2021-2022" },
+                  { company: "IBM", role: "Software Engineer Intern", period: "2019-2021" },
                 ].map((exp) => (
                   <Card key={exp.company}>
                     <CardContent className="p-4 flex justify-between items-center">
