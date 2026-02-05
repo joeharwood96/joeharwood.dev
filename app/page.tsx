@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import BlurFade from "@/components/ui/blur-fade";
-import { Marquee } from "@/components/ui/marquee";
 import DotPattern from "@/components/ui/dot-pattern";
 import ProjectCard from "@/components/project-card";
 import Footer from "@/components/footer";
@@ -174,22 +173,22 @@ export default function Home() {
           <p className="text-center text-sm text-muted-foreground mb-8">
             Previously at
           </p>
-          <Marquee pauseOnHover className="[--duration:30s]">
+          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {companies.map((company) => (
               <div
                 key={company.name}
-                className="mx-12 flex items-center justify-center"
+                className="flex items-center justify-center"
               >
                 <Image
                   src={company.logo}
                   alt={company.name}
                   width={120}
                   height={40}
-                  className="h-8 w-28 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                  className="h-8 w-28 object-contain"
                 />
               </div>
             ))}
-          </Marquee>
+          </div>
         </div>
       </section>
 
