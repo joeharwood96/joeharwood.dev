@@ -28,7 +28,7 @@ interface BlurFadeProps extends MotionProps {
   blur?: string
 }
 
-export function BlurFade({
+export default function BlurFade({
   children,
   className,
   variant,

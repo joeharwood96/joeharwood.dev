@@ -6,7 +6,7 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body;
+    const { name, email, message, package: selectedPackage } = body;
 
     // Validation
     if (!name || !email || !message) {
@@ -35,6 +35,7 @@ export async function POST(request: Request) {
         <h2>New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        ${selectedPackage ? `<p><strong>Package:</strong> ${selectedPackage}</p>` : ""}
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, "<br>")}</p>
       `,

@@ -1,11 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import Footer from "@/components/footer";
-import CustomCursor from "@/components/custom-cursor";
+import Navbar from "@/components/navbar";
 import { projects } from "@/data/projects";
 import { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent } from "@/components/ui/card";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -102,7 +105,7 @@ export default async function ProjectPage({
             "@type": "ListItem",
             position: 2,
             name: "Projects",
-            item: `${baseUrl}/#projects`,
+            item: `${baseUrl}/#work`,
           },
           {
             "@type": "ListItem",
@@ -136,128 +139,119 @@ export default async function ProjectPage({
     ],
   };
 
+  // Find next project
+  const currentIndex = projects.findIndex((p) => p.slug === project.slug);
+  const nextProject = projects[(currentIndex + 1) % projects.length];
+
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <CustomCursor />
-
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 py-6 md:px-12 mix-blend-difference">
-        <Link href="/">
-          <Image
-            src="/dev-joe.png"
-            alt="DevJoe"
-            width={120}
-            height={25}
-            className="invert"
-            priority
-            unoptimized
-          />
-        </Link>
-        <Link
-          href="/#work"
-          className="flex items-center gap-2 text-sm text-white hover:opacity-60 transition-opacity duration-500"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Back
-        </Link>
-      </nav>
+      <Navbar />
 
       {/* Hero Section */}
-      <article className="pt-32 pb-24">
-        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto">
-          {/* Meta */}
-          <div className="flex items-center gap-4 mb-8">
-            <span className="mono-text text-[#525252]">{project.company}</span>
-            <span className="mono-text text-[#737373]">{project.year}</span>
+      <article className="pt-32 pb-16">
+        <div className="px-6 max-w-6xl mx-auto">
+          {/* Back Link */}
+          <Link
+            href="/#work"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-12"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Back to projects
+          </Link>
+
+          {/* Header */}
+          <div className="max-w-4xl mb-12">
+            <div className="flex items-center gap-4 mb-6">
+              <Badge variant="secondary">{project.company}</Badge>
+              <span className="font-mono text-sm text-muted-foreground">
+                {project.year}
+              </span>
+            </div>
+
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              {project.title}
+            </h1>
+
+            <p className="text-lg text-muted-foreground max-w-3xl">
+              {project.description}
+            </p>
+
+            {project.link && (
+              <Button asChild className="mt-8">
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View Live Project
+                  <ExternalLink className="ml-2 w-4 h-4" />
+                </a>
+              </Button>
+            )}
           </div>
-
-          {/* Title */}
-          <h1 className="headline text-5xl md:text-7xl lg:text-8xl mb-8">
-            {project.title}
-          </h1>
-
-          {/* Description */}
-          <p className="text-xl md:text-2xl text-[#525252] body-text max-w-3xl mb-12">
-            {project.description}
-          </p>
-
-          {/* CTA */}
-          {project.link && (
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-black text-white px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors duration-500"
-            >
-              View Live Project
-              <ExternalLink className="w-4 h-4" />
-            </a>
-          )}
         </div>
 
-        {/* Media: video or image */}
-        {project.video ? (
-          <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
-            <div className="relative w-full aspect-video overflow-hidden">
-              <iframe
-                src={project.video}
-                title={project.title}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
+        {/* Media Section */}
+        {(project.video || project.image) && (
+          <div className="px-6 max-w-6xl mx-auto">
+            <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-muted">
+              {project.video ? (
+                <iframe
+                  src={project.video}
+                  title={project.title}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full"
+                />
+              ) : project.image ? (
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  quality={100}
+                  priority
+                />
+              ) : null}
             </div>
           </div>
-        ) : project.image ? (
-          <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
-            <div className="relative w-full aspect-video overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-                quality={100}
-                priority
-              />
-            </div>
-          </div>
-        ) : null}
+        )}
 
-        {/* Divider */}
-        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-24">
-          <div className="border-t border-black/10" />
-        </div>
-
-        {/* Content Grid */}
-        <div className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto mt-16">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-16">
-            {/* Main content */}
-            <div className="md:col-span-2 flex flex-col gap-16">
+        {/* Content Section */}
+        <div className="px-6 max-w-6xl mx-auto mt-16 pt-16 border-t border-border">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-16">
+            {/* Main Content */}
+            <div className="space-y-16">
               {/* Overview */}
               <div>
-                <p className="mono-text text-[#525252] mb-6">Overview</p>
-                <p className="text-lg text-[#525252] body-text leading-relaxed">
+                <Badge variant="outline" className="mb-4">
+                  Overview
+                </Badge>
+                <p className="text-lg text-muted-foreground">
                   {project.fullDescription}
                 </p>
               </div>
 
               {/* Features */}
               <div>
-                <p className="mono-text text-[#525252] mb-6">Key Features</p>
+                <Badge variant="outline" className="mb-6">
+                  Key Features
+                </Badge>
                 <ul className="space-y-4">
                   {project.features.map((feature, index) => (
-                    <li key={index} className="flex gap-4">
-                      <span className="mono-text text-[#737373] text-xs mt-1">
+                    <li
+                      key={index}
+                      className="flex gap-4 pb-4 border-b border-border"
+                    >
+                      <span className="font-mono text-primary text-sm mt-0.5">
                         {String(index + 1).padStart(2, "0")}
                       </span>
-                      <span className="text-lg text-[#525252] body-text">
-                        {feature}
-                      </span>
+                      <span className="text-muted-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -266,71 +260,75 @@ export default async function ProjectPage({
               {/* Outcomes */}
               {project.outcomes && (
                 <div>
-                  <p className="mono-text text-[#525252] mb-6">Outcomes</p>
-                  <p className="text-lg text-[#525252] body-text leading-relaxed">
+                  <Badge variant="outline" className="mb-4">
+                    Outcomes
+                  </Badge>
+                  <p className="text-lg text-muted-foreground">
                     {project.outcomes}
                   </p>
                 </div>
               )}
             </div>
 
-            {/* Sidebar */}
-            <div className="flex flex-col gap-12">
+            {/* Sidebar - Tech Specs */}
+            <div className="space-y-6">
               {/* Technologies */}
-              <div>
-                <p className="mono-text text-[#525252] mb-6">Technologies</p>
-                <ul className="space-y-3">
-                  {project.technologies.map((tech, index) => (
-                    <li
-                      key={index}
-                      className="text-sm text-[#525252] body-text pb-3 border-b border-black/5 last:border-0"
-                    >
-                      {tech}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <Card>
+                <CardContent className="p-6">
+                  <Badge variant="outline" className="mb-4">
+                    Technologies
+                  </Badge>
+                  <ul className="space-y-3">
+                    {project.technologies.map((tech, index) => (
+                      <li
+                        key={index}
+                        className="text-sm text-muted-foreground flex items-center gap-2"
+                      >
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                        {tech}
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
 
-              {/* Tags */}
-              <div>
-                <p className="mono-text text-[#525252] mb-6">Stack</p>
-                <div className="flex flex-wrap gap-x-4 gap-y-2">
-                  {project.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="mono-text text-[#737373] hover:text-black transition-colors duration-500"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              {/* Stack Tags */}
+              <Card>
+                <CardContent className="p-6">
+                  <Badge variant="outline" className="mb-4">
+                    Stack
+                  </Badge>
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="secondary" className="text-xs">
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </div>
       </article>
 
       {/* Next Project */}
-      {(() => {
-        const currentIndex = projects.findIndex((p) => p.slug === project.slug);
-        const nextProject = projects[(currentIndex + 1) % projects.length];
-        return (
-          <section className="px-6 md:px-12 lg:px-24 max-w-5xl mx-auto py-24 border-t border-black/10">
-            <p className="mono-text text-[#525252] mb-4">Next Project</p>
-            <Link
-              href={`/projects/${nextProject.slug}`}
-              className="group flex items-center justify-between"
-            >
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter group-hover:opacity-60 transition-opacity duration-500">
-                {nextProject.title}
-              </h2>
-              <span className="mono-text text-[#737373] group-hover:text-black transition-colors duration-500">
-                View
-              </span>
-            </Link>
-          </section>
-        );
-      })()}
+      <section className="px-6 max-w-6xl mx-auto py-24 border-t border-border">
+        <span className="text-sm font-medium text-muted-foreground mb-4 block">
+          Next Project
+        </span>
+        <Link
+          href={`/projects/${nextProject.slug}`}
+          className="group flex items-center justify-between"
+        >
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+            {nextProject.title}
+          </h2>
+          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary transition-colors">
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
+          </div>
+        </Link>
+      </section>
 
       <Footer />
     </div>

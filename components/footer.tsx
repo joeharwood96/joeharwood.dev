@@ -1,72 +1,137 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] text-white px-6 py-16 sm:px-8 md:px-12 md:py-20 lg:px-24">
-      <div className="max-w-7xl mx-auto">
-        {/* Main grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-16">
-          {/* Column 1-2: Brand and bio */}
-          <div className="lg:col-span-2 flex flex-col gap-6">
-            <Image
-              src="/dev-joe.png"
-              alt="DevJoe"
-              width={200}
-              height={42}
-              className="invert"
-              unoptimized
-            />
-            <p className="text-white/60 max-w-md body-text">
-              Freelance Next.js developer based in Amsterdam. Specialising in
-              headless CMS, TypeScript, and full-stack web applications.
+    <footer className="border-t border-border bg-muted/30 px-6 py-16">
+      <div className="max-w-6xl mx-auto">
+        {/* Main Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 mb-12">
+          {/* Column 1: Logo and Info */}
+          <div>
+            <Link href="/" className="hover:opacity-80 transition-opacity inline-block">
+              <Image
+                src="/dev-joe.png"
+                alt="DevJoe"
+                width={100}
+                height={32}
+                className="h-6 w-auto"
+              />
+            </Link>
+            <p className="text-sm text-muted-foreground mt-4">
+              Freelance Next.js Developer
             </p>
+            <p className="text-sm text-muted-foreground mt-1">
+              Amsterdam, Netherlands
+            </p>
+
+            {/* Social Links */}
+            <div className="flex gap-2 mt-6">
+              <a
+                href="https://github.com/joeharwood96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/dev-joe"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-md bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="mailto:joeharwooddev@gmail.com"
+                className="w-9 h-9 rounded-md bg-muted flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
-          {/* Column 3: Socials */}
-          <div className="flex flex-col gap-4">
-            <h3 className="mono-text text-white/40 mb-2">Socials</h3>
-            <Link
-              href="https://github.com/joeharwood96"
-              target="_blank"
-              className="text-white/80 hover:text-white transition-colors duration-500 link-underline w-fit"
-            >
-              GitHub
-            </Link>
-            <Link
-              href="https://www.linkedin.com/in/josephharwood-3/"
-              target="_blank"
-              className="text-white/80 hover:text-white transition-colors duration-500 link-underline w-fit"
-            >
-              LinkedIn
-            </Link>
+          {/* Column 2: Navigation */}
+          <div>
+            <h3 className="text-sm font-medium text-foreground mb-4">Navigation</h3>
+            <ul className="space-y-3">
+              {[
+                { href: "/#about", label: "About" },
+                { href: "/#services", label: "Services" },
+                { href: "/pricing", label: "Pricing" },
+                { href: "/#work", label: "Work" },
+                { href: "/#contact", label: "Contact" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Column 4: Contact */}
-          <div className="flex flex-col gap-4">
-            <h3 className="mono-text text-white/40 mb-2">Contact</h3>
-            <a
-              href="mailto:joeharwooddev@gmail.com"
-              className="text-white/80 hover:text-white transition-colors duration-500 link-underline w-fit"
-            >
-              joeharwooddev@gmail.com
-            </a>
-            <Link
-              href="/Joseph_Harwood_CV.pdf"
-              target="_blank"
-              className="text-white/80 hover:text-white transition-colors duration-500 link-underline w-fit"
-            >
-              Download CV
-            </Link>
+          {/* Column 3: Services */}
+          <div>
+            <h3 className="text-sm font-medium text-foreground mb-4">Services</h3>
+            <ul className="space-y-3">
+              {[
+                "Next.js Development",
+                "Headless CMS",
+                "Full-Stack Apps",
+                "API Development",
+              ].map((service) => (
+                <li key={service}>
+                  <span className="text-sm text-muted-foreground">{service}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 4: Resources */}
+          <div>
+            <h3 className="text-sm font-medium text-foreground mb-4">Resources</h3>
+            <ul className="space-y-3">
+              <li>
+                <a
+                  href="mailto:joeharwooddev@gmail.com"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  joeharwooddev@gmail.com
+                </a>
+              </li>
+              <li>
+                <Link
+                  href="/Joseph_Harwood_CV.pdf"
+                  target="_blank"
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-2"
+                >
+                  <FileText className="w-3 h-3" />
+                  Download CV
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-          <p className="text-sm text-white/40">
+        <Separator className="mb-8" />
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} DevJoe. All rights reserved.
           </p>
-          <p className="text-sm text-white/40">Amsterdam, Netherlands</p>
+          <p className="font-mono text-xs text-muted-foreground">
+            52.3676&deg; N, 4.9041&deg; E
+          </p>
         </div>
       </div>
     </footer>

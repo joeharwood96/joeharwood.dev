@@ -1,13 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+
+const packageOptions = [
+  { value: "", label: "Select a package (optional)" },
+  { value: "starter", label: "Starter – €3,500" },
+  { value: "business", label: "Business – €8,000" },
+  { value: "application", label: "Application – €18,000+" },
+  { value: "custom", label: "Custom project" },
+];
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    package: "",
     message: "",
   });
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const packageParam = params.get("package");
+    if (packageParam && packageOptions.some(opt => opt.value === packageParam)) {
+      setFormData(prev => ({ ...prev, package: packageParam }));
+    }
+  }, []);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -32,7 +53,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", package: "", message: "" });
 
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
@@ -47,7 +68,7 @@ export default function ContactForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -56,80 +77,104 @@ export default function ContactForm() {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="w-full max-w-2xl flex flex-col gap-8"
-    >
-      <div className="flex flex-col gap-2">
-        <label htmlFor="name" className="mono-text text-[#525252]">
-          Name
-        </label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-          disabled={status === "loading"}
-          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
-          placeholder="Your name"
-        />
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <label htmlFor="name" className="text-sm font-medium text-foreground">
+            Name
+          </label>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+            disabled={status === "loading"}
+            placeholder="Your name"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <label htmlFor="email" className="text-sm font-medium text-foreground">
+            Email
+          </label>
+          <Input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            disabled={status === "loading"}
+            placeholder="your@email.com"
+          />
+        </div>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="email" className="mono-text text-[#525252]">
-          Email
+      <div className="space-y-2">
+        <label htmlFor="package" className="text-sm font-medium text-foreground">
+          Package
         </label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
+        <select
+          id="package"
+          name="package"
+          value={formData.package}
           onChange={handleChange}
-          required
           disabled={status === "loading"}
-          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
-          placeholder="your.email@example.com"
-        />
+          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {packageOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <label htmlFor="message" className="mono-text text-[#525252]">
+      <div className="space-y-2">
+        <label htmlFor="message" className="text-sm font-medium text-foreground">
           Message
         </label>
-        <textarea
+        <Textarea
           id="message"
           name="message"
           value={formData.message}
           onChange={handleChange}
           required
           disabled={status === "loading"}
-          rows={4}
-          className="px-0 py-4 bg-transparent border-b border-black focus:outline-none focus:border-black transition-colors duration-500 resize-none disabled:opacity-50 disabled:cursor-not-allowed placeholder:text-[#737373]"
+          rows={5}
           placeholder="Tell me about your project..."
         />
       </div>
 
-      <div className="flex flex-col gap-4 mt-4">
-        <button
-          type="submit"
-          disabled={status === "loading"}
-          className="bg-black text-white px-8 py-4 font-medium hover:bg-black/80 transition-colors duration-500 disabled:opacity-50 disabled:cursor-not-allowed w-fit"
-        >
-          {status === "loading" ? "Sending..." : "Send Message"}
-        </button>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
+        <Button type="submit" disabled={status === "loading"}>
+          {status === "loading" ? (
+            <>
+              <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin mr-2" />
+              Sending...
+            </>
+          ) : (
+            <>
+              Send Message
+              <Send className="ml-2 w-4 h-4" />
+            </>
+          )}
+        </Button>
 
         {status === "success" && (
-          <p className="text-sm text-black">
-            Thanks! Your message has been sent successfully.
-          </p>
+          <div className="flex items-center gap-2 text-green-600 text-sm">
+            <CheckCircle className="w-4 h-4" />
+            Message sent successfully!
+          </div>
         )}
 
         {status === "error" && (
-          <p className="text-sm text-red-600">
+          <div className="flex items-center gap-2 text-destructive text-sm">
+            <AlertCircle className="w-4 h-4" />
             {errorMessage || "Failed to send message. Please try again."}
-          </p>
+          </div>
         )}
       </div>
     </form>

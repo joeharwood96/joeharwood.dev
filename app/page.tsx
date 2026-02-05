@@ -1,50 +1,66 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Plus } from "lucide-react";
+import { ArrowRight, Code2, Database, Globe, Layers } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import BlurFade from "@/components/ui/blur-fade";
+import { Marquee } from "@/components/ui/marquee";
+import DotPattern from "@/components/ui/dot-pattern";
 import ProjectCard from "@/components/project-card";
-import ProjectMarquee from "@/components/project-marquee";
 import Footer from "@/components/footer";
 import ContactForm from "@/components/contact-form";
-import CustomCursor from "@/components/custom-cursor";
+import Navbar from "@/components/navbar";
 import { projects } from "@/data/projects";
+import { cn } from "@/lib/utils";
 
-// Animated line component for hero - reveals whole lines to avoid glyph clipping
-function AnimatedLine({
-  text,
-  delay = 0
-}: {
-  text: string;
-  delay?: number;
-}) {
-  const [isVisible, setIsVisible] = useState(false);
+const companies = [
+  { name: "Booking.com", logo: "/logos/Booking.com/Booking.com_Logo_1.png" },
+  { name: "IBM", logo: "/logos/ibm-logo-18910.png" },
+  { name: "Post Office", logo: "/logos/Post Office/Post Office_idXyh21KYa_0.png" },
+  { name: "Appical", logo: "/logos/Appical/Appical_idtsDOMAEO_0.png" },
+];
 
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
+const services = [
+  {
+    icon: Globe,
+    title: "Next.js Development",
+    description:
+      "High-performance web applications with server-side rendering, static generation, and the App Router.",
+  },
+  {
+    icon: Database,
+    title: "Headless CMS",
+    description:
+      "Content-driven websites powered by Sanity, Contentful, or Strapi. Fully editable by your team.",
+  },
+  {
+    icon: Layers,
+    title: "Full-Stack Apps",
+    description:
+      "End-to-end product development with authentication, payments, and real-time features.",
+  },
+  {
+    icon: Code2,
+    title: "API Development",
+    description:
+      "RESTful and GraphQL APIs built with Node.js and TypeScript. Third-party integrations included.",
+  },
+];
 
-  return (
-    <span
-      className="block px-[0.05em]"
-      style={{ clipPath: "inset(-5% -5% -15% -5%)" }}
-    >
-      <span
-        className={`block transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          isVisible ? "translate-y-0" : "translate-y-[115%]"
-        }`}
-      >
-        {text}
-      </span>
-    </span>
-  );
-}
+const techStack = [
+  "Next.js",
+  "React",
+  "TypeScript",
+  "Node.js",
+  "Tailwind CSS",
+  "Supabase",
+  "PostgreSQL",
+];
 
 export default function Home() {
-  const [menuOpen, setMenuOpen] = useState(false);
-
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -67,245 +83,331 @@ export default function Home() {
           "https://github.com/joeharwood96",
           "https://www.linkedin.com/in/josephharwood-3/",
         ],
-        knowsAbout: [
-          "Next.js",
-          "React",
-          "TypeScript",
-          "Node.js",
-          "Headless CMS",
-          "Tailwind CSS",
-          "Full-Stack Development",
-          "Web Development",
-        ],
-        alumniOf: [
-          { "@type": "Organization", name: "Booking.com" },
-          { "@type": "Organization", name: "IBM" },
-          { "@type": "Organization", name: "Post Office" },
-          { "@type": "Organization", name: "Appical" },
-        ],
       },
       {
         "@type": "WebSite",
         "@id": "https://joeharwood.dev/#website",
         url: "https://joeharwood.dev",
         name: "DevJoe - Freelance Next.js Developer",
-        description:
-          "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
         publisher: { "@id": "https://joeharwood.dev/#person" },
-      },
-      {
-        "@type": "ItemList",
-        "@id": "https://joeharwood.dev/#projects",
-        name: "Featured Projects",
-        itemListElement: projects.map((project, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          item: {
-            "@type": "CreativeWork",
-            name: project.title,
-            description: project.description,
-            url: `https://joeharwood.dev/projects/${project.slug}`,
-            author: { "@id": "https://joeharwood.dev/#person" },
-            keywords: project.tags.join(", "),
-          },
-        })),
       },
     ],
   };
 
   return (
-    <div className="bg-white text-black">
+    <div className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <CustomCursor />
-
-      {/* Fixed Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 mix-blend-difference">
-        <nav className="flex justify-between items-center px-6 py-6 md:px-12">
-          <Link href="/" className="relative">
-            <Image
-              src="/dev-joe.png"
-              alt="DevJoe"
-              width={120}
-              height={25}
-              className="invert"
-              priority
-              unoptimized
-            />
-          </Link>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="w-10 h-10 flex items-center justify-center text-white hover:opacity-70 transition-opacity duration-500"
-            aria-label="Toggle menu"
-          >
-            <Plus
-              className={`w-6 h-6 transition-transform duration-500 ${
-                menuOpen ? "rotate-45" : ""
-              }`}
-            />
-          </button>
-        </nav>
-      </header>
-
-      {/* Menu Overlay */}
-      <div
-        className={`fixed inset-0 bg-black z-40 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-          menuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-      >
-        <div className="flex flex-col justify-center items-center h-full gap-8">
-          {[
-            { href: "#about", label: "About" },
-            { href: "#services", label: "Services" },
-            { href: "#work", label: "Work" },
-            { href: "#contact", label: "Contact" },
-          ].map((item, index) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-5xl md:text-7xl font-bold text-white tracking-tighter hover:opacity-50 transition-all duration-500 ${
-                menuOpen
-                  ? "translate-y-0 opacity-100"
-                  : "translate-y-8 opacity-0"
-              }`}
-              style={{ transitionDelay: menuOpen ? `${index * 100}ms` : "0ms" }}
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
-      </div>
+      <Navbar />
 
       {/* Hero Section */}
-      <section className="min-h-[80vh] flex flex-col justify-center items-center px-6 md:px-12 pt-32">
-        <div className="text-center">
-          <h1 className="headline text-[12vw] md:text-[10vw] leading-[1]">
-            <AnimatedLine text="Modern Web" delay={100} />
-            <AnimatedLine text="Development" delay={300} />
-          </h1>
-          <p className="text-xl md:text-2xl text-[#525252] mt-8 max-w-2xl mx-auto body-text opacity-0 animate-fade-in" style={{ animationDelay: "1s" }}>
-            Freelance developer based in Amsterdam, specialising in Next.js, headless CMS, and TypeScript applications.
-          </p>
-          <div className="flex gap-4 justify-center mt-10 opacity-0 animate-fade-in" style={{ animationDelay: "1.3s" }}>
-            <a
-              href="#contact"
-              className="bg-black text-white px-8 py-3 text-sm font-medium hover:bg-[#333] transition-colors duration-500"
-            >
-              Get in touch
-            </a>
-            <a
-              href="#work"
-              className="border border-black px-8 py-3 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-500"
-            >
-              View work
-            </a>
-          </div>
+      <section className="relative min-h-[90vh] flex items-center justify-center px-6 overflow-hidden">
+        <DotPattern
+          className={cn(
+            "absolute inset-0 [mask-image:radial-gradient(600px_circle_at_center,white,transparent)]"
+          )}
+        />
+
+        <div className="relative z-10 text-center max-w-4xl mx-auto pt-16">
+          <BlurFade delay={0.1}>
+            <Badge variant="secondary" className="mb-6">
+              Available for new projects
+            </Badge>
+          </BlurFade>
+
+          <BlurFade delay={0.2}>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6">
+              Building modern web
+              <br />
+              experiences with{" "}
+              <span className="text-primary">Next.js</span>
+            </h1>
+          </BlurFade>
+
+          <BlurFade delay={0.3}>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10">
+              Freelance developer based in Amsterdam, specializing in Next.js,
+              headless CMS, and TypeScript applications.
+            </p>
+          </BlurFade>
+
+          <BlurFade delay={0.4}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button asChild size="lg">
+                <Link href="/#work">
+                  View my work
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/#contact">Get in touch</Link>
+              </Button>
+            </div>
+          </BlurFade>
+
+          {/* Stats */}
+          <BlurFade delay={0.5}>
+            <div className="grid grid-cols-3 gap-8 mt-20 max-w-md mx-auto">
+              {[
+                { value: "6+", label: "Years" },
+                { value: "4", label: "Enterprise Clients" },
+                { value: "AMS", label: "Based" },
+              ].map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="text-2xl font-bold text-foreground">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </BlurFade>
         </div>
       </section>
 
-      {/* Project Marquee */}
-      <ProjectMarquee />
+      {/* Company Logos */}
+      <section className="py-12 border-y border-border bg-muted/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <p className="text-center text-sm text-muted-foreground mb-8">
+            Previously at
+          </p>
+          <Marquee pauseOnHover className="[--duration:30s]">
+            {companies.map((company) => (
+              <div
+                key={company.name}
+                className="mx-12 flex items-center justify-center"
+              >
+                <Image
+                  src={company.logo}
+                  alt={company.name}
+                  width={120}
+                  height={40}
+                  className="h-8 w-28 object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </Marquee>
+        </div>
+      </section>
 
       {/* About Section */}
-      <section id="about" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto">
-          <p className="mono-text text-[#525252] mb-6">About</p>
-          <p className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight leading-tight">
-            I build fast, scalable web applications with{" "}
-            <span className="text-[#525252]">Next.js</span>,{" "}
-            <span className="text-[#525252]">headless CMS</span>, and{" "}
-            <span className="text-[#525252]">TypeScript</span>.
-          </p>
-          <p className="text-lg md:text-xl text-[#525252] body-text mt-8 max-w-3xl leading-relaxed">
-            Previously engineering at Booking.com, IBM, Post Office, and Appical. Now I help startups and businesses ship modern web products — from marketing sites with headless CMS to full-stack SaaS applications.
-          </p>
-          <div className="flex flex-wrap gap-4 mt-12">
-            {["Next.js", "React", "TypeScript", "Node.js", "Headless CMS", "Tailwind CSS", "Supabase", "PostgreSQL"].map(
-              (tech) => (
-                <span
-                  key={tech}
-                  className="mono-text text-[#737373] hover:text-black transition-colors duration-500"
-                >
-                  {tech}
-                </span>
-              )
-            )}
+      <section id="about" className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <BlurFade delay={0.1}>
+              <div>
+                <Badge variant="outline" className="mb-4">
+                  About
+                </Badge>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                  I build fast, scalable web applications
+                </h2>
+                <p className="text-lg text-muted-foreground mb-6">
+                  With 6+ years of experience, I specialize in{" "}
+                  <span className="text-foreground font-medium">Next.js</span>,{" "}
+                  <span className="text-foreground font-medium">headless CMS</span>, and{" "}
+                  <span className="text-foreground font-medium">TypeScript</span>.
+                </p>
+                <p className="text-muted-foreground mb-8">
+                  Previously engineering at Booking.com, IBM, Post Office, and
+                  Appical. Now I help startups and businesses ship modern web
+                  products.
+                </p>
+
+                {/* Tech Stack */}
+                <div className="flex flex-wrap gap-2">
+                  {techStack.map((tech) => (
+                    <Badge key={tech} variant="secondary">
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+            </BlurFade>
+
+            <BlurFade delay={0.2}>
+              <div className="space-y-4">
+                {[
+                  { company: "Booking.com", role: "Software Engineer", period: "2021-2024" },
+                  { company: "IBM", role: "Full Stack Developer", period: "2019-2021" },
+                  { company: "Post Office", role: "Frontend Developer", period: "2018-2019" },
+                  { company: "Appical", role: "Web Developer", period: "2017-2018" },
+                ].map((exp) => (
+                  <Card key={exp.company}>
+                    <CardContent className="p-4 flex justify-between items-center">
+                      <div>
+                        <p className="font-medium text-foreground">{exp.company}</p>
+                        <p className="text-sm text-muted-foreground">{exp.role}</p>
+                      </div>
+                      <span className="text-sm font-mono text-muted-foreground">
+                        {exp.period}
+                      </span>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </BlurFade>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section id="services" className="px-6 md:px-12 lg:px-24 py-24 md:py-32 border-t border-black/5">
-        <div className="max-w-7xl mx-auto">
-          <p className="mono-text text-[#525252] mb-6">What I Do</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-16">
-            Services
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+      <section id="services" className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <BlurFade delay={0.1}>
+            <div className="text-center mb-16">
+              <Badge variant="outline" className="mb-4">
+                Services
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                What I Do
+              </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                End-to-end web development from concept to deployment
+              </p>
+            </div>
+          </BlurFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service, index) => (
+              <BlurFade key={service.title} delay={0.1 + index * 0.1}>
+                <Card className="h-full hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <service.icon className="w-10 h-10 text-primary mb-4" />
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground">{service.description}</p>
+                  </CardContent>
+                </Card>
+              </BlurFade>
+            ))}
+          </div>
+
+          <BlurFade delay={0.5}>
+            <div className="text-center mt-12">
+              <Button asChild variant="outline">
+                <Link href="/pricing">
+                  View Packages & Pricing
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Link>
+              </Button>
+            </div>
+          </BlurFade>
+        </div>
+      </section>
+
+      {/* Process Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-6xl mx-auto">
+          <BlurFade delay={0.1}>
+            <div className="text-center mb-16">
+              <Badge variant="outline" className="mb-4">
+                Process
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+                How It Works
+              </h2>
+            </div>
+          </BlurFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             {[
               {
-                title: "Next.js Development",
-                description: "High-performance web applications built with Next.js — server-side rendering, static generation, API routes, and the App Router.",
+                step: "01",
+                title: "Discovery",
+                description: "We discuss your goals and I provide a detailed proposal.",
               },
               {
-                title: "Headless CMS Integration",
-                description: "Content-driven websites powered by Sanity, Contentful, or Strapi. Fully editable by your team, fast for your users.",
+                step: "02",
+                title: "Design",
+                description: "I create wireframes and designs for your approval.",
               },
               {
-                title: "Full-Stack Applications",
-                description: "End-to-end product development from database design to deployment. Authentication, payments, real-time features — the full stack.",
+                step: "03",
+                title: "Development",
+                description: "I build your project with regular updates.",
               },
               {
-                title: "API & Backend Development",
-                description: "RESTful and GraphQL APIs built with Node.js and TypeScript. Third-party integrations, data pipelines, and microservices.",
+                step: "04",
+                title: "Launch",
+                description: "Final review, deployment, and handover.",
               },
-            ].map((service) => (
-              <div key={service.title} className="flex flex-col gap-4 group">
-                <h3 className="text-2xl md:text-3xl font-bold tracking-tight">
-                  {service.title}
-                </h3>
-                <p className="text-[#525252] body-text leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
+            ].map((item, index) => (
+              <BlurFade key={item.step} delay={0.1 + index * 0.1}>
+                <div className="relative">
+                  {index < 3 && (
+                    <div className="hidden md:block absolute top-6 left-full w-full h-px bg-border" />
+                  )}
+                  <div className="text-4xl font-bold text-muted-foreground/20 mb-4">
+                    {item.step}
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </div>
+              </BlurFade>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Grid */}
-      <section id="work" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-16">
-            <div>
-              <p className="mono-text text-[#525252] mb-6">Featured Work</p>
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tighter">
+      {/* Projects Section */}
+      <section id="work" className="py-24 px-6 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <BlurFade delay={0.1}>
+            <div className="text-center mb-16">
+              <Badge variant="outline" className="mb-4">
+                Work
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Selected Projects
               </h2>
+              <p className="text-muted-foreground max-w-2xl mx-auto">
+                Recent work across web applications, marketing sites, and AI-powered tools
+              </p>
             </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+          </BlurFade>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {projects.map((project, index) => (
+              <BlurFade key={project.slug} delay={0.1 + index * 0.1}>
+                <ProjectCard project={project} />
+              </BlurFade>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="px-6 md:px-12 lg:px-24 py-24 md:py-32">
-        <div className="max-w-7xl mx-auto">
-          <p className="mono-text text-[#525252] mb-6">Get In Touch</p>
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-16">
-            Let&apos;s work together
-          </h2>
-          <ContactForm />
+      <section id="contact" className="py-24 px-6">
+        <div className="max-w-2xl mx-auto">
+          <BlurFade delay={0.1}>
+            <div className="text-center mb-12">
+              <Badge variant="outline" className="mb-4">
+                Contact
+              </Badge>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                Let&apos;s work together
+              </h2>
+              <p className="text-muted-foreground">
+                Have a project in mind? Get in touch and I&apos;ll respond within
+                24 hours.
+              </p>
+            </div>
+          </BlurFade>
+
+          <BlurFade delay={0.2}>
+            <Card>
+              <CardContent className="p-6 md:p-8">
+                <ContactForm />
+              </CardContent>
+            </Card>
+          </BlurFade>
         </div>
       </section>
 
