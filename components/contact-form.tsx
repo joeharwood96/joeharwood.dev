@@ -1,34 +1,18 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Send, CheckCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-const packageOptions = [
-  { value: "", label: "Select a package (optional)" },
-  { value: "starter", label: "Starter – €3,500" },
-  { value: "business", label: "Business – €8,000" },
-  { value: "application", label: "Application – €18,000+" },
-  { value: "custom", label: "Custom project" },
-];
-
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    package: "",
     message: "",
   });
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const packageParam = params.get("package");
-    if (packageParam && packageOptions.some(opt => opt.value === packageParam)) {
-      setFormData(prev => ({ ...prev, package: packageParam }));
-    }
-  }, []);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -53,7 +37,7 @@ export default function ContactForm() {
       }
 
       setStatus("success");
-      setFormData({ name: "", email: "", package: "", message: "" });
+      setFormData({ name: "", email: "", message: "" });
 
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
@@ -68,7 +52,7 @@ export default function ContactForm() {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     setFormData((prev) => ({
       ...prev,
@@ -113,26 +97,6 @@ export default function ContactForm() {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="package" className="text-sm font-medium text-foreground">
-          Package
-        </label>
-        <select
-          id="package"
-          name="package"
-          value={formData.package}
-          onChange={handleChange}
-          disabled={status === "loading"}
-          className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {packageOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-foreground">
           Message
         </label>
@@ -144,7 +108,7 @@ export default function ContactForm() {
           required
           disabled={status === "loading"}
           rows={5}
-          placeholder="Tell me about your project..."
+          placeholder="I'd love to hear from you..."
         />
       </div>
 

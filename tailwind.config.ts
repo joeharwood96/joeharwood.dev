@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
         mono: ['var(--font-geist-mono)', 'monospace'],
+        serif: ['var(--font-serif)', 'Georgia', 'serif'],
       },
       colors: {
         // Shadcn CSS variable colors
@@ -49,6 +50,7 @@ export default {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
         },
+        'accent-warm': 'hsl(var(--accent-warm))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',

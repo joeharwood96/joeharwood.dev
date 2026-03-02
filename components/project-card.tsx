@@ -2,66 +2,65 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Project } from "@/data/projects";
 
-export default function ProjectCard({ project }: { project: Project }) {
+export default function ProjectCard({
+  project,
+  index = 0,
+}: {
+  project: Project;
+  index?: number;
+}) {
+  const isEven = index % 2 === 0;
+
   return (
     <Link href={`/projects/${project.slug}`} className="group block">
-      <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
-        {/* Image Container */}
-        <div className="relative w-full aspect-[16/10] overflow-hidden bg-muted">
+      <div
+        className={`grid grid-cols-1 md:grid-cols-[1fr_1.5fr] gap-8 md:gap-12 items-center ${
+          isEven ? "" : "md:[grid-template-columns:1.5fr_1fr]"
+        }`}
+      >
+        {/* Text */}
+        <div className={isEven ? "md:order-1" : "md:order-2"}>
+          <h3 className="text-lg font-semibold text-foreground mb-2">
+            {project.title}
+          </h3>
+          <p className="text-sm text-muted-foreground mb-4">
+            {project.description}
+          </p>
+          <div className="flex flex-wrap gap-x-3 gap-y-1">
+            {project.tags.map((tag) => (
+              <span key={tag} className="text-xs text-muted-foreground">
+                #{tag}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Image */}
+        <div
+          className={`relative aspect-[16/10] rounded-lg overflow-hidden bg-muted ${
+            isEven ? "md:order-2" : "md:order-1"
+          }`}
+        >
           {project.image ? (
             <Image
               src={project.image}
               alt={project.title}
               fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
+              sizes="(max-width: 768px) 100vw, 60vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
               priority
             />
           ) : (
-            <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted to-muted/50">
-              <h3 className="text-xl font-semibold text-muted-foreground text-center px-6">
+            <div className="w-full h-full flex items-center justify-center">
+              <span className="text-lg text-muted-foreground">
                 {project.title}
-              </h3>
+              </span>
             </div>
           )}
         </div>
-
-        {/* Content */}
-        <CardContent className="p-6">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <div>
-              <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors mb-1">
-                {project.title}
-              </h3>
-              <p className="text-sm text-muted-foreground">{project.company}</p>
-            </div>
-
-            {/* Arrow */}
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
-              <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary-foreground transition-colors duration-300" />
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
-            {project.description}
-          </p>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2">
-            {project.tags.slice(0, 3).map((tag) => (
-              <Badge key={tag} variant="secondary" className="text-xs">
-                {tag}
-              </Badge>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      </div>
     </Link>
   );
 }

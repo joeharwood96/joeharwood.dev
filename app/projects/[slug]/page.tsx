@@ -1,14 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import Footer from "@/components/footer";
 import Navbar from "@/components/navbar";
 import { projects } from "@/data/projects";
 import { Metadata } from "next";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
 
 export async function generateStaticParams() {
   return projects.map((project) => ({
@@ -37,7 +34,7 @@ export async function generateMetadata({
     : `${baseUrl}/og-image.png`;
 
   return {
-    title: `${project.title} - ${project.company} | DevJoe`,
+    title: `${project.title} - ${project.company} | Joe Harwood`,
     description: project.description,
     keywords: [
       ...project.tags,
@@ -60,7 +57,7 @@ export async function generateMetadata({
           alt: project.title,
         },
       ],
-      siteName: "DevJoe",
+      siteName: "Joe Harwood",
     },
     twitter: {
       card: "summary_large_image",
@@ -167,13 +164,11 @@ export default async function ProjectPage({
           {/* Header */}
           <div className="max-w-4xl mb-12">
             <div className="flex items-center gap-4 mb-6">
-              <Badge variant="secondary">{project.company}</Badge>
-              <span className="font-mono text-sm text-muted-foreground">
-                {project.year}
-              </span>
+              <span className="text-sm text-muted-foreground">{project.company}</span>
+              <span className="text-sm text-muted-foreground">{project.year}</span>
             </div>
 
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+            <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light leading-tight text-foreground mb-6">
               {project.title}
             </h1>
 
@@ -182,16 +177,14 @@ export default async function ProjectPage({
             </p>
 
             {project.link && (
-              <Button asChild className="mt-8">
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View Live Project
-                  <ExternalLink className="ml-2 w-4 h-4" />
-                </a>
-              </Button>
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-8 text-sm text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4"
+              >
+                View live project
+              </a>
             )}
           </div>
         </div>
@@ -199,7 +192,7 @@ export default async function ProjectPage({
         {/* Media Section */}
         {(project.video || project.image) && (
           <div className="px-6 max-w-6xl mx-auto">
-            <div className="relative w-full aspect-video overflow-hidden rounded-2xl bg-muted">
+            <div className="relative w-full aspect-video overflow-hidden rounded-lg bg-muted">
               {project.video ? (
                 <iframe
                   src={project.video}
@@ -224,14 +217,14 @@ export default async function ProjectPage({
 
         {/* Content Section */}
         <div className="px-6 max-w-6xl mx-auto mt-16 pt-16 border-t border-border">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_300px] gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-16">
             {/* Main Content */}
             <div className="space-y-16">
               {/* Overview */}
               <div>
-                <Badge variant="outline" className="mb-4">
+                <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
                   Overview
-                </Badge>
+                </h2>
                 <p className="text-lg text-muted-foreground">
                   {project.fullDescription}
                 </p>
@@ -239,19 +232,18 @@ export default async function ProjectPage({
 
               {/* Features */}
               <div>
-                <Badge variant="outline" className="mb-6">
+                <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-6">
                   Key Features
-                </Badge>
+                </h2>
                 <ul className="space-y-4">
                   {project.features.map((feature, index) => (
                     <li
                       key={index}
-                      className="flex gap-4 pb-4 border-b border-border"
+                      className={`pb-4 text-muted-foreground ${
+                        index < project.features.length - 1 ? "border-b border-border" : ""
+                      }`}
                     >
-                      <span className="font-mono text-primary text-sm mt-0.5">
-                        {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <span className="text-muted-foreground">{feature}</span>
+                      {feature}
                     </li>
                   ))}
                 </ul>
@@ -260,9 +252,9 @@ export default async function ProjectPage({
               {/* Outcomes */}
               {project.outcomes && (
                 <div>
-                  <Badge variant="outline" className="mb-4">
+                  <h2 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
                     Outcomes
-                  </Badge>
+                  </h2>
                   <p className="text-lg text-muted-foreground">
                     {project.outcomes}
                   </p>
@@ -270,43 +262,38 @@ export default async function ProjectPage({
               )}
             </div>
 
-            {/* Sidebar - Tech Specs */}
-            <div className="space-y-6">
+            {/* Sidebar */}
+            <div className="space-y-10">
               {/* Technologies */}
-              <Card>
-                <CardContent className="p-6">
-                  <Badge variant="outline" className="mb-4">
-                    Technologies
-                  </Badge>
-                  <ul className="space-y-3">
-                    {project.technologies.map((tech, index) => (
-                      <li
-                        key={index}
-                        className="text-sm text-muted-foreground flex items-center gap-2"
-                      >
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-                        {tech}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  Technologies
+                </h3>
+                <ul className="space-y-2">
+                  {project.technologies.map((tech, index) => (
+                    <li
+                      key={index}
+                      className="text-sm text-muted-foreground"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
               {/* Stack Tags */}
-              <Card>
-                <CardContent className="p-6">
-                  <Badge variant="outline" className="mb-4">
-                    Stack
-                  </Badge>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <div>
+                <h3 className="text-xs uppercase tracking-[0.2em] text-muted-foreground mb-4">
+                  Stack
+                </h3>
+                <div className="flex flex-wrap gap-x-3 gap-y-1">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="text-xs text-muted-foreground">
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -314,19 +301,17 @@ export default async function ProjectPage({
 
       {/* Next Project */}
       <section className="px-6 max-w-6xl mx-auto py-24 border-t border-border">
-        <span className="text-sm font-medium text-muted-foreground mb-4 block">
+        <span className="text-sm text-muted-foreground mb-4 block">
           Next Project
         </span>
         <Link
           href={`/projects/${nextProject.slug}`}
-          className="group flex items-center justify-between"
+          className="group inline-flex items-center gap-4"
         >
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground group-hover:text-primary transition-colors">
+          <h2 className="font-serif text-2xl md:text-3xl font-light text-foreground group-hover:text-primary transition-colors">
             {nextProject.title}
           </h2>
-          <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center group-hover:bg-primary transition-colors">
-            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground transition-colors" />
-          </div>
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors">&rarr;</span>
         </Link>
       </section>
 

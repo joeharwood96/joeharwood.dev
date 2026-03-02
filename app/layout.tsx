@@ -1,26 +1,32 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { Cormorant_Garamond } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "DevJoe - Freelance Next.js Developer | Amsterdam",
+  title: "Joe Harwood — Software Engineer",
   description:
-    "Freelance Next.js developer based in Amsterdam. Specialising in Next.js, headless CMS, TypeScript, and Node.js. Previously at Booking.com, IBM, and Appical.",
+    "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js. Previously at Booking.com, IBM, and Appical.",
   keywords: [
-    "Next.js developer",
-    "freelance Next.js developer",
-    "headless CMS developer",
-    "TypeScript developer",
-    "Next.js developer Amsterdam",
-    "freelance developer Amsterdam",
-    "freelance developer Netherlands",
+    "software engineer",
+    "web developer",
     "React developer",
+    "Next.js developer",
+    "TypeScript developer",
     "full-stack developer",
     "Node.js developer",
+    "Amsterdam",
     "Joe Harwood",
-    "DevJoe",
   ],
   authors: [{ name: "Joe Harwood", url: "https://joeharwood.dev" }],
   creator: "Joe Harwood",
@@ -29,24 +35,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "https://joeharwood.dev",
-    title: "DevJoe - Freelance Next.js Developer | Amsterdam",
+    title: "Joe Harwood — Software Engineer",
     description:
-      "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
-    siteName: "DevJoe",
+      "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js.",
+    siteName: "Joe Harwood",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevJoe - Freelance Next.js Developer",
+        alt: "Joe Harwood — Software Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevJoe - Freelance Next.js Developer | Amsterdam",
+    title: "Joe Harwood — Software Engineer",
     description:
-      "Freelance Next.js developer based in Amsterdam. Headless CMS, TypeScript, and full-stack web applications.",
+      "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -70,7 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} font-sans antialiased`}
+        className={`${GeistSans.variable} ${GeistMono.variable} ${cormorant.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         {children}

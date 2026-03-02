@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
   { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/pricing", label: "Pricing" },
   { href: "/#work", label: "Work" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -34,51 +33,47 @@ export default function Navbar() {
             : "bg-transparent"
         }`}
       >
-        <nav className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="px-6">
+        <nav className="max-w-6xl mx-auto h-16 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="hover:opacity-80 transition-opacity">
             <Image
               src="/dev-joe.png"
-              alt="DevJoe"
-              width={100}
-              height={32}
-              className="h-6 w-auto"
+              alt="Dev Joe"
+              width={80}
+              height={24}
+              className="h-5 w-auto"
+              priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="hidden md:flex items-center gap-6">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent"
+                className="nav-link py-2 text-sm tracking-wide text-muted-foreground hover:text-foreground transition-colors"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="flex items-center gap-4">
-            <Button asChild className="hidden md:inline-flex">
-              <Link href="/#contact">Get in touch</Link>
-            </Button>
-
-            {/* Mobile Menu Toggle */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent"
-              aria-label="Toggle menu"
-            >
-              {menuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
+          {/* Mobile Menu Toggle */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="md:hidden w-10 h-10 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors rounded-md hover:bg-accent"
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
         </nav>
+        </div>
       </header>
 
       {/* Mobile Menu Overlay */}
@@ -108,11 +103,19 @@ export default function Navbar() {
               {item.label}
             </Link>
           ))}
-          <Button asChild size="lg" className="mt-4">
-            <Link href="/#contact" onClick={() => setMenuOpen(false)}>
-              Get in touch
-            </Link>
-          </Button>
+          <div className="flex flex-col gap-3 mt-4">
+            <Button asChild variant="outline">
+              <Link href="/Joseph_Harwood_CV.pdf" target="_blank" onClick={() => setMenuOpen(false)}>
+                <FileText className="w-4 h-4 mr-1.5" />
+                Download CV
+              </Link>
+            </Button>
+            <Button asChild size="lg">
+              <Link href="/#contact" onClick={() => setMenuOpen(false)}>
+                Get in touch
+              </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </>
