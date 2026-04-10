@@ -1,20 +1,11 @@
-"use client";
-
-import Image from "next/image";
-import BlurFade from "@/components/ui/blur-fade";
-import ProjectCard from "@/components/project-card";
-import Footer from "@/components/footer";
-import ContactForm from "@/components/contact-form";
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import Navbar from "@/components/navbar";
-import TypewriterText from "@/components/typewriter-text";
+import Footer from "@/components/footer";
+import ProjectCard from "@/components/project-card";
+import ContactForm from "@/components/contact-form";
+import AIChatTeaser from "@/components/ai-chat-teaser";
 import { projects } from "@/data/projects";
-
-const companies = [
-  { name: "Booking.com", logo: "/logos/Booking.com/Booking.com_Logo_1.png" },
-  { name: "IBM", logo: "/logos/ibm-logo-18910.png" },
-  { name: "Weeknights", logo: "/logos/WEEKNIGHTS-LOGO-ORANGE copy.png" },
-  { name: "Appical", logo: "/logos/Appical/Appical_idtsDOMAEO_0.png" },
-];
 
 export default function Home() {
   const jsonLd = {
@@ -27,7 +18,7 @@ export default function Home() {
         url: "https://joeharwood.dev",
         jobTitle: "Software Engineer",
         description:
-          "Software engineer based in Amsterdam, building modern web applications with React, Next.js, TypeScript, and Node.js.",
+          "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
         email: "joeharwooddev@gmail.com",
         address: {
           "@type": "PostalAddress",
@@ -50,7 +41,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <main className="min-h-screen bg-background text-foreground">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -58,154 +49,103 @@ export default function Home() {
 
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="min-h-[90vh] flex items-center px-6">
-        <div className="max-w-6xl mx-auto w-full pt-24">
-          <BlurFade delay={0.15}>
-            <p className="text-sm uppercase tracking-[0.25em] text-muted-foreground mb-6">
-              Software Engineer &middot; Amsterdam
-            </p>
-          </BlurFade>
+      {/* Hero */}
+      <section id="hero" className="pt-32 pb-20 md:pt-36 md:pb-24">
+        <div className="max-w-3xl mx-auto px-6 fade-in">
+          <p className="text-sm text-muted-foreground mb-8">
+            Joe Harwood — Software engineer, Amsterdam
+          </p>
 
-          <BlurFade delay={0.5}>
-            <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl font-light leading-[0.95] text-foreground mb-8 max-w-4xl min-h-[3em]">
-              <TypewriterText />
-            </h1>
-          </BlurFade>
+          <h1 className="text-[44px] sm:text-[56px] md:text-[64px] font-semibold tracking-tight leading-[1.02] text-foreground">
+            I build AI-powered products and clean web experiences.
+          </h1>
 
-          <BlurFade delay={0.7}>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-16">
-              Full-stack engineer with 6+ years of experience building web
-              applications at scale. Previously at Booking.com, IBM, and
-              Appical.
-            </p>
-          </BlurFade>
+          <p className="mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed">
+            Full-stack engineer with six years building software at Booking.com,
+            IBM, and my own products. Focused on shipping fast, useful things.
+          </p>
 
-          {/* Company Logos — inline with hero */}
-          <BlurFade delay={0.9}>
-            <div className="flex flex-wrap items-center gap-8 md:gap-12">
-              <span className="text-sm text-muted-foreground">
-                I&apos;ve worked with
-              </span>
-              {companies.map((company) => (
-                <div
-                  key={company.name}
-                  className="flex items-center justify-center"
-                >
-                  <Image
-                    src={company.logo}
-                    alt={company.name}
-                    width={120}
-                    height={40}
-                    className="h-8 w-28 object-contain opacity-60 hover:opacity-100 transition-opacity duration-300"
-                  />
-                </div>
-              ))}
-            </div>
-          </BlurFade>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <BlurFade delay={0.1} inView>
-              <div>
-                <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-foreground mb-6">
-                  About me
-                </h2>
-                <p className="text-lg text-muted-foreground mb-6">
-                  I&apos;m a software engineer based in Amsterdam with a passion for
-                  building{" "}
-                  <span className="text-foreground font-medium">fast, accessible, and well-crafted</span>{" "}
-                  web applications.
-                </p>
-                <p className="text-muted-foreground mb-8">
-                  Over the past 6+ years I&apos;ve worked across enterprise platforms,
-                  startups, and my own products — shipping everything from
-                  high-traffic booking systems to AI-powered tools. I care deeply
-                  about code quality, user experience, and shipping things that
-                  matter.
-                </p>
-
-                {/* Tech Stack — plain text */}
-                <p className="text-sm text-muted-foreground">
-                  Next.js · React · TypeScript · Node.js · Tailwind CSS · Supabase · PostgreSQL
-                </p>
-              </div>
-            </BlurFade>
-
-            <BlurFade delay={0.2} inView>
-              <div>
-                {[
-                  { company: "Weeknights", role: "Co-Founder", period: "2025-Present" },
-                  { company: "Booking.com", role: "Software Engineer II", period: "2022-2025" },
-                  { company: "Appical", role: "Software Engineer I", period: "2021-2022" },
-                  { company: "IBM", role: "Software Engineer Intern", period: "2019-2021" },
-                ].map((exp, i, arr) => (
-                  <div
-                    key={exp.company}
-                    className={`flex justify-between items-center py-4 ${
-                      i < arr.length - 1 ? "border-b border-border" : ""
-                    }`}
-                  >
-                    <div>
-                      <p className="font-medium text-foreground">{exp.company}</p>
-                      <p className="text-sm text-muted-foreground">{exp.role}</p>
-                    </div>
-                    <span className="text-sm font-mono text-muted-foreground">
-                      {exp.period}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </BlurFade>
+          <div className="mt-10 flex flex-wrap gap-4">
+            <Link
+              href="/#work"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+            >
+              View projects
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/chat"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-sm font-medium text-foreground hover:border-foreground transition-colors"
+            >
+              Chat with my AI CV
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="work" className="py-32 px-6">
-        <div className="max-w-6xl mx-auto">
-          <BlurFade delay={0.1} inView>
-            <h2 className="font-serif text-2xl font-light text-foreground mb-16">
-              Featured work
-            </h2>
-          </BlurFade>
-
-          <div className="space-y-16 md:space-y-24">
-            {projects.map((project, index) => (
-              <BlurFade key={project.slug} delay={0.1 + index * 0.1} inView>
-                <ProjectCard project={project} index={index} />
-              </BlurFade>
+      {/* Selected Work */}
+      <section id="work" className="py-20 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 fade-in">
+          <p className="text-sm text-muted-foreground mb-8">Selected work</p>
+          <ul className="border-y border-border divide-y divide-border">
+            {projects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-32 px-6">
-        <div className="max-w-2xl mx-auto">
-          <BlurFade delay={0.1} inView>
-            <div className="text-center mb-12">
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-light text-foreground mb-4">
-                Get in touch
-              </h2>
-              <p className="text-muted-foreground">
-                Interested in working together or have an opportunity to discuss?
-                I&apos;d love to hear from you.
-              </p>
-            </div>
-          </BlurFade>
+      {/* About */}
+      <section id="about" className="py-20 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 fade-in">
+          <p className="text-sm text-muted-foreground">About</p>
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-foreground">
+            A software engineer who likes shipping.
+          </h2>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              I&apos;m based in Amsterdam and have spent the last six years
+              building web applications across enterprise platforms, startups,
+              and my own side projects — from high-traffic booking systems at{" "}
+              <span className="text-foreground">Booking.com</span> to AI-powered
+              tools and the social discovery platform{" "}
+              <span className="text-foreground">Weeknights</span>.
+            </p>
+            <p>
+              I care about code quality, user experience, and the small details
+              that make software feel calm to use. Lately I&apos;ve been focused
+              on AI products and the design space around them.
+            </p>
+          </div>
+          <p className="mt-8 text-sm text-muted-foreground">
+            Next.js · TypeScript · React · Node.js · Postgres · Supabase ·
+            Tailwind
+          </p>
+        </div>
+      </section>
 
-          <BlurFade delay={0.2} inView>
+      {/* AI Chat teaser */}
+      <AIChatTeaser />
+
+      {/* Contact */}
+      <section id="contact" className="py-20 md:py-24">
+        <div className="max-w-3xl mx-auto px-6 fade-in">
+          <p className="text-sm text-muted-foreground">Contact</p>
+          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-foreground">
+            Get in touch.
+          </h2>
+          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
+            Interested in working together, or have an opportunity to discuss?
+            I&apos;d love to hear from you.
+          </p>
+          <div className="mt-10">
             <ContactForm />
-          </BlurFade>
+          </div>
         </div>
       </section>
 
       <Footer />
-    </div>
+    </main>
   );
 }

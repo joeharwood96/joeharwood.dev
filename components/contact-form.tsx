@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle, AlertCircle } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, CheckCircle, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
@@ -113,19 +112,28 @@ export default function ContactForm() {
       </div>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-        <Button type="submit" disabled={status === "loading"}>
+        <button
+          type="submit"
+          disabled={
+            status === "loading" ||
+            !formData.name.trim() ||
+            !formData.email.trim() ||
+            !formData.message.trim()
+          }
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        >
           {status === "loading" ? (
             <>
-              <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin mr-2" />
-              Sending...
+              <div className="w-4 h-4 border-2 border-background/30 border-t-background rounded-full animate-spin" />
+              Sending…
             </>
           ) : (
             <>
-              Send Message
-              <Send className="ml-2 w-4 h-4" />
+              Send message
+              <ArrowRight className="w-4 h-4" />
             </>
           )}
-        </Button>
+        </button>
 
         {status === "success" && (
           <div className="flex items-center gap-2 text-green-600 text-sm">

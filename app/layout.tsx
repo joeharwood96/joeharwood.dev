@@ -1,30 +1,25 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Cormorant_Garamond } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const inter = Inter({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Joe Harwood — Software Engineer",
   description:
-    "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js. Previously at Booking.com, IBM, and Appical.",
+    "Software engineer in Amsterdam building AI-powered products and clean web experiences. Previously at Booking.com, IBM, and Appical.",
   keywords: [
     "software engineer",
-    "web developer",
+    "AI engineer",
     "React developer",
     "Next.js developer",
-    "TypeScript developer",
-    "full-stack developer",
-    "Node.js developer",
+    "TypeScript",
     "Amsterdam",
     "Joe Harwood",
   ],
@@ -37,7 +32,7 @@ export const metadata: Metadata = {
     url: "https://joeharwood.dev",
     title: "Joe Harwood — Software Engineer",
     description:
-      "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js.",
+      "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
     siteName: "Joe Harwood",
     images: [
       {
@@ -52,7 +47,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Joe Harwood — Software Engineer",
     description:
-      "Software engineer based in Amsterdam. Building modern web applications with React, Next.js, TypeScript, and Node.js.",
+      "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -76,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} ${cormorant.variable} font-sans antialiased`}
+        className={`${inter.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         {children}
