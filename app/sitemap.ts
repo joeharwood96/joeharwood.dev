@@ -14,6 +14,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
+  // Blog
+  const blogRoute = {
+    url: `${baseUrl}/blog`,
+    lastModified: new Date(),
+    changeFrequency: "daily" as const,
+    priority: 0.7,
+  };
+
   // Project pages
   const projectRoutes = projects.map((project) => ({
     url: `${baseUrl}/projects/${project.slug}`,
@@ -22,5 +30,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...routes, ...projectRoutes];
+  return [...routes, blogRoute, ...projectRoutes];
 }
