@@ -71,7 +71,7 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
 
         return { title, link, pubDate, description, image, author };
       })
-      .filter((post): post is BlogPost => post !== null);
+      .filter((post): post is NonNullable<typeof post> => post !== null);
   } catch (e) {
     console.warn("Failed to fetch blog posts:", e);
     return [];
