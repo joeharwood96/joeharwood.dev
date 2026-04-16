@@ -33,7 +33,7 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
           </div>
         )}
 
-        <div className="pt-4 pb-2">
+        <div className="px-4 pt-4 pb-4">
           <div className="flex items-start justify-between gap-4">
             <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
               {post.title}
