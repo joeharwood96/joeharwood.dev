@@ -17,9 +17,9 @@ import Navbar from "@/components/navbar";
 import { getOrCreateSessionId } from "@/lib/session-id";
 
 const SUGGESTED_PROMPTS = [
-  "What projects has Joe built?",
-  "What is Joe good at?",
-  "Why should I hire Joe?",
+  "Which service is right for my company?",
+  "What is an AI Opportunity Audit?",
+  "Can you ship an AI feature for our product?",
 ];
 
 const isExternal = (href?: string) => !!href && /^https?:\/\//i.test(href);
@@ -202,13 +202,17 @@ function ChatInner() {
       <div className="flex-1 flex flex-col max-w-3xl w-full mx-auto px-6 pt-24 md:pt-32 pb-4">
         {isEmpty ? (
           <div className="flex-1 flex flex-col justify-center fade-in">
-            <p className="text-sm text-muted-foreground">Ask the site</p>
-            <h1 className="mt-4 text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05]">
-              Ask me anything about Joe.
+            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Ask the studio
+            </p>
+            <h1 className="mt-4 font-serif text-display-serif text-foreground leading-[1.02] text-balance">
+              What are you trying to <span className="italic">ship?</span>
             </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              Trained on his projects, work history, and stack. Responses
-              stream in real time.
+            <p className="mt-8 text-lg text-muted-foreground leading-relaxed text-pretty">
+              An assistant trained on DevJoe&apos;s services, scope, and
+              pricing. Describe what you&apos;re working on. It&apos;ll
+              recommend the right engagement or tell you if it&apos;s out of
+              scope.
             </p>
 
             <div className="mt-10 flex flex-col sm:flex-row sm:flex-wrap gap-3">
@@ -230,7 +234,7 @@ function ChatInner() {
             {messages.map((message) => (
               <div key={message.id} className="fade-in">
                 <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground mb-3">
-                  {message.role === "user" ? "You" : "Joe (AI)"}
+                  {message.role === "user" ? "You" : "DevJoe (AI)"}
                 </p>
                 {message.role === "assistant" ? (
                   <div className="text-foreground">
@@ -272,7 +276,7 @@ function ChatInner() {
                 placeholder={
                   limitState === "session_quota"
                     ? "Daily limit reached"
-                    : "Ask anything about Joe…"
+                    : "Ask about services, scope, pricing…"
                 }
                 disabled={inputDisabled}
                 enterKeyHint="send"
@@ -298,10 +302,10 @@ function ChatInner() {
 
             {!showRemainingHint && (
               <p className="mt-3 text-xs text-muted-foreground text-center">
-                AI-generated. May get details wrong — for anything important,
+                AI-generated. May get details wrong. For anything important,
                 use{" "}
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="underline underline-offset-2 hover:text-foreground"
                 >
                   the contact form
@@ -331,7 +335,7 @@ function RateLimitBanner({
         <p className="text-sm font-semibold text-foreground">
           {isQuota
             ? "You've reached your daily message limit."
-            : "Slow down — too many requests."}
+            : "Slow down, too many requests."}
         </p>
         <p className="mt-1 text-sm text-muted-foreground">
           {isQuota
@@ -342,7 +346,7 @@ function RateLimitBanner({
 
       {isQuota && (
         <Link
-          href="/#contact"
+          href="/contact"
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors shrink-0"
         >
           Contact

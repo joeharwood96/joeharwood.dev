@@ -1,41 +1,53 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
-import ProjectCard from "@/components/project-card";
-import ContactForm from "@/components/contact-form";
+import HeroBackdrop from "@/components/hero-backdrop";
+import ServiceCard from "@/components/service-card";
+import CaseStudyCard from "@/components/case-study-card";
 import AIChatTeaser from "@/components/ai-chat-teaser";
-import { projects } from "@/data/projects";
+import CalendlyButton from "@/components/calendly-button";
+import TrustStrip from "@/components/trust-strip";
+import { services } from "@/data/services";
+import { caseStudies } from "@/data/case-studies";
+import { BRAND } from "@/lib/constants";
 
 export default function Home() {
+  const featuredCaseStudies = caseStudies.slice(0, 3);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "Person",
-        "@id": "https://joeharwood.dev/#person",
-        name: "Joe Harwood",
+        "@type": "ProfessionalService",
+        "@id": "https://joeharwood.dev/#studio",
+        name: "DevJoe",
         url: "https://joeharwood.dev",
-        jobTitle: "Software Engineer",
         description:
-          "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
-        email: "joeharwooddev@gmail.com",
+          "A small engineering studio in Amsterdam. Product, with AI where it earns its keep.",
+        founder: {
+          "@type": "Person",
+          name: BRAND.founder,
+          url: "https://joeharwood.dev",
+        },
         address: {
           "@type": "PostalAddress",
           addressLocality: "Amsterdam",
           addressCountry: "NL",
         },
+        areaServed: ["Netherlands", "Europe"],
+      },
+      {
+        "@type": "Person",
+        "@id": "https://joeharwood.dev/#person",
+        name: BRAND.founder,
+        jobTitle: "Founder, DevJoe",
+        url: "https://joeharwood.dev",
+        email: "joeharwooddev@gmail.com",
         sameAs: [
           "https://github.com/joeharwood96",
           "https://www.linkedin.com/in/josephharwood-3/",
         ],
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://joeharwood.dev/#website",
-        url: "https://joeharwood.dev",
-        name: "Joe Harwood — Software Engineer",
-        publisher: { "@id": "https://joeharwood.dev/#person" },
       },
     ],
   };
@@ -50,77 +62,127 @@ export default function Home() {
       <Navbar />
 
       {/* Hero */}
-      <section id="hero" className="pt-32 pb-20 md:pt-36 md:pb-24">
-        <div className="max-w-3xl mx-auto px-6 fade-in">
-          <p className="text-sm text-muted-foreground mb-8">
-            Joe Harwood — Software engineer, Amsterdam
+      <section className="relative overflow-hidden pt-28 pb-24 md:pt-36 md:pb-32">
+        <HeroBackdrop />
+        <div className="relative section-container fade-in text-center">
+          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+            Engineering studio, Amsterdam
           </p>
 
-          <h1 className="text-[44px] sm:text-[56px] md:text-[64px] font-semibold tracking-tight leading-[1.02] text-foreground">
-            I build AI-powered products and clean web experiences.
+          <h1 className="mt-10 font-serif text-hero-serif text-foreground text-balance">
+            <span className="italic">Product</span>
+            <br />
+            that actually ships.
           </h1>
 
-          <p className="mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed">
-            Full-stack engineer with six years building software at Booking.com,
-            IBM, and my own products. Focused on shipping fast, useful things.
+          <p className="mt-10 mx-auto max-w-2xl text-lg md:text-xl text-foreground/80 leading-relaxed text-pretty">
+            A small studio shipping product for mid-market companies, with AI
+            where it earns its keep. In weeks, not quarters.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            <CalendlyButton label="Book a call" source="home-hero" />
             <Link
-              href="/#work"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+              href="/#services"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-surface/60 backdrop-blur-sm text-sm font-medium text-foreground hover:border-foreground transition-colors"
             >
-              View projects
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <Link
-              href="/chat"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-sm font-medium text-foreground hover:border-foreground transition-colors"
-            >
-              Chat with my AI CV
-              <ArrowRight className="w-4 h-4" />
+              See the services
+              <ArrowUpRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Selected Work */}
-      <section id="work" className="py-20 md:py-24">
-        <div className="max-w-3xl mx-auto px-6 fade-in">
-          <p className="text-sm text-muted-foreground mb-8">Selected work</p>
-          <ul className="border-y border-border divide-y divide-border">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+      {/* Trust strip */}
+      <TrustStrip />
+
+      {/* Services */}
+      <section id="services" className="py-20 md:py-28">
+        <div className="section-container fade-in">
+          <div className="text-center mb-14 md:mb-20">
+            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Services
+            </p>
+            <h2 className="mt-4 font-serif text-display-serif text-foreground text-balance">
+              Two ways to <span className="italic">work</span> together.
+            </h2>
+            <p className="mt-6 mx-auto max-w-2xl text-base text-muted-foreground leading-relaxed text-pretty">
+              Two productised ways to bring AI into your product. Pick the
+              smallest thing that proves value. Most engagements start with an
+              audit.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-4xl mx-auto">
+            {services.map((service) => (
+              <ServiceCard key={service.slug} service={service} />
             ))}
-          </ul>
+          </div>
+        </div>
+      </section>
+
+      {/* Case studies */}
+      <section id="work" className="py-20 md:py-28">
+        <div className="section-container fade-in">
+          <div className="text-center mb-14 md:mb-20">
+            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+              Work
+            </p>
+            <h2 className="mt-4 font-serif text-display-serif text-foreground text-balance">
+              Selected <span className="italic">case studies.</span>
+            </h2>
+            <p className="mt-6 mx-auto max-w-2xl text-base text-muted-foreground leading-relaxed text-pretty">
+              Independent products, AI experiments, and features shipped inside
+              larger product teams.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {featuredCaseStudies.map((caseStudy) => (
+              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
+            ))}
+          </div>
+
+          <div className="mt-14 text-center">
+            <Link
+              href="/work"
+              className="inline-flex items-center gap-1.5 text-sm text-foreground hover:text-primary underline underline-offset-4 decoration-border hover:decoration-primary transition-colors"
+            >
+              See all work
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* About */}
-      <section id="about" className="py-20 md:py-24">
-        <div className="max-w-3xl mx-auto px-6 fade-in">
-          <p className="text-sm text-muted-foreground">About</p>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-foreground">
-            A software engineer who likes shipping.
+      <section id="about" className="py-20 md:py-28">
+        <div className="section-container fade-in text-center">
+          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+            Studio
+          </p>
+          <h2 className="mt-4 font-serif text-display-serif text-foreground text-balance">
+            Run by <span className="italic">Joe Harwood.</span>
           </h2>
-          <div className="mt-8 space-y-5 text-lg leading-relaxed text-muted-foreground">
+          <div className="mt-10 mx-auto max-w-3xl space-y-5 text-lg leading-relaxed text-foreground/80 text-pretty">
             <p>
-              I&apos;m based in Amsterdam and have spent the last six years
-              building web applications across enterprise platforms, startups,
-              and my own side projects — from high-traffic booking systems at{" "}
-              <span className="text-foreground">Booking.com</span> to AI-powered
-              tools and the social discovery platform{" "}
+              DevJoe is a small engineering studio in Amsterdam. It&apos;s run
+              by Joe, six years shipping software at{" "}
+              <span className="text-foreground">Booking.com</span>,{" "}
+              <span className="text-foreground">IBM</span>, and his own
+              products, including the social discovery platform{" "}
               <span className="text-foreground">Weeknights</span>.
             </p>
             <p>
-              I care about code quality, user experience, and the small details
-              that make software feel calm to use. Lately I&apos;ve been focused
-              on AI products and the design space around them.
+              The goal is simple: help mid-market companies ship good product,
+              with AI where it earns its keep. No 12-month roadmaps, no
+              innovation theatre. Scope the smallest thing that proves value,
+              build it, hand it over, and let the result do the talking.
             </p>
           </div>
-          <p className="mt-8 text-sm text-muted-foreground">
+          <p className="mt-10 text-sm text-muted-foreground">
             Next.js · TypeScript · React · Node.js · Postgres · Supabase ·
-            Tailwind
+            OpenAI · Anthropic
           </p>
         </div>
       </section>
@@ -128,19 +190,28 @@ export default function Home() {
       {/* AI Chat teaser */}
       <AIChatTeaser />
 
-      {/* Contact */}
-      <section id="contact" className="py-20 md:py-24">
-        <div className="max-w-3xl mx-auto px-6 fade-in">
-          <p className="text-sm text-muted-foreground">Contact</p>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-foreground">
-            Get in touch.
-          </h2>
-          <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            Interested in working together, or have an opportunity to discuss?
-            I&apos;d love to hear from you.
+      {/* Primary CTA */}
+      <section className="py-20 md:py-28">
+        <div className="section-container fade-in text-center">
+          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
+            Start here
           </p>
-          <div className="mt-10">
-            <ContactForm />
+          <h2 className="mt-4 font-serif text-display-serif text-foreground text-balance">
+            Book a <span className="italic">30-minute call.</span>
+          </h2>
+          <p className="mt-8 mx-auto max-w-2xl text-lg text-muted-foreground leading-relaxed text-pretty">
+            A no-pitch conversation about what you&apos;re trying to ship and
+            whether DevJoe is the right fit. Free.
+          </p>
+          <div className="mt-10 inline-flex flex-wrap items-center justify-center gap-3">
+            <CalendlyButton label="Book a 30-minute call" source="home-cta" />
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border bg-surface/60 text-sm font-medium text-foreground hover:border-foreground transition-colors"
+            >
+              Or send a message
+              <ArrowUpRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>

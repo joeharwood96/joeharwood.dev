@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Instrument_Serif } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
@@ -10,44 +10,54 @@ const inter = Inter({
   display: "swap",
 });
 
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Joe Harwood — Software Engineer",
+  title: "DevJoe, a small engineering studio in Amsterdam",
   description:
-    "Software engineer in Amsterdam building AI-powered products and clean web experiences. Previously at Booking.com, IBM, and Appical.",
+    "A small engineering studio run by Joe Harwood. Product, with AI where it earns its keep. Audits, feature sprints, and custom AI assistants for mid-market companies.",
   keywords: [
-    "software engineer",
-    "AI engineer",
-    "React developer",
-    "Next.js developer",
-    "TypeScript",
-    "Amsterdam",
+    "engineering studio Amsterdam",
+    "product engineering",
+    "AI feature sprint",
+    "AI opportunity audit",
+    "AI assistant",
+    "mid-market software",
+    "Dutch engineering studio",
     "Joe Harwood",
+    "DevJoe",
   ],
   authors: [{ name: "Joe Harwood", url: "https://joeharwood.dev" }],
   creator: "Joe Harwood",
   metadataBase: new URL("https://joeharwood.dev"),
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "en_GB",
     url: "https://joeharwood.dev",
-    title: "Joe Harwood — Software Engineer",
+    title: "DevJoe, a small engineering studio in Amsterdam",
     description:
-      "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
-    siteName: "Joe Harwood",
+      "A small engineering studio run by Joe Harwood. Product, with AI where it earns its keep.",
+    siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Joe Harwood — Software Engineer",
+        alt: "DevJoe, a small engineering studio in Amsterdam",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joe Harwood — Software Engineer",
+    title: "DevJoe, a small engineering studio in Amsterdam",
     description:
-      "Software engineer in Amsterdam building AI-powered products and clean web experiences.",
+      "Product, with AI where it earns its keep. Audits, feature sprints, and custom AI assistants.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -71,7 +81,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} font-sans antialiased`}
+        className={`${inter.variable} ${instrumentSerif.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         {children}

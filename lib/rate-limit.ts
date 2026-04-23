@@ -3,7 +3,7 @@ import { Redis } from "@upstash/redis";
 
 const redis = Redis.fromEnv();
 
-// Burst control — per IP, 10 requests per minute.
+// Burst control: per IP, 10 requests per minute.
 const burst = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(10, "1 m"),
@@ -11,7 +11,7 @@ const burst = new Ratelimit({
   analytics: true,
 });
 
-// Daily quota — per anonymous session cookie, 20 messages per day.
+// Daily quota: per anonymous session cookie, 20 messages per day.
 const daily = new Ratelimit({
   redis,
   limiter: Ratelimit.slidingWindow(20, "1 d"),

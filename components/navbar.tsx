@@ -4,13 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { CALENDLY_URL } from "@/lib/constants";
 
 const navItems = [
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/blog", label: "Blog" },
+  { href: "/#services", label: "Services" },
+  { href: "/work", label: "Work" },
+  { href: "/articles", label: "Articles" },
   { href: "/chat", label: "Chat" },
-  { href: "/#contact", label: "Contact" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -27,30 +28,30 @@ export default function Navbar() {
 
   return (
     <>
-      <header
-        className={`fixed top-0 inset-x-0 z-50 transition-colors duration-200 ${
-          scrolled
-            ? "bg-background/85 backdrop-blur-md border-b border-border/60"
-            : "bg-transparent"
-        }`}
-      >
-        <nav className="max-w-3xl mx-auto h-16 px-6 flex items-center justify-between">
+      <header className="fixed top-4 inset-x-0 z-50 flex justify-center px-4 pointer-events-none">
+        <nav
+          className={`pointer-events-auto w-full max-w-5xl flex items-center justify-between gap-6 rounded-full border border-border pl-5 pr-2 py-2 transition-colors duration-200 ${
+            scrolled
+              ? "bg-surface/85 backdrop-blur-md"
+              : "bg-surface/60 backdrop-blur-sm"
+          }`}
+        >
           <Link
             href="/"
-            className="hover:opacity-70 transition-opacity"
-            aria-label="Joe Harwood — Home"
+            className="flex items-center hover:opacity-80 transition-opacity"
+            aria-label="DevJoe, home"
           >
             <Image
               src="/dev-joe.png"
-              alt="Joe Harwood"
-              width={80}
-              height={24}
-              className="h-5 w-auto"
+              alt="DevJoe"
+              width={96}
+              height={28}
+              className="h-6 w-auto"
               priority
             />
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-7">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -60,22 +61,29 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <Link
-              href="/Joseph_Harwood_CV.pdf"
-              target="_blank"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              CV ↗
-            </Link>
           </div>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center text-foreground"
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <a
+              href={CALENDLY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center px-5 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+            >
+              Book a call
+            </a>
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden w-11 h-11 flex items-center justify-center text-foreground rounded-full hover:bg-foreground/5"
+              aria-label="Toggle menu"
+            >
+              {menuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
+            </button>
+          </div>
         </nav>
       </header>
 
@@ -97,19 +105,20 @@ export default function Navbar() {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className="text-3xl font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
+              className="font-serif text-4xl leading-none text-foreground hover:text-primary transition-colors"
             >
               {item.label}
             </Link>
           ))}
-          <Link
-            href="/Joseph_Harwood_CV.pdf"
+          <a
+            href={CALENDLY_URL}
             target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
-            className="text-3xl font-semibold tracking-tight text-muted-foreground hover:text-foreground transition-colors"
+            className="mt-4 inline-flex items-center px-6 py-3 rounded-full bg-foreground text-background text-sm font-medium"
           >
-            CV ↗
-          </Link>
+            Book a call
+          </a>
         </div>
       </div>
     </>
