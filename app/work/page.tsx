@@ -7,20 +7,21 @@ import { caseStudies } from "@/data/case-studies";
 export const metadata: Metadata = {
   title: "Work · DevJoe",
   description:
-    "Selected case studies from DevJoe: products and features shipped for Booking.com, Weeknights, and independent projects.",
+    "Selected work across AI search, recommendations, onboarding, and discovery experiences for travel, marketplace, and internal tools.",
   openGraph: {
     type: "website",
     url: "https://joeharwood.dev/work",
     title: "Work · DevJoe",
     description:
-      "Selected case studies from DevJoe: products and features shipped for Booking.com, Weeknights, and independent projects.",
+      "Selected work across AI search, recommendations, onboarding, and discovery experiences for travel, marketplace, and internal tools.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Work · DevJoe",
-    description: "Selected case studies from DevJoe.",
+    description:
+      "Selected work across AI search, recommendations, onboarding, and discovery experiences.",
     images: ["/og-image.png"],
   },
 };
@@ -36,8 +37,9 @@ export default function WorkPage() {
             <h1 className="text-balance text-[3rem] font-medium leading-none tracking-tight text-neutral-900 sm:text-[5rem] md:text-[6.5rem]">
               Selected work.{" "}
               <span className="text-neutral-400">
-                Products, experiments, and discovery systems shipped to real
-                users.
+                AI search, recommendations, onboarding, and discovery
+                experiences shipped across travel, marketplaces, and internal
+                tools.
               </span>
             </h1>
           </FadeIn>

@@ -1,5 +1,5 @@
 export type Service = {
-  slug: "audit" | "sprint";
+  slug: "audit" | "sprint" | "implementation";
   label: string;
   name: string;
   priceLabel: string;
@@ -26,7 +26,7 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "audit",
-    label: "Entry",
+    label: "Audit",
     name: "AI Discovery Audit",
     priceLabel: "€2,000",
     durationLabel: "1 week",
@@ -90,7 +90,7 @@ export const services: Service[] = [
   },
   {
     slug: "sprint",
-    label: "Main",
+    label: "Prototype",
     name: "AI Prototype Sprint",
     priceLabel: "€12,000",
     durationLabel: "3 weeks",
@@ -149,6 +149,70 @@ export const services: Service[] = [
       fg: "#F2EDE3",
       fgMuted: "rgba(242, 237, 227, 0.72)",
       border: "rgba(242, 237, 227, 0.14)",
+    },
+  },
+  {
+    slug: "implementation",
+    label: "Implementation",
+    name: "Implementation Sprint",
+    priceLabel: "Scoped after validation",
+    durationLabel: "2-6 weeks",
+    tagline:
+      "Production-ready implementation of validated AI features across search, recommendations, workflows, onboarding, and discovery systems.",
+    description:
+      "An implementation sprint turns a validated AI opportunity into production-ready product work. The focus is on shipping the feature cleanly inside your existing product, with the right UX, data flow, quality controls, and launch support.",
+    deliverables: [
+      "Production-ready feature implementation",
+      "Front-end and API integration",
+      "LLM, embedding, ranking, or retrieval workflows where useful",
+      "Quality assurance and launch support",
+      "Instrumentation recommendations",
+      "Post-launch iteration plan",
+    ],
+    process: [
+      {
+        title: "Prepare",
+        description:
+          "Confirm the validated scope, technical constraints, UX details, and launch criteria.",
+      },
+      {
+        title: "Build",
+        description:
+          "Implement the product flow, data integration, and AI behaviour needed for a reliable launch.",
+      },
+      {
+        title: "Ship",
+        description:
+          "Test, release, and refine the feature around real user behaviour and product feedback.",
+      },
+    ],
+    whoFor: [
+      "Teams ready to ship a validated AI feature into production",
+      "Startups moving from prototype to real product usage",
+      "Products that need practical AI work without adding unnecessary platform complexity",
+    ],
+    faq: [
+      {
+        question: "Do we need to do an audit first?",
+        answer:
+          "Not always. If the opportunity is already clear and validated, an implementation sprint can start directly from the existing product scope.",
+      },
+      {
+        question: "Can you work inside our existing stack?",
+        answer:
+          "Yes. The sprint is scoped around your current product, codebase, data, and delivery process.",
+      },
+      {
+        question: "What happens after launch?",
+        answer:
+          "The sprint includes launch support and a practical iteration plan so the feature can improve around real usage.",
+      },
+    ],
+    accent: {
+      bg: "#3E4058",
+      fg: "#F4F1EA",
+      fgMuted: "rgba(244, 241, 234, 0.72)",
+      border: "rgba(244, 241, 234, 0.14)",
     },
   },
 ];

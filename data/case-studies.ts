@@ -5,6 +5,8 @@ export type CaseStudy = {
   year: string;
   description: string;
   fullDescription: string;
+  challenge?: string;
+  solution?: string;
   link?: string;
   tags: string[];
   image?: string;
@@ -17,16 +19,19 @@ export type CaseStudy = {
 export const caseStudies: CaseStudy[] = [
   {
     slug: "year-in-travel",
-    title:
-      "AI trip planning and travel recommendations built for scale, evolution, and performance",
+    title: "Conversational travel discovery at Booking.com",
     company: "Booking.com",
     year: "2023",
     description:
-      "Built Booking.com's first AI Trip Planner and shipped discovery product experiences around conversational UI, travel recommendations, and large-scale personalisation.",
+      "Built AI-assisted travel planning and recommendation experiences that helped users move from intent to relevant trip ideas faster.",
     fullDescription:
       "At Booking.com, the work focused on turning complex travel intent into clearer product experiences. Projects included an early AI Trip Planner, recommendation-led discovery flows, and a personalised Year in Travel experience that helped users revisit and share their travel history.",
+    challenge:
+      "Travel intent is messy. Users often know the kind of trip they want, but not the exact destination, dates, filters, or path through a traditional search flow.",
+    solution:
+      "I worked on conversational and recommendation-led product experiences that translated broad travel intent into clearer discovery paths, including AI trip planning concepts and personalised travel surfaces.",
     tags: ["React", "TypeScript", "Node.js", "Java"],
-    image: "/bookingyit.png",
+    image: "/booking-trip-planner.png",
     features: [
       "Conversational travel planning concepts for high-intent discovery",
       "Recommendation-led experiences that helped users explore travel options",
@@ -44,16 +49,20 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "weeknights",
-    title: "Weeknights",
-    company: "Weeknights · Co-founder",
+    title: "Local discovery and onboarding for Amsterdam communities",
+    company: "Weeknights",
     year: "2025",
     description:
-      "Built a local discovery marketplace for finding clubs, events, and communities, with frictionless onboarding, browsing, and local search.",
+      "Built a local marketplace that helped people find clubs, events, and communities through smoother onboarding, browsing, and local search.",
     fullDescription:
       "Weeknights helps Amsterdam residents find and join local clubs: book clubs, running groups, cooking classes, language practice, board games. Built from scratch as a co-founder, with a focus on reducing onboarding friction, making local browsing feel natural, and helping communities get discovered organically.",
+    challenge:
+      "Local discovery breaks when supply is fragmented and users do not know what to search for. Communities also need a low-friction way to get listed.",
+    solution:
+      "I designed and built the marketplace around simple onboarding, interest-led browsing, location-aware discovery, and SEO-friendly pages that helped real organisers become discoverable.",
     link: "https://weeknights.nl/",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
-    image: "/weeknights-dj.png",
+    image: "/weeknights.png",
     features: [
       "Frictionless onboarding for clubs, hosts, and local communities",
       "Browsing flows designed around real-world interests and neighbourhood context",
@@ -71,13 +80,17 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "railgpt",
-    title: "RailGPT",
-    company: "Independent",
+    title: "Natural-language train planning for Dutch rail",
+    company: "RailGPT",
     year: "2024",
     description:
-      "An AI-powered conversational UX that simplifies complex Dutch train journeys and makes natural language the core discovery experience.",
+      "Turned rigid timetable search into a conversational planning experience grounded in real Dutch rail data.",
     fullDescription:
       "RailGPT is a conversational travel planner for Dutch rail journeys. Users ask natural language questions like \"find trains from Amsterdam to Utrecht tomorrow at 9am\" and get accurate schedule results grounded in the NS API, turning a rigid timetable workflow into a simple product experience.",
+    challenge:
+      "Planning train journeys often means translating a real-world question into rigid form fields, routes, transfers, and timetable constraints.",
+    solution:
+      "I built a conversational interface over the NS API so users could ask journey questions naturally and receive grounded, structured travel answers.",
     link: "https://www.railgpt.app",
     tags: ["Next.js", "TypeScript", "OpenAI", "NS API"],
     image: "/railgpt.png",
@@ -98,17 +111,20 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: "queryhub",
-    title: "Queryhub.ai",
-    company: "Independent",
+    title: "Conversational data access for internal workflows",
+    company: "Queryhub.ai",
     year: "2024",
     description:
-      "A conversational platform for reducing workflow friction with natural-language data access and faster internal discovery.",
+      "Built a natural-language interface for querying databases, reducing the friction between business questions and usable SQL.",
     fullDescription:
       "Queryhub.ai helps developers and analysts access data through natural language. Connect a database, ask a question, get an optimised query, and run it in the browser. It explores how conversational interfaces can reduce workflow friction without sacrificing grounded, inspectable outputs.",
+    challenge:
+      "Internal teams often need data answers but depend on SQL knowledge, analysts, or slow handoffs to turn questions into queries.",
+    solution:
+      "I built a conversational data workflow that generated inspectable SQL from natural language, kept schema context visible, and let users run queries in-browser.",
     link: "https://github.com/joeharwood96/queryhub.ai",
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Node.js", "PostgreSQL"],
-    image: "/queryhub-dj.png",
-    video: "https://www.youtube.com/embed/Mt9EzgNsm6M",
+    image: "/queryhub.png",
     features: [
       "Natural language data access across multiple database types",
       "In-browser query execution with grounded schema context",

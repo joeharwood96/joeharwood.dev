@@ -11,9 +11,10 @@ type FormState = {
   companyName: string;
   productType: string;
   helpType:
-    | "ai-discovery-sprint"
+    | "ai-discovery-audit"
+    | "ai-prototype-sprint"
+    | "implementation-sprint"
     | "marketplace-search"
-    | "ai-mvp"
     | "not-sure"
     | "";
   timeline: "now" | "next-month" | "this-quarter" | "exploring" | "";
@@ -21,9 +22,10 @@ type FormState = {
 };
 
 const HELP_OPTIONS: { value: FormState["helpType"]; label: string }[] = [
-  { value: "ai-discovery-sprint", label: "AI Discovery Sprint" },
+  { value: "ai-discovery-audit", label: "AI Discovery Audit" },
+  { value: "ai-prototype-sprint", label: "AI Prototype Sprint" },
+  { value: "implementation-sprint", label: "Implementation Sprint" },
   { value: "marketplace-search", label: "Search & recommendations" },
-  { value: "ai-mvp", label: "AI MVP / feature build" },
   { value: "not-sure", label: "Not sure yet" },
 ];
 

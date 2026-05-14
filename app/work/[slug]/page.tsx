@@ -147,7 +147,7 @@ export default async function CaseStudyPage({
               Back to home
             </Link>
 
-            <header className="mb-16 max-w-4xl">
+            <header className="mb-16 max-w-6xl">
               <h1 className="mb-8 text-[3rem] font-medium leading-[1.05] tracking-tight text-neutral-900 sm:text-[5rem]">
                 {caseStudy.company}
               </h1>
@@ -159,7 +159,7 @@ export default async function CaseStudyPage({
 
           {(caseStudy.video || caseStudy.image) && (
             <FadeIn className="mb-24">
-              <div className="relative mb-24 flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[2rem] bg-neutral-100 shadow-sm sm:aspect-[21/9] sm:rounded-[3rem]">
+              <div className="relative mb-24 flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[2rem] bg-neutral-100 shadow-sm sm:rounded-[3rem]">
                 {caseStudy.video ? (
                   <iframe
                     src={caseStudy.video}
@@ -173,7 +173,7 @@ export default async function CaseStudyPage({
                     src={caseStudy.image}
                     alt={caseStudy.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 1400px"
+                    sizes="(max-width: 768px) calc(100vw - 48px), 1400px"
                     className="object-cover"
                     quality={100}
                     priority
@@ -183,14 +183,14 @@ export default async function CaseStudyPage({
             </FadeIn>
           )}
 
-          <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-[1fr_400px] md:gap-32">
+          <div className="grid w-full gap-16 md:grid-cols-[minmax(0,1fr)_400px] md:gap-32">
             <div className="space-y-16">
               <section>
                 <h2 className="mb-6 text-2xl font-medium text-neutral-900">
                   The Challenge
                 </h2>
                 <p className="text-xl font-medium leading-relaxed text-neutral-600">
-                  {caseStudy.fullDescription}
+                  {caseStudy.challenge ?? caseStudy.fullDescription}
                 </p>
               </section>
 
@@ -199,9 +199,8 @@ export default async function CaseStudyPage({
                   The Solution
                 </h2>
                 <p className="mb-8 text-xl font-medium leading-relaxed text-neutral-600">
-                  We designed and implemented a focused discovery layer around
-                  the moments where users need clearer recommendations, faster
-                  search, and better paths to value.
+                  {caseStudy.solution ??
+                    "I designed and implemented a focused discovery layer around the moments where users need clearer recommendations, faster search, and better paths to value."}
                 </p>
                 <ul className="space-y-4">
                   {caseStudy.features.slice(0, 3).map((feature) => (

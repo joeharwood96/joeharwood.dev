@@ -177,6 +177,9 @@ export default function Home() {
                 <p className="pr-4 text-lg font-medium leading-snug text-neutral-500">
                   {caseStudy.title}
                 </p>
+                <p className="mt-3 max-w-2xl pr-4 text-base font-medium leading-relaxed text-neutral-500">
+                  {caseStudy.description}
+                </p>
               </Link>
             </FadeIn>
           ))}

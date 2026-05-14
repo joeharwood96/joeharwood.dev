@@ -182,7 +182,7 @@ export default function HomeProcess() {
 
                 <div>
                   <h4 className="mb-4 text-[11px] font-bold uppercase tracking-widest text-neutral-500">
-                    Our Capabilities
+                    Capabilities
                   </h4>
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
                     {step.capabilities.map((capability) => (
