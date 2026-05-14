@@ -50,7 +50,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-40 mx-auto flex max-w-[1600px] items-center justify-between p-6 sm:p-10">
+      <header className="absolute inset-x-0 top-0 z-40 mx-auto flex w-full max-w-[1400px] items-center justify-between px-6 py-6 sm:py-10">
         <Link
           href="/"
           className="transition-opacity hover:opacity-80"
