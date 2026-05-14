@@ -8,14 +8,14 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const steps = [
   {
     id: 1,
-    title: "Audit discovery flow",
+    title: "Understand the product",
     description:
-      "We dive deep into your platform to uncover where users drop off, what they search for, and where intent is lost within your current experience.",
+      "Review onboarding, discovery flows, workflows, search, and user friction.",
     capabilities: [
+      "Product deep-dive",
       "UX / UI Audit",
-      "Search Analytics",
-      "Funnel Analysis",
-      "Query Mapping",
+      "Friction mapping",
+      "User behaviour analysis",
     ],
     graphic: (
       <div className="relative flex aspect-[2/1] w-full max-w-[300px] items-center justify-center">
@@ -36,12 +36,12 @@ const steps = [
     id: 2,
     title: "Identify AI opportunities",
     description:
-      "We map out high-impact interventions that balance technical feasibility with immediate user value, creating a clear roadmap for implementation.",
+      "Map practical AI opportunities with the highest product impact.",
     capabilities: [
-      "Semantic Strategy",
-      "Recommendation Logic",
-      "Feasibility Assessment",
-      "Data Review",
+      "Opportunity mapping",
+      "Technical feasibility",
+      "Prioritisation",
+      "Strategic roadmap",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-center justify-between border-b border-neutral-200">
@@ -63,14 +63,14 @@ const steps = [
   },
   {
     id: 3,
-    title: "Prototype & Build",
+    title: "Prototype & validate",
     description:
-      "I design and build AI-powered search, recommendation, and ranking features using LLMs, embeddings, and modern product engineering.",
+      "Test ideas quickly before over-investing in implementation.",
     capabilities: [
-      "Next.js & React",
-      "Vector Databases",
-      "LLM Integration",
-      "API Development",
+      "Rapid prototyping",
+      "Conversational UX",
+      "Validation testing",
+      "Concept iteration",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-end justify-center gap-4">
@@ -84,14 +84,14 @@ const steps = [
   },
   {
     id: 4,
-    title: "Launch & Iterate",
+    title: "Ship & iterate",
     description:
-      "We safely deploy the solution, monitor search-to-conversion metrics, and fine-tune algorithms to continuously improve discovery quality.",
+      "Implement validated features and refine based on real usage.",
     capabilities: [
-      "A/B Testing",
-      "Performance Monitoring",
-      "Ranker Tuning",
-      "User Feedback",
+      "Production build",
+      "Quality assurance",
+      "Launch support",
+      "Continuous refinement",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-center justify-center">

@@ -17,7 +17,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Joseph Harwood — AI Search & Recommendation Engineer",
+  title: "DevJoe — AI Search & Recommendation Engineer",
   description:
     "Freelance AI product engineer in Amsterdam helping travel and marketplace startups improve discovery, engagement, and conversion with AI-powered search and recommendation systems.",
   keywords: [
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     "Joseph Harwood",
     "DevJoe",
   ],
-  authors: [{ name: "Joseph Harwood", url: "https://joeharwood.dev" }],
+  authors: [{ name: "Joseph Harwood", url: "https://www.devjoe.io" }],
   creator: "Joseph Harwood",
-  metadataBase: new URL("https://joeharwood.dev"),
+  metadataBase: new URL("https://www.devjoe.io"),
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://joeharwood.dev",
+    url: "https://www.devjoe.io",
     title: "Joseph Harwood — AI Search & Recommendation Engineer",
     description:
       "AI-powered search and recommendation systems for travel and marketplace startups.",

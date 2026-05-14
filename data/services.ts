@@ -27,52 +27,53 @@ export const services: Service[] = [
   {
     slug: "audit",
     label: "Entry",
-    name: "AI Opportunity Audit",
+    name: "AI Discovery Audit",
     priceLabel: "€2,000",
     durationLabel: "1 week",
     tagline:
-      "A focused week mapping where AI would actually move the needle in your business, and what it would cost to build.",
+      "A focused review of your product, workflows, onboarding, and discovery experience to identify where AI can create meaningful product value.",
     description:
-      "One week, one written report. I spend a few hours with your team, map your workflows end to end, and hand back a ranked list of three to five AI use cases, each with a rough build estimate and expected ROI. No code, no pressure. Most audits turn into a build project. Some don't, and that's fine too.",
+      "A focused audit to understand your product, identify practical AI opportunities, and turn vague AI interest into a prioritised roadmap. The goal is to find where search, recommendations, onboarding, workflows, or discovery can be improved before wasting time building the wrong thing.",
     deliverables: [
-      "Three to five AI use cases ranked by expected ROI",
-      "Rough build estimate and timeline for each",
-      "A prioritised recommendation on what to ship first",
-      "A written report you can share with the rest of your team",
-      "A 60-minute readout call to walk through findings",
+      "Product & UX review",
+      "AI opportunity mapping",
+      "Technical feasibility review",
+      "Prioritised roadmap",
+      "Loom walkthrough or review call",
+      "Optional prototype sprint",
     ],
     process: [
       {
-        title: "Day 1",
+        title: "Understand",
         description:
-          "Kick-off call and three to four hours of interviews with the people closest to the work: operations, support, marketing, product.",
+          "Review the product, onboarding, discovery flows, workflows, search, and points of user friction.",
       },
       {
-        title: "Days 2 to 4",
+        title: "Map",
         description:
-          "I map your workflows, spot the repeatable work, and shortlist AI use cases against effort, risk, and impact.",
+          "Identify practical AI opportunities and assess them against impact, feasibility, and implementation risk.",
       },
       {
-        title: "Day 5",
+        title: "Prioritise",
         description:
-          "You get the written report and a live walkthrough. If it makes sense to build, we can roll straight into a Sprint.",
+          "Turn the strongest opportunities into a clear roadmap and walkthrough so your team knows what to validate first.",
       },
     ],
     whoFor: [
-      "Teams between 50 and 500 people with no in-house AI expertise",
-      "Leaders who want a second opinion before committing budget",
-      "Operators who can see AI is coming and want a plan, not a pitch deck",
+      "Teams unsure where AI actually fits into their product",
+      "Founders and product leads who want clarity before committing budget",
+      "Startups improving search, onboarding, workflows, recommendations, or discovery",
     ],
     faq: [
       {
         question: "What if we don't find anything worth building?",
         answer:
-          "You still walk away with a written report explaining why. That's a useful result. Better than paying six figures for a build that shouldn't have happened.",
+          "That is still useful. You avoid spending time and budget on the wrong thing, and you get a clearer view of where AI does and does not make sense.",
       },
       {
-        question: "Can the audit credit towards a Sprint if we go ahead?",
+        question: "Can this lead into a prototype sprint?",
         answer:
-          "Yes. The €2,000 is credited back against your first Sprint, so it's effectively free if we end up building together.",
+          "Yes. If the audit surfaces a strong opportunity, the next step is usually a focused prototype sprint to validate the experience before production implementation.",
       },
       {
         question: "Do you sign an NDA?",
@@ -90,57 +91,57 @@ export const services: Service[] = [
   {
     slug: "sprint",
     label: "Main",
-    name: "AI Feature Sprint",
+    name: "AI Prototype Sprint",
     priceLabel: "€12,000",
     durationLabel: "3 weeks",
     tagline:
-      "A single AI feature, scoped, built, and shipped into your product or site in three weeks. Fixed price, fixed scope.",
+      "A focused sprint to prototype and validate a high-impact AI feature before committing to a full production implementation.",
     description:
-      "Three weeks. One feature, shipped. An AI chatbot trained on your docs, an AI search that understands what your customers actually mean, an AI lead qualifier that pre-screens inbound, an AI summariser for long-form content. Scope is locked up front so there are no surprises. You know the price, the timeline, and what you get on day one.",
+      "A prototype sprint is for validating a specific AI opportunity quickly. Examples include semantic search, recommendations, conversational onboarding, AI-assisted workflows, internal copilots, or ranking improvements. The aim is to prove the product experience before turning it into a production build.",
     deliverables: [
-      "A working AI feature integrated into your product or website",
-      "Source code, in your repo, owned by you",
-      "Infrastructure set up on your accounts (OpenAI, Supabase, Vercel, etc.)",
-      "A handover doc covering how it works and how to tune it",
-      "Two weeks of post-launch support for tweaks and fixes",
+      "A working prototype of one validated AI feature",
+      "Interaction flow and UX recommendations",
+      "Technical implementation notes",
+      "Clear production-readiness assessment",
+      "Recommended next steps for an Implementation Sprint",
     ],
     process: [
       {
-        title: "Week 1",
+        title: "Scope",
         description:
-          "Scope lock. We define exactly what the feature does, what it doesn't do, and what success looks like.",
+          "Define the product problem, success criteria, and the smallest useful prototype.",
       },
       {
-        title: "Week 2",
+        title: "Prototype",
         description:
-          "Build. I ship iteratively against a staging environment you can poke at every couple of days.",
+          "Build the interaction, data flow, and AI behaviour needed to test the opportunity.",
       },
       {
-        title: "Week 3",
+        title: "Validate",
         description:
-          "Ship and hand over. Production deploy, docs, two weeks of post-launch support included.",
+          "Review the prototype, identify risks, and decide whether it is worth turning into production software.",
       },
     ],
     whoFor: [
-      "Companies who already know what they want to build",
-      "Product teams without spare AI engineering capacity",
-      "Agencies who need a senior to deliver one feature cleanly",
+      "Teams with a promising AI idea that needs validation",
+      "Startups testing search, recommendation, onboarding, or workflow concepts",
+      "Product teams that want evidence before committing to implementation",
     ],
     faq: [
       {
-        question: "What if the feature takes longer than three weeks?",
+        question: "Is this production-ready?",
         answer:
-          "Fixed price means fixed price. If I've underscoped, that's on me. I finish the work without extra charge. What we agree in week one is what ships.",
+          "The goal is validation, not a polished production launch. If the prototype proves useful, the next step is an Implementation Sprint.",
       },
       {
         question: "Do you work on existing codebases?",
         answer:
-          "Yes, that's the default. Most Sprints ship into an existing Next.js, React, or Node codebase. I can also stand up a greenfield integration if you prefer.",
+          "Yes. A prototype can sit inside an existing product, staging environment, or lightweight standalone experience depending on what is fastest to validate.",
       },
       {
-        question: "What about ongoing maintenance?",
+        question: "What happens after validation?",
         answer:
-          "Two weeks of post-launch support is included. Beyond that, I offer a light retainer for tuning and small changes if you want it.",
+          "If the prototype is worth shipping, I can scope an Implementation Sprint to turn it into production-ready product work.",
       },
     ],
     accent: {

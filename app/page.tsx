@@ -47,24 +47,32 @@ const clientTiles = [
 
 const services = [
   {
-    title: "AI Discovery Sprint",
+    title: "AI Discovery Audit",
     description:
-      "A focused 1-2 week sprint to design and build an AI-powered search, recommendation, or conversational discovery feature.",
+      "A focused review of your product, workflows, onboarding, and discovery experience to identify where AI can create meaningful product value.",
+    deliverables: [
+      "Product & UX review",
+      "AI opportunity mapping",
+      "Technical feasibility review",
+      "Prioritised roadmap",
+      "Loom walkthrough or review call",
+      "Optional prototype sprint",
+    ],
   },
   {
-    title: "Marketplace Search",
+    title: "AI Prototype Sprint",
     description:
-      "Improve how users find the right listings using better ranking, personalization, and AI-assisted discovery experiences.",
+      "A focused sprint to prototype and validate a high-impact AI feature before committing to a full implementation.",
   },
   {
-    title: "AI Feature Build",
+    title: "Implementation Sprint",
     description:
-      "Production-ready AI features built quickly using modern web technologies, scalable patterns, and AI tooling.",
+      "Production-ready implementation of validated AI features across search, recommendations, workflows, onboarding, and discovery systems.",
   },
 ];
 
 export default function Home() {
-  const featuredCaseStudies = caseStudies.slice(0, 3);
+  const featuredCaseStudies = caseStudies;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -189,9 +197,31 @@ export default function Home() {
                 <h3 className="shrink-0 text-2xl font-medium tracking-tight sm:text-3xl md:w-1/3">
                   {service.title}
                 </h3>
-                <p className="text-xl leading-relaxed text-neutral-500 md:pt-1">
-                  {service.description}
-                </p>
+                <div className="flex-1">
+                  <p className="text-xl leading-relaxed text-neutral-500 md:pt-1">
+                    {service.description}
+                  </p>
+                  {service.deliverables ? (
+                    <div className="mt-8 border-t border-neutral-100 pt-6">
+                      <h4 className="mb-4 text-sm font-bold uppercase tracking-widest text-neutral-900">
+                        Includes
+                      </h4>
+                      <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                        {service.deliverables.map((item) => (
+                          <li
+                            key={item}
+                            className="flex items-start text-base font-medium text-neutral-600"
+                          >
+                            <span className="mr-3 mt-0.5 text-neutral-300">
+                              -
+                            </span>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : null}
+                </div>
               </div>
             </FadeIn>
           ))}
@@ -205,20 +235,31 @@ export default function Home() {
         className="mx-auto w-full max-w-[1400px] px-6 py-32 text-center"
       >
         <FadeIn className="mx-auto max-w-4xl" y={30} duration={0.8}>
-          <h2 className="mb-12 text-[3rem] font-medium leading-[1] tracking-tight text-neutral-900 sm:text-[5rem]">
-            Let&apos;s build
-            <br />
-            something great.
+          <h2 className="mb-6 text-[3rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4.5rem]">
+            Not sure where AI actually fits into your product?
           </h2>
-          <a
-            href={`${CALENDLY_URL}?utm_source=home-cta`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
-          >
-            Book a discovery call
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-500">
+            I help teams identify practical AI opportunities across search,
+            onboarding, recommendations, workflows, and discovery before wasting
+            time building the wrong thing.
+          </p>
+          <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href={`${CALENDLY_URL}?utm_source=home-ai-audit`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95 sm:w-auto"
+            >
+              Book an AI audit
+              <ArrowRight className="ml-2 h-5 w-5" />
+            </a>
+            <Link
+              href="/#work"
+              className="inline-flex w-full items-center justify-center rounded-full bg-[#F5F5F5] px-10 py-5 text-lg font-medium text-neutral-900 transition-all hover:bg-[#E5E5E5] sm:w-auto"
+            >
+              View relevant work
+            </Link>
+          </div>
         </FadeIn>
       </section>
 
