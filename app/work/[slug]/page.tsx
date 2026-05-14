@@ -1,12 +1,12 @@
-import Link from "next/link";
+import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
-import Footer from "@/components/footer";
+import FadeIn from "@/components/motion/fade-in";
 import Navbar from "@/components/navbar";
-import CalendlyButton from "@/components/calendly-button";
 import { caseStudies } from "@/data/case-studies";
-import { Metadata } from "next";
+import { CALENDLY_URL } from "@/lib/constants";
 
 export async function generateStaticParams() {
   return caseStudies.map((caseStudy) => ({
@@ -40,10 +40,13 @@ export async function generateMetadata({
     keywords: [
       ...caseStudy.tags,
       caseStudy.company,
-      "engineering studio",
+      "AI discovery",
+      "recommendation systems",
+      "product engineering",
+      "Joseph Harwood",
       "DevJoe",
     ],
-    authors: [{ name: "Joe Harwood", url: baseUrl }],
+    authors: [{ name: "Joseph Harwood", url: baseUrl }],
     openGraph: {
       type: "article",
       url: caseStudyUrl,
@@ -114,8 +117,8 @@ export default async function CaseStudyPage({
         description: caseStudy.fullDescription,
         url: caseStudyUrl,
         image: caseStudy.image ? `${baseUrl}${caseStudy.image}` : undefined,
-        author: { "@type": "Person", name: "Joe Harwood", url: baseUrl },
-        creator: { "@type": "Person", name: "Joe Harwood" },
+        author: { "@type": "Person", name: "Joseph Harwood", url: baseUrl },
+        creator: { "@type": "Person", name: "Joseph Harwood" },
         keywords: caseStudy.tags.join(", "),
         about: caseStudy.features.join(", "),
         applicationCategory: "WebApplication",
@@ -124,11 +127,8 @@ export default async function CaseStudyPage({
     ],
   };
 
-  const currentIndex = caseStudies.findIndex((c) => c.slug === caseStudy.slug);
-  const nextCaseStudy = caseStudies[(currentIndex + 1) % caseStudies.length];
-
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <main className="relative min-h-screen bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -136,167 +136,141 @@ export default async function CaseStudyPage({
 
       <Navbar />
 
-      <article className="pt-32 pb-16 md:pt-40">
-        {/* Header */}
-        <div className="section-container fade-in text-center">
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors mb-16"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            All work
-          </Link>
-
-          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-            {caseStudy.company} · {caseStudy.year}
-          </p>
-
-          <h1 className="mt-8 font-serif text-hero-serif text-foreground text-balance">
-            {caseStudy.title}
-          </h1>
-
-          <p className="mt-10 mx-auto max-w-3xl text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-            {caseStudy.description}
-          </p>
-
-          {caseStudy.link && (
-            <a
-              href={caseStudy.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 text-sm text-foreground hover:text-primary underline underline-offset-4 decoration-border hover:decoration-primary transition-colors"
+      <article className="px-6 pb-32 pt-40">
+        <div className="mx-auto max-w-[1400px]">
+          <FadeIn>
+            <Link
+              href="/#work"
+              className="group mb-12 inline-flex items-center text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900"
             >
-              View live
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          )}
-        </div>
+              <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              Back to home
+            </Link>
 
-        {/* Media */}
-        {(caseStudy.video || caseStudy.image) && (
-          <div className="section-container my-20">
-            <div className="relative w-full aspect-video overflow-hidden rounded-2xl border border-border bg-muted">
-              {caseStudy.video ? (
-                <iframe
-                  src={caseStudy.video}
-                  title={caseStudy.title}
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                  className="w-full h-full"
-                />
-              ) : caseStudy.image ? (
-                <Image
-                  src={caseStudy.image}
-                  alt={caseStudy.title}
-                  fill
-                  className="object-cover"
-                  quality={100}
-                  priority
-                />
-              ) : null}
+            <header className="mb-16 max-w-4xl">
+              <h1 className="mb-8 text-[3rem] font-medium leading-[1.05] tracking-tight text-neutral-900 sm:text-[5rem]">
+                {caseStudy.company}
+              </h1>
+              <p className="text-2xl font-medium leading-snug text-neutral-500 sm:text-3xl">
+                {caseStudy.title}
+              </p>
+            </header>
+          </FadeIn>
+
+          {(caseStudy.video || caseStudy.image) && (
+            <FadeIn className="mb-24">
+              <div className="relative mb-24 flex aspect-[16/10] w-full items-center justify-center overflow-hidden rounded-[2rem] bg-neutral-100 shadow-sm sm:aspect-[21/9] sm:rounded-[3rem]">
+                {caseStudy.video ? (
+                  <iframe
+                    src={caseStudy.video}
+                    title={caseStudy.title}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="h-full w-full"
+                  />
+                ) : caseStudy.image ? (
+                  <Image
+                    src={caseStudy.image}
+                    alt={caseStudy.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 1400px"
+                    className="object-cover"
+                    quality={100}
+                    priority
+                  />
+                ) : null}
+              </div>
+            </FadeIn>
+          )}
+
+          <div className="mx-auto grid max-w-6xl gap-16 md:grid-cols-[1fr_400px] md:gap-32">
+            <div className="space-y-16">
+              <section>
+                <h2 className="mb-6 text-2xl font-medium text-neutral-900">
+                  The Challenge
+                </h2>
+                <p className="text-xl font-medium leading-relaxed text-neutral-600">
+                  {caseStudy.fullDescription}
+                </p>
+              </section>
+
+              <section>
+                <h2 className="mb-6 text-2xl font-medium text-neutral-900">
+                  The Solution
+                </h2>
+                <p className="mb-8 text-xl font-medium leading-relaxed text-neutral-600">
+                  We designed and implemented a focused discovery layer around
+                  the moments where users need clearer recommendations, faster
+                  search, and better paths to value.
+                </p>
+                <ul className="space-y-4">
+                  {caseStudy.features.slice(0, 3).map((feature) => (
+                    <li
+                      key={feature}
+                      className="flex items-start text-xl font-medium text-neutral-600"
+                    >
+                      <span className="mr-4 text-neutral-300">-</span>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
             </div>
-          </div>
-        )}
 
-        {/* Body sections, unified centered layout */}
-        <div className="space-y-24 md:space-y-28">
-          <section className="section-container text-center">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Overview
-            </p>
-            <p className="mt-6 mx-auto max-w-3xl text-lg leading-relaxed text-foreground/90 text-pretty">
-              {caseStudy.fullDescription}
-            </p>
-          </section>
+            <aside className="space-y-12">
+              <section>
+                <h2 className="mb-6 text-sm font-bold uppercase tracking-widest text-neutral-400">
+                  Technologies
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {caseStudy.technologies.map((technology) => (
+                    <span
+                      key={technology}
+                      className="rounded-full bg-[#F5F5F5] px-4 py-2 text-sm font-medium text-neutral-900"
+                    >
+                      {technology}
+                    </span>
+                  ))}
+                </div>
+              </section>
 
-          <section className="section-container text-center">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Key features
-            </p>
-            <ul className="mt-10 mx-auto max-w-3xl border-t border-border">
-              {caseStudy.features.map((feature, index) => (
-                <li
-                  key={index}
-                  className="py-6 border-b border-border flex gap-6 text-left"
+              {caseStudy.outcomes ? (
+                <section>
+                  <h2 className="mb-6 text-sm font-bold uppercase tracking-widest text-neutral-400">
+                    Outcomes
+                  </h2>
+                  <p className="text-lg font-medium leading-relaxed text-neutral-500">
+                    {caseStudy.outcomes}
+                  </p>
+                </section>
+              ) : null}
+
+              <div className="flex flex-wrap gap-3">
+                {caseStudy.link ? (
+                  <a
+                    href={caseStudy.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-3 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
+                  >
+                    View live
+                    <ArrowUpRight className="h-4 w-4" />
+                  </a>
+                ) : null}
+                <a
+                  href={`${CALENDLY_URL}?utm_source=work-${caseStudy.slug}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#F5F5F5] px-5 py-3 text-sm font-medium text-neutral-900 transition-all hover:scale-105 hover:bg-neutral-100 active:scale-95"
                 >
-                  <span className="text-sm text-muted-foreground tabular-nums w-10 shrink-0">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-base text-foreground/90 leading-relaxed text-pretty">
-                    {feature}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section className="section-container text-center">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Stack
-            </p>
-            <ul className="mt-8 flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-muted-foreground">
-              {caseStudy.tags.map((tag) => (
-                <li key={tag}>{tag}</li>
-              ))}
-            </ul>
-          </section>
-
-          {caseStudy.outcomes && (
-            <section className="section-container text-center">
-              <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-                Outcome
-              </p>
-              <p className="mt-6 mx-auto max-w-3xl text-lg leading-relaxed text-foreground/90 text-pretty">
-                {caseStudy.outcomes}
-              </p>
-            </section>
-          )}
+                  Book a call
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </aside>
+          </div>
         </div>
       </article>
-
-      {/* CTA */}
-      <section className="border-t border-border mt-24">
-        <div className="section-container py-20 text-center">
-          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-            Considering something similar?
-          </p>
-          <h2 className="mt-4 font-serif text-display-serif text-foreground text-balance">
-            Book a <span className="italic">30-minute call.</span>
-          </h2>
-          <div className="mt-10">
-            <CalendlyButton
-              label="Book a call"
-              source={`work-${caseStudy.slug}`}
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Next case study */}
-      <section className="border-t border-border">
-        <div className="section-container py-16 text-center">
-          <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground mb-6">
-            Next
-          </p>
-          <Link
-            href={`/work/${nextCaseStudy.slug}`}
-            className="group inline-flex flex-col items-center gap-3 py-6 transition-opacity hover:opacity-80"
-          >
-            <span className="text-xs text-muted-foreground tabular-nums">
-              {nextCaseStudy.year} · {nextCaseStudy.company}
-            </span>
-            <h3 className="font-serif text-3xl md:text-4xl text-foreground">
-              {nextCaseStudy.title}
-            </h3>
-            <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground">
-              Read case study
-              <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </span>
-          </Link>
-        </div>
-      </section>
-
-      <Footer />
     </main>
   );
 }

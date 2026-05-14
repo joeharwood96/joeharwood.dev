@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { CaseStudy } from "@/data/case-studies";
 
@@ -15,69 +15,70 @@ export default function CaseStudyCard({
       <li>
         <Link
           href={`/work/${caseStudy.slug}`}
-          className="group flex flex-col md:grid md:grid-cols-[200px_1fr_auto] gap-5 md:gap-8 py-8 md:items-center transition-colors hover:bg-foreground/[0.02]"
+          className="group grid gap-5 border-b border-border py-8 transition-opacity hover:opacity-80 md:grid-cols-[220px_1fr_auto] md:items-center md:gap-8"
         >
-          <div className="relative aspect-[16/10] w-full md:w-[200px] overflow-hidden rounded-xl border border-border bg-muted">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-[1.5rem] bg-surface">
             {caseStudy.image ? (
               <Image
                 src={caseStudy.image}
                 alt={caseStudy.title}
                 fill
-                sizes="(max-width: 768px) 100vw, 200px"
+                sizes="(max-width: 768px) 100vw, 220px"
                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
               />
             ) : null}
           </div>
 
-          <div className="min-w-0">
-            <p className="text-xs text-muted-foreground tabular-nums mb-2">
+          <div>
+            <p className="mb-2 text-sm font-medium text-muted-foreground">
               {caseStudy.company} · {caseStudy.year}
             </p>
-            <h3 className="font-serif text-2xl md:text-3xl leading-[1.05] text-foreground">
+            <h3 className="text-2xl font-medium leading-tight text-foreground md:text-3xl">
               {caseStudy.title}
             </h3>
-            <p className="mt-3 text-base text-muted-foreground leading-relaxed text-pretty">
+            <p className="mt-3 max-w-3xl text-base font-medium leading-relaxed text-muted-foreground">
               {caseStudy.description}
             </p>
           </div>
 
-          <ArrowUpRight
-            className="hidden md:block w-5 h-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
-            aria-hidden="true"
-          />
+          <ArrowUpRight className="hidden h-5 w-5 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 md:block" />
         </Link>
       </li>
     );
   }
 
   return (
-    <Link
-      href={`/work/${caseStudy.slug}`}
-      className="group flex flex-col rounded-2xl border border-border bg-surface/70 overflow-hidden transition-all hover:border-foreground/40"
-    >
-      <div className="relative aspect-[16/10] w-full bg-muted overflow-hidden">
-        {caseStudy.image ? (
-          <Image
-            src={caseStudy.image}
-            alt={caseStudy.title}
-            fill
-            sizes="(max-width: 768px) 100vw, 420px"
-            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-          />
-        ) : null}
-      </div>
+    <Link href={`/work/${caseStudy.slug}`} className="group block">
+      <article>
+        <div className="relative mb-6 aspect-[4/3] overflow-hidden rounded-[2rem] bg-surface">
+          {caseStudy.image ? (
+            <Image
+              src={caseStudy.image}
+              alt={caseStudy.title}
+              fill
+              sizes="(max-width: 768px) 100vw, 680px"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+          ) : null}
+        </div>
 
-      <div className="flex-1 p-6 md:p-7">
-        <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-          {caseStudy.company} · {caseStudy.year}
-        </p>
-        <h3 className="mt-4 font-serif text-2xl md:text-[1.75rem] leading-[1.05] text-foreground">
-          {caseStudy.title}
-        </h3>
-        <p className="mt-3 text-base text-muted-foreground leading-relaxed text-pretty">
-          {caseStudy.description}
-        </p>
-      </div>
+        <div className="flex items-start justify-between gap-6">
+          <div>
+            <p className="mb-2 text-sm font-medium text-muted-foreground">
+              {caseStudy.company} · {caseStudy.year}
+            </p>
+            <h3 className="text-2xl font-medium leading-tight text-foreground">
+              {caseStudy.title}
+            </h3>
+            <p className="mt-3 text-lg font-medium leading-snug text-muted-foreground">
+              {caseStudy.description}
+            </p>
+          </div>
+          <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-surface text-foreground transition-colors group-hover:bg-foreground group-hover:text-background">
+            <ArrowUpRight className="h-5 w-5" />
+          </span>
+        </div>
+      </article>
     </Link>
   );
 }

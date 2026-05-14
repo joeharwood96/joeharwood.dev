@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
 import CaseStudyCard from "@/components/case-study-card";
+import FadeIn from "@/components/motion/fade-in";
+import Navbar from "@/components/navbar";
 import { caseStudies } from "@/data/case-studies";
 
 export const metadata: Metadata = {
@@ -27,34 +27,32 @@ export const metadata: Metadata = {
 
 export default function WorkPage() {
   return (
-    <main className="min-h-screen bg-background text-foreground flex flex-col">
+    <main className="relative min-h-screen bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
       <Navbar />
 
-      <section className="flex-1 pt-32 pb-20 md:pt-40 md:pb-24">
-        <div className="section-container fade-in">
-          <div className="text-center">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Work
-            </p>
-            <h1 className="mt-6 font-serif text-hero-serif text-foreground text-balance">
-              <span className="italic">Things</span> we&apos;ve shipped.
+      <section className="px-6 pb-20 pt-40 sm:pt-52">
+        <div className="mx-auto max-w-[1400px]">
+          <FadeIn className="max-w-5xl">
+            <h1 className="text-balance text-[3rem] font-medium leading-none tracking-tight text-neutral-900 sm:text-[5rem] md:text-[6.5rem]">
+              Selected work.{" "}
+              <span className="text-neutral-400">
+                Products, experiments, and discovery systems shipped to real
+                users.
+              </span>
             </h1>
-            <p className="mt-10 mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-              A mix of independent products, AI experiments, and features
-              built inside large product teams. Each one was shipped to real
-              users.
-            </p>
-          </div>
+          </FadeIn>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-5">
+          <ul className="mt-20 border-t border-border">
             {caseStudies.map((caseStudy) => (
-              <CaseStudyCard key={caseStudy.slug} caseStudy={caseStudy} />
+              <CaseStudyCard
+                key={caseStudy.slug}
+                caseStudy={caseStudy}
+                compact
+              />
             ))}
-          </div>
+          </ul>
         </div>
       </section>
-
-      <Footer />
     </main>
   );
 }

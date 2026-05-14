@@ -12,7 +12,6 @@ export default {
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         serif: [
-          "var(--font-serif)",
           "ui-serif",
           "Georgia",
           "Cambria",

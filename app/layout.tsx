@@ -1,63 +1,60 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
+import MotionProvider from "@/components/motion/motion-provider";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600"],
+const geistSans = localFont({
+  src: "./fonts/GeistVF.woff",
   variable: "--font-inter",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
-  variable: "--font-serif",
+const geistMono = localFont({
+  src: "./fonts/GeistMonoVF.woff",
+  variable: "--font-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "DevJoe, a small engineering studio in Amsterdam",
+  title: "Joseph Harwood — AI Search & Recommendation Engineer",
   description:
-    "A small engineering studio run by Joe Harwood. Product, with AI where it earns its keep. Audits, feature sprints, and custom AI assistants for mid-market companies.",
+    "Freelance AI product engineer in Amsterdam helping travel and marketplace startups improve discovery, engagement, and conversion with AI-powered search and recommendation systems.",
   keywords: [
-    "engineering studio Amsterdam",
-    "product engineering",
-    "AI feature sprint",
-    "AI opportunity audit",
-    "AI assistant",
-    "mid-market software",
-    "Dutch engineering studio",
-    "Joe Harwood",
+    "AI search engineer",
+    "recommendation systems engineer",
+    "AI discovery sprint",
+    "marketplace search",
+    "travel recommendations",
+    "AI product engineer Amsterdam",
+    "Joseph Harwood",
     "DevJoe",
   ],
-  authors: [{ name: "Joe Harwood", url: "https://joeharwood.dev" }],
-  creator: "Joe Harwood",
+  authors: [{ name: "Joseph Harwood", url: "https://joeharwood.dev" }],
+  creator: "Joseph Harwood",
   metadataBase: new URL("https://joeharwood.dev"),
   openGraph: {
     type: "website",
     locale: "en_GB",
     url: "https://joeharwood.dev",
-    title: "DevJoe, a small engineering studio in Amsterdam",
+    title: "Joseph Harwood — AI Search & Recommendation Engineer",
     description:
-      "A small engineering studio run by Joe Harwood. Product, with AI where it earns its keep.",
+      "AI-powered search and recommendation systems for travel and marketplace startups.",
     siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevJoe, a small engineering studio in Amsterdam",
+        alt: "Joseph Harwood — AI Search & Recommendation Engineer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevJoe, a small engineering studio in Amsterdam",
+    title: "Joseph Harwood — AI Search & Recommendation Engineer",
     description:
-      "Product, with AI where it earns its keep. Audits, feature sprints, and custom AI assistants.",
+      "AI-powered search and recommendation systems for travel and marketplace startups.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -81,10 +78,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${instrumentSerif.variable} font-sans antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        {children}
+        <MotionProvider>{children}</MotionProvider>
         <Analytics />
       </body>
     </html>
