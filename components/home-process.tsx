@@ -65,7 +65,7 @@ const steps = [
     id: 3,
     title: "Prototype & Build",
     description:
-      "We rapidly engineer and integrate custom AI models, RAG pipelines, or ranking algorithms directly into your product's frontend.",
+      "I design and build AI-powered search, recommendation, and ranking features using LLMs, embeddings, and modern product engineering.",
     capabilities: [
       "Next.js & React",
       "Vector Databases",
@@ -147,16 +147,17 @@ export default function HomeProcess() {
               transition={{ duration: 0.8, ease }}
             >
               <h2 className="mb-4 text-xl font-medium tracking-tight text-white/50 sm:text-2xl">
-                People work with us to
+                How I help teams improve discovery
               </h2>
               <div className="text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
-                Elevate Delivery &<br />
-                Discovery Capabilities
+                Better Search,
+                <br />
+                Recommendations &<br />
+                Product Discovery
               </div>
               <p className="mt-8 max-w-md text-lg font-medium leading-relaxed text-neutral-400 sm:text-xl">
-                We make sure teams can deliver better outcomes, faster. By working
-                closely with you to optimize workflows and implement the right
-                tools.
+                I work closely with teams to improve how users find, compare,
+                and choose the right thing.
               </p>
             </m.div>
           </div>

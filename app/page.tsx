@@ -117,10 +117,12 @@ export default function Home() {
         <div className="max-w-5xl">
           <FadeIn y={20} duration={0.8}>
             <h1 className="text-[2.5rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem]">
-              Your 0 to 1 Partner for AI Discovery.{" "}
+              AI Search & Recommendation Systems for Travel and Marketplace
+              Startups{" "}
               <span className="text-neutral-400">
-                Building intelligent search experiences that take ambitious
-                startups from insight to impact.
+                I help startups improve discovery, engagement, and conversion
+                with AI-powered search, recommendations, and conversational
+                product experiences.
               </span>
             </h1>
           </FadeIn>
