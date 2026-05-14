@@ -95,12 +95,6 @@ export default function Footer() {
                 Articles
               </Link>
               <Link
-                href="/chat"
-                className="text-sm font-medium text-primary-foreground/70 transition-colors hover:text-primary-foreground"
-              >
-                Chat
-              </Link>
-              <Link
                 href="/contact"
                 className="text-sm font-medium text-primary-foreground/70 transition-colors hover:text-primary-foreground"
               >
