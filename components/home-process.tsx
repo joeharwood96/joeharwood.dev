@@ -146,10 +146,10 @@ export default function HomeProcess() {
               viewport={{ once: true }}
               transition={{ duration: 0.8, ease }}
             >
-              <h2 className="mb-4 text-xl font-medium tracking-tight text-white/50 sm:text-2xl">
+              <h2 className="mb-4 text-xl font-medium tracking-tight text-white/50">
                 How I help teams improve discovery
               </h2>
-              <div className="text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[4rem]">
+              <div className="text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
                 Better Search,
                 <br />
                 Recommendations &<br />

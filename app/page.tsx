@@ -116,15 +116,15 @@ export default function Home() {
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-52 sm:pb-32 sm:pt-44 lg:pt-40">
         <div className="max-w-5xl">
           <FadeIn y={20} duration={0.8}>
-            <h1 className="text-[2.5rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4rem] md:text-[5rem] lg:text-[5.5rem]">
+            <h1 className="text-[2.7rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4rem] md:text-[4.75rem] lg:text-[5rem]">
               AI Search & Recommendation Systems for Travel and Marketplace
-              Startups{" "}
-              <span className="text-neutral-400">
-                I help startups improve discovery, engagement, and conversion
-                with AI-powered search, recommendations, and conversational
-                product experiences.
-              </span>
+              Startups
             </h1>
+            <p className="mt-8 max-w-3xl text-xl font-medium leading-snug text-neutral-500 sm:text-2xl">
+              I help startups improve discovery, engagement, and conversion
+              with AI-powered search, recommendations, and conversational
+              product experiences.
+            </p>
           </FadeIn>
         </div>
       </section>
