@@ -1,8 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import HomeProcess from "@/components/home-process";
 import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
 import { CALENDLY_URL } from "@/lib/constants";
@@ -47,27 +48,33 @@ const clientTiles = [
 
 const services = [
   {
-    title: "AI Discovery Audit",
+    slug: "startup-mvp",
+    title: "Startup MVP",
+    priceLabel: "€12,000–20,000",
     description:
-      "A focused review of your product, workflows, onboarding, and discovery experience to identify where AI can create meaningful product value.",
+      "A production-ready SaaS or marketplace, designed and built end to end and ready to put in front of real users.",
     deliverables: [
-      "Product & UX review",
-      "AI opportunity mapping",
-      "Technical feasibility review",
-      "Prioritised roadmap",
-      "Loom walkthrough or review call",
-      "Optional prototype sprint",
+      "Product & UX design",
+      "Full front-end build",
+      "Backend, database & APIs",
+      "Auth, payments & core integrations",
+      "Production deployment",
+      "Handover & launch support",
     ],
   },
   {
-    title: "AI Prototype Sprint",
+    slug: "launch-site",
+    title: "Launch Site",
+    priceLabel: "€4,000–6,000",
     description:
-      "A focused sprint to prototype and validate a high-impact AI feature before committing to a full implementation.",
+      "A fast, beautiful marketing site that looks premium, loads quick, and runs on a CMS you can update yourself.",
   },
   {
-    title: "Implementation Sprint",
+    slug: "growth-sprint",
+    title: "Growth Sprint",
+    priceLabel: "€3,000–5,000",
     description:
-      "Production-ready implementation of validated AI features across search, recommendations, workflows, onboarding, and discovery systems.",
+      "A focused sprint to improve conversion, onboarding, search, or a key flow in your existing product.",
   },
 ];
 
@@ -83,12 +90,12 @@ export default function Home() {
         name: "DevJoe",
         url: "https://joeharwood.dev",
         description:
-          "AI discovery and recommendation engineering for travel, marketplace, and local-commerce startups.",
+          "Design and build of web products for founders: marketing sites, MVPs, and SaaS, made to look premium and built to convert.",
         founder: {
           "@type": "Person",
           name: "Joseph Harwood",
           url: "https://joeharwood.dev",
-          jobTitle: "AI Product Engineer",
+          jobTitle: "Product Engineer",
         },
         address: {
           "@type": "PostalAddress",
@@ -101,7 +108,7 @@ export default function Home() {
         "@type": "Person",
         "@id": "https://joeharwood.dev/#person",
         name: "Joseph Harwood",
-        jobTitle: "AI Product Engineer",
+        jobTitle: "Product Engineer",
         url: "https://joeharwood.dev",
         email: "joeharwooddev@gmail.com",
         sameAs: [
@@ -125,10 +132,10 @@ export default function Home() {
         <div className="max-w-6xl">
           <FadeIn y={20} duration={0.8}>
             <h1 className="text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
-              AI search and recommendations for travel and marketplace
-              startups.
+              I design and build web products for founders.
               <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
-                I help teams improve discovery, engagement, and conversion.
+                Marketing sites, MVPs, and full SaaS, made to look premium and
+                built to convert.
               </span>
             </h1>
           </FadeIn>
@@ -156,7 +163,12 @@ export default function Home() {
       <section id="work" className="mx-auto w-full max-w-[1400px] px-6 py-20">
         <div className="grid gap-x-6 gap-y-16 md:grid-cols-2">
           {featuredCaseStudies.map((caseStudy, index) => (
-            <FadeIn key={caseStudy.slug} delay={index * 0.1} y={40} duration={0.8}>
+            <FadeIn
+              key={caseStudy.slug}
+              delay={index * 0.1}
+              y={40}
+              duration={0.8}
+            >
               <Link href={`/work/${caseStudy.slug}`} className="group block">
                 <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden rounded-[2rem] bg-neutral-100">
                   <div className="absolute inset-0 transition-transform duration-700 ease-out group-hover:scale-[1.03]">
@@ -186,7 +198,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="services" className="mx-auto w-full max-w-[1400px] px-6 py-32">
+      <section
+        id="services"
+        className="mx-auto w-full max-w-[1400px] px-6 py-32"
+      >
         <FadeIn className="mb-16 max-w-4xl" duration={0.8}>
           <h2 className="mb-6 text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
             Services
@@ -196,10 +211,19 @@ export default function Home() {
         <div className="flex flex-col border-t border-neutral-200">
           {services.map((service, index) => (
             <FadeIn key={service.title} delay={index * 0.1} duration={0.6}>
-              <div className="flex flex-col gap-6 border-b border-neutral-200 py-10 md:flex-row md:gap-12">
-                <h3 className="shrink-0 text-2xl font-medium tracking-tight sm:text-3xl md:w-1/3">
-                  {service.title}
-                </h3>
+              <Link
+                href={`/services/${service.slug}`}
+                className="group flex flex-col gap-6 border-b border-neutral-200 py-10 md:flex-row md:gap-12"
+              >
+                <div className="shrink-0 md:w-1/3">
+                  <h3 className="flex items-start gap-2 text-2xl font-medium tracking-tight sm:text-3xl">
+                    {service.title}
+                    <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-neutral-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-neutral-900" />
+                  </h3>
+                  <p className="mt-3 text-base font-medium tabular-nums text-neutral-400">
+                    {service.priceLabel}
+                  </p>
+                </div>
                 <div className="flex-1">
                   <p className="text-xl leading-relaxed text-neutral-500 md:pt-1">
                     {service.description}
@@ -224,8 +248,12 @@ export default function Home() {
                       </ul>
                     </div>
                   ) : null}
+                  <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors group-hover:text-neutral-900">
+                    View service
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </span>
                 </div>
-              </div>
+              </Link>
             </FadeIn>
           ))}
         </div>
@@ -239,51 +267,34 @@ export default function Home() {
       >
         <FadeIn className="mx-auto max-w-4xl" y={30} duration={0.8}>
           <h2 className="mb-6 text-[3rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4.5rem]">
-            Not sure where AI actually fits into your product?
+            Got something you need built?
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            I help teams identify practical AI opportunities across search,
-            onboarding, recommendations, workflows, and discovery before wasting
-            time building the wrong thing.
+            Whether it&apos;s a marketing site, an MVP, or a flow that
+            isn&apos;t converting, tell me what you&apos;re working on and
+            I&apos;ll tell you how I&apos;d approach it.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
-              href={`${CALENDLY_URL}?utm_source=home-ai-audit`}
+              href={`${CALENDLY_URL}?utm_source=home-cta`}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95 sm:w-auto"
             >
-              Book an AI audit
+              Book a call
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
             <Link
               href="/#work"
               className="inline-flex w-full items-center justify-center rounded-full bg-[#F5F5F5] px-10 py-5 text-lg font-medium text-neutral-900 transition-all hover:bg-[#E5E5E5] sm:w-auto"
             >
-              View relevant work
+              View work
             </Link>
           </div>
         </FadeIn>
       </section>
 
-      <footer className="mx-auto w-full max-w-[1400px] px-6 pb-10">
-        <div className="flex flex-col gap-3 border-t border-neutral-200 pt-6 text-sm font-medium text-neutral-500 sm:flex-row sm:items-center sm:justify-between">
-          <div className="text-neutral-900">DevJoe</div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6">
-            <p>
-              © {new Date().getFullYear()} DevJoe. All rights reserved.
-            </p>
-            <a
-              href="https://www.linkedin.com/in/josephharwood-3/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-neutral-900"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }

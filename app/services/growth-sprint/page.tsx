@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import ServiceLayout from "../_components/service-layout";
 import { getService } from "@/data/services";
 
-const service = getService("sprint");
+const service = getService("growth-sprint");
 
 export const metadata: Metadata = {
   title: `${service?.name} · DevJoe`,
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SprintPage() {
+export default function GrowthSprintPage() {
   if (!service) notFound();
   return <ServiceLayout service={service} />;
 }

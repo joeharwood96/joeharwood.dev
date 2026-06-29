@@ -17,16 +17,16 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "DevJoe — AI Search & Recommendation Engineer",
+  title: "DevJoe — Web products for founders",
   description:
-    "Freelance AI product engineer in Amsterdam helping travel and marketplace startups improve discovery, engagement, and conversion with AI-powered search and recommendation systems.",
+    "Freelance product engineer in Amsterdam. I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
   keywords: [
-    "AI search engineer",
-    "recommendation systems engineer",
-    "AI discovery sprint",
-    "marketplace search",
-    "travel recommendations",
-    "AI product engineer Amsterdam",
+    "web developer for founders",
+    "MVP development",
+    "SaaS development",
+    "marketplace development",
+    "marketing website",
+    "product engineer Amsterdam",
     "Joseph Harwood",
     "DevJoe",
   ],
@@ -37,24 +37,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://www.devjoe.io",
-    title: "Joseph Harwood — AI Search & Recommendation Engineer",
+    title: "Joseph Harwood — Web products for founders",
     description:
-      "AI-powered search and recommendation systems for travel and marketplace startups.",
+      "I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
     siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Joseph Harwood — AI Search & Recommendation Engineer",
+        alt: "Joseph Harwood — Web products for founders",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joseph Harwood — AI Search & Recommendation Engineer",
+    title: "Joseph Harwood — Web products for founders",
     description:
-      "AI-powered search and recommendation systems for travel and marketplace startups.",
+      "I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
     images: ["/og-image.png"],
   },
   robots: {

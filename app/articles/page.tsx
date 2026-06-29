@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Navbar from "@/components/navbar";
-import Footer from "@/components/footer";
+import SiteFooter from "@/components/site-footer";
+import FadeIn from "@/components/motion/fade-in";
 import BlogPostCard from "@/components/blog-post-card";
 import { getBlogPosts } from "@/lib/feed";
 
@@ -9,13 +10,13 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Articles · DevJoe",
   description:
-    "Notes on shipping software, AI where it earns its keep, and what actually works running a small studio.",
+    "Notes on building and shipping web products, and what actually works running a small studio.",
   openGraph: {
     type: "website",
     url: "https://joeharwood.dev/articles",
     title: "Articles · DevJoe",
     description:
-      "Notes on shipping software, AI where it earns its keep, and what actually works running a small studio.",
+      "Notes on building and shipping web products, and what actually works running a small studio.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Articles · DevJoe",
     description:
-      "Notes on shipping software, AI where it earns its keep, and what actually works running a small studio.",
+      "Notes on building and shipping web products, and what actually works running a small studio.",
     images: ["/og-image.png"],
   },
 };
@@ -36,12 +37,12 @@ export default async function ArticlesPage() {
     "@type": "CollectionPage",
     name: "Articles · DevJoe",
     description:
-      "Notes on shipping software, AI where it earns its keep, and what actually works running a small studio.",
+      "Notes on building and shipping web products, and what actually works running a small studio.",
     url: "https://joeharwood.dev/articles",
   };
 
   return (
-    <main className="min-h-screen bg-background text-foreground flex flex-col">
+    <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -49,40 +50,37 @@ export default async function ArticlesPage() {
 
       <Navbar />
 
-      <section className="flex-1 pt-32 pb-20 md:pt-40 md:pb-24">
-        <div className="section-container fade-in">
-          <div className="text-center">
-            <p className="text-xs tracking-[0.22em] uppercase text-muted-foreground">
-              Articles
-            </p>
-            <h1 className="mt-6 font-serif text-hero-serif text-foreground text-balance">
-              <span className="italic">Writing</span>
-              <br />
-              and thinking.
+      <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
+        <FadeIn y={20} duration={0.8}>
+          <div className="max-w-6xl">
+            <h1 className="text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
+              Writing and thinking.
+              <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
+                Notes on building and shipping web products, and what actually
+                works when you&apos;re running a small studio.
+              </span>
             </h1>
-            <p className="mt-10 mx-auto max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed text-pretty">
-              Notes on shipping AI features, mid-market consulting, and what
-              actually works when you&apos;re running a small studio.
-            </p>
           </div>
-
-          {posts.length > 0 ? (
-            <ul className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-              {posts.map((post) => (
-                <BlogPostCard key={post.link} post={post} />
-              ))}
-            </ul>
-          ) : (
-            <div className="mt-16 py-20 text-center rounded-2xl border border-border bg-surface/60">
-              <p className="text-muted-foreground">
-                No articles yet. Check back soon.
-              </p>
-            </div>
-          )}
-        </div>
+        </FadeIn>
       </section>
 
-      <Footer />
+      <section className="mx-auto w-full max-w-[1400px] px-6 py-10">
+        {posts.length > 0 ? (
+          <ul className="grid grid-cols-1 gap-x-6 gap-y-16 md:grid-cols-2">
+            {posts.map((post, index) => (
+              <FadeIn key={post.link} delay={index * 0.1} y={40} duration={0.8}>
+                <BlogPostCard post={post} />
+              </FadeIn>
+            ))}
+          </ul>
+        ) : (
+          <div className="rounded-[2rem] border border-neutral-200 bg-[#F5F5F5] py-20 text-center">
+            <p className="text-neutral-500">No articles yet. Check back soon.</p>
+          </div>
+        )}
+      </section>
+
+      <SiteFooter />
     </main>
   );
 }

@@ -2,18 +2,19 @@ import type { Metadata } from "next";
 import CaseStudyCard from "@/components/case-study-card";
 import FadeIn from "@/components/motion/fade-in";
 import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/site-footer";
 import { caseStudies } from "@/data/case-studies";
 
 export const metadata: Metadata = {
   title: "Work · DevJoe",
   description:
-    "Selected work across AI search, recommendations, onboarding, and discovery experiences for travel, marketplace, and internal tools.",
+    "Selected work building marketing sites, MVPs, and SaaS products for founders and teams.",
   openGraph: {
     type: "website",
     url: "https://joeharwood.dev/work",
     title: "Work · DevJoe",
     description:
-      "Selected work across AI search, recommendations, onboarding, and discovery experiences for travel, marketplace, and internal tools.",
+      "Selected work building marketing sites, MVPs, and SaaS products for founders and teams.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Work · DevJoe",
     description:
-      "Selected work across AI search, recommendations, onboarding, and discovery experiences.",
+      "Selected work building marketing sites, MVPs, and SaaS products for founders and teams.",
     images: ["/og-image.png"],
   },
 };
@@ -37,9 +38,8 @@ export default function WorkPage() {
             <h1 className="text-balance text-[3rem] font-medium leading-none tracking-tight text-neutral-900 sm:text-[5rem] md:text-[6.5rem]">
               Selected work.{" "}
               <span className="text-neutral-400">
-                AI search, recommendations, onboarding, and discovery
-                experiences shipped across travel, marketplaces, and internal
-                tools.
+                Marketing sites, MVPs, and SaaS products shipped for founders,
+                marketplaces, and teams.
               </span>
             </h1>
           </FadeIn>
@@ -55,6 +55,8 @@ export default function WorkPage() {
           </ul>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

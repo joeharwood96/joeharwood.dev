@@ -19,42 +19,40 @@ export default function BlogPostCard({ post }: { post: BlogPost }) {
         href={post.link}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block transition-colors hover:bg-foreground/[0.02] rounded-lg"
+        className="group block"
       >
         {post.image && (
-          <div className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-border bg-muted">
+          <div className="relative mb-6 aspect-[16/10] w-full overflow-hidden rounded-[2rem] bg-neutral-100">
             <Image
               src={post.image}
               alt={post.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
           </div>
         )}
 
-        <div className="px-4 pt-4 pb-4">
-          <div className="flex items-start justify-between gap-4">
-            <h3 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
-              {post.title}
-            </h3>
-            <ArrowUpRight
-              className="hidden md:block w-5 h-5 mt-2 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-foreground"
-              aria-hidden="true"
-            />
-          </div>
-
-          {post.description && (
-            <p className="mt-2 text-base text-muted-foreground leading-relaxed">
-              {post.description}
-            </p>
-          )}
-
-          <p className="mt-3 text-xs text-muted-foreground tabular-nums">
-            {post.author && <span>{post.author} · </span>}
-            {formatDate(post.pubDate)}
-          </p>
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-2xl font-medium tracking-tight text-neutral-900 md:text-3xl">
+            {post.title}
+          </h3>
+          <ArrowUpRight
+            className="mt-2 hidden h-5 w-5 shrink-0 text-neutral-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-neutral-900 md:block"
+            aria-hidden="true"
+          />
         </div>
+
+        {post.description && (
+          <p className="mt-3 text-base font-medium leading-relaxed text-neutral-500">
+            {post.description}
+          </p>
+        )}
+
+        <p className="mt-3 text-xs font-medium tabular-nums text-neutral-400">
+          {post.author && <span>{post.author} · </span>}
+          {formatDate(post.pubDate)}
+        </p>
       </a>
     </li>
   );

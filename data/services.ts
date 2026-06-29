@@ -1,5 +1,5 @@
 export type Service = {
-  slug: "audit" | "sprint" | "implementation";
+  slug: "startup-mvp" | "launch-site" | "growth-sprint";
   label: string;
   name: string;
   priceLabel: string;
@@ -25,123 +25,60 @@ export type Service = {
 
 export const services: Service[] = [
   {
-    slug: "audit",
-    label: "Audit",
-    name: "AI Discovery Audit",
-    priceLabel: "€2,000",
-    durationLabel: "1 week",
+    slug: "startup-mvp",
+    label: "MVP",
+    name: "Startup MVP",
+    priceLabel: "€12,000–20,000",
+    durationLabel: "4-8 weeks",
     tagline:
-      "A focused review of your product, workflows, onboarding, and discovery experience to identify where AI can create meaningful product value.",
+      "A production-ready SaaS or marketplace, designed and built end to end and ready to put in front of real users.",
     description:
-      "A focused audit to understand your product, identify practical AI opportunities, and turn vague AI interest into a prioritised roadmap. The goal is to find where search, recommendations, onboarding, workflows, or discovery can be improved before wasting time building the wrong thing.",
+      "For founders who need to go from idea to a real, working product. I design and build the whole thing: the interface, the backend, auth, payments, and the core flows your users actually need. You get something solid enough to launch, raise on, or start charging for.",
     deliverables: [
-      "Product & UX review",
-      "AI opportunity mapping",
-      "Technical feasibility review",
-      "Prioritised roadmap",
-      "Loom walkthrough or review call",
-      "Optional prototype sprint",
-    ],
-    process: [
-      {
-        title: "Understand",
-        description:
-          "Review the product, onboarding, discovery flows, workflows, search, and points of user friction.",
-      },
-      {
-        title: "Map",
-        description:
-          "Identify practical AI opportunities and assess them against impact, feasibility, and implementation risk.",
-      },
-      {
-        title: "Prioritise",
-        description:
-          "Turn the strongest opportunities into a clear roadmap and walkthrough so your team knows what to validate first.",
-      },
-    ],
-    whoFor: [
-      "Teams unsure where AI actually fits into their product",
-      "Founders and product leads who want clarity before committing budget",
-      "Startups improving search, onboarding, workflows, recommendations, or discovery",
-    ],
-    faq: [
-      {
-        question: "What if we don't find anything worth building?",
-        answer:
-          "That is still useful. You avoid spending time and budget on the wrong thing, and you get a clearer view of where AI does and does not make sense.",
-      },
-      {
-        question: "Can this lead into a prototype sprint?",
-        answer:
-          "Yes. If the audit surfaces a strong opportunity, the next step is usually a focused prototype sprint to validate the experience before production implementation.",
-      },
-      {
-        question: "Do you sign an NDA?",
-        answer:
-          "Happy to. Send yours over before we kick off, or use mine.",
-      },
-    ],
-    accent: {
-      bg: "#8B5566",
-      fg: "#F7EFE6",
-      fgMuted: "rgba(247, 239, 230, 0.72)",
-      border: "rgba(247, 239, 230, 0.14)",
-    },
-  },
-  {
-    slug: "sprint",
-    label: "Prototype",
-    name: "AI Prototype Sprint",
-    priceLabel: "€12,000",
-    durationLabel: "3 weeks",
-    tagline:
-      "A focused sprint to prototype and validate a high-impact AI feature before committing to a full production implementation.",
-    description:
-      "A prototype sprint is for validating a specific AI opportunity quickly. Examples include semantic search, recommendations, conversational onboarding, AI-assisted workflows, internal copilots, or ranking improvements. The aim is to prove the product experience before turning it into a production build.",
-    deliverables: [
-      "A working prototype of one validated AI feature",
-      "Interaction flow and UX recommendations",
-      "Technical implementation notes",
-      "Clear production-readiness assessment",
-      "Recommended next steps for an Implementation Sprint",
+      "Product & UX design",
+      "Full front-end build",
+      "Backend, database & APIs",
+      "Auth, payments & core integrations",
+      "Production deployment",
+      "Handover & launch support",
     ],
     process: [
       {
         title: "Scope",
         description:
-          "Define the product problem, success criteria, and the smallest useful prototype.",
+          "Get clear on the product, the core flows, and the smallest version worth launching.",
       },
       {
-        title: "Prototype",
+        title: "Design & build",
         description:
-          "Build the interaction, data flow, and AI behaviour needed to test the opportunity.",
+          "Design the experience and build the real thing: front end, backend, data, and integrations.",
       },
       {
-        title: "Validate",
+        title: "Ship",
         description:
-          "Review the prototype, identify risks, and decide whether it is worth turning into production software.",
+          "Deploy to production, hand it over, and support the launch so you can put it in front of users.",
       },
     ],
     whoFor: [
-      "Teams with a promising AI idea that needs validation",
-      "Startups testing search, recommendation, onboarding, or workflow concepts",
-      "Product teams that want evidence before committing to implementation",
+      "Founders turning an idea into a real product",
+      "Teams that need to launch before raising or selling",
+      "Non-technical founders who need one person to own delivery",
     ],
     faq: [
       {
-        question: "Is this production-ready?",
+        question: "Can we start without a full spec?",
         answer:
-          "The goal is validation, not a polished production launch. If the prototype proves useful, the next step is an Implementation Sprint.",
+          "Yes. Most founders come with an idea, not a spec. The first step is scoping it together into the smallest version worth building.",
       },
       {
-        question: "Do you work on existing codebases?",
+        question: "Do I own the code?",
         answer:
-          "Yes. A prototype can sit inside an existing product, staging environment, or lightweight standalone experience depending on what is fastest to validate.",
+          "Completely. You get the full codebase, the deployment, and everything needed to keep building after launch.",
       },
       {
-        question: "What happens after validation?",
+        question: "What happens after launch?",
         answer:
-          "If the prototype is worth shipping, I can scope an Implementation Sprint to turn it into production-ready product work.",
+          "I support the launch and can keep working with you on the next set of features, or hand over cleanly if you have a team ready to take it on.",
       },
     ],
     accent: {
@@ -152,60 +89,123 @@ export const services: Service[] = [
     },
   },
   {
-    slug: "implementation",
-    label: "Implementation",
-    name: "Implementation Sprint",
-    priceLabel: "Scoped after validation",
-    durationLabel: "2-6 weeks",
+    slug: "launch-site",
+    label: "Site",
+    name: "Launch Site",
+    priceLabel: "€4,000–6,000",
+    durationLabel: "2-3 weeks",
     tagline:
-      "Production-ready implementation of validated AI features across search, recommendations, workflows, onboarding, and discovery systems.",
+      "A fast, beautiful marketing site with a CMS you can update yourself.",
     description:
-      "An implementation sprint turns a validated AI opportunity into production-ready product work. The focus is on shipping the feature cleanly inside your existing product, with the right UX, data flow, quality controls, and launch support.",
+      "A marketing website that looks premium and converts. Designed around your story and your offer, built to load fast and rank well, and running on a CMS so you can edit content without calling a developer.",
     deliverables: [
-      "Production-ready feature implementation",
-      "Front-end and API integration",
-      "LLM, embedding, ranking, or retrieval workflows where useful",
-      "Quality assurance and launch support",
-      "Instrumentation recommendations",
-      "Post-launch iteration plan",
+      "Custom design",
+      "Responsive build",
+      "CMS setup",
+      "SEO & performance",
+      "Analytics",
+      "Launch support",
     ],
     process: [
       {
-        title: "Prepare",
+        title: "Design",
         description:
-          "Confirm the validated scope, technical constraints, UX details, and launch criteria.",
+          "Shape the story, the structure, and a design that makes your offer look the part.",
       },
       {
         title: "Build",
         description:
-          "Implement the product flow, data integration, and AI behaviour needed for a reliable launch.",
+          "Build it fast and responsive, wired up to a CMS so you can edit it yourself.",
       },
       {
-        title: "Ship",
+        title: "Launch",
         description:
-          "Test, release, and refine the feature around real user behaviour and product feedback.",
+          "Set up SEO, analytics, and hosting, then ship it live with support through launch.",
       },
     ],
     whoFor: [
-      "Teams ready to ship a validated AI feature into production",
-      "Startups moving from prototype to real product usage",
-      "Products that need practical AI work without adding unnecessary platform complexity",
+      "Founders and brands that need a site that looks the part",
+      "Teams replacing a slow or dated website",
+      "Anyone who wants to update their own content",
     ],
     faq: [
       {
-        question: "Do we need to do an audit first?",
+        question: "Can I update the site myself afterwards?",
         answer:
-          "Not always. If the opportunity is already clear and validated, an implementation sprint can start directly from the existing product scope.",
+          "Yes. That is the point of the CMS. You can edit copy, images, and pages without touching code or waiting on a developer.",
       },
+      {
+        question: "Do you handle hosting and domains?",
+        answer:
+          "I set up hosting, connect your domain, and make sure everything is live and fast. You keep ownership of all of it.",
+      },
+      {
+        question: "What if I need more pages later?",
+        answer:
+          "The build is set up so new pages are easy to add. I can do them for you or you can add them through the CMS.",
+      },
+    ],
+    accent: {
+      bg: "#8B5566",
+      fg: "#F7EFE6",
+      fgMuted: "rgba(247, 239, 230, 0.72)",
+      border: "rgba(247, 239, 230, 0.14)",
+    },
+  },
+  {
+    slug: "growth-sprint",
+    label: "Sprint",
+    name: "Growth Sprint",
+    priceLabel: "€3,000–5,000",
+    durationLabel: "1-2 weeks",
+    tagline:
+      "A focused sprint to improve conversion, onboarding, search, or a key flow in your existing product.",
+    description:
+      "For products that already exist but are not pulling their weight somewhere. We pick one high-impact area, conversion, onboarding, search, or a clunky flow, and I ship real improvements in a short, focused sprint.",
+    deliverables: [
+      "Focused review of the chosen area",
+      "Prioritised list of improvements",
+      "Implementation of the agreed changes",
+      "Before & after measurement",
+      "Handover notes",
+    ],
+    process: [
+      {
+        title: "Review",
+        description:
+          "Dig into the chosen area and find the changes most likely to move the number.",
+      },
+      {
+        title: "Build",
+        description:
+          "Ship the agreed improvements directly into your existing product.",
+      },
+      {
+        title: "Measure",
+        description:
+          "Check the before and after, and leave clear notes on what changed and why.",
+      },
+    ],
+    whoFor: [
+      "Teams with a live product and a specific problem",
+      "Founders who want quick, measurable wins",
+      "Products with leaky onboarding, search, or conversion",
+    ],
+    faq: [
       {
         question: "Can you work inside our existing stack?",
         answer:
-          "Yes. The sprint is scoped around your current product, codebase, data, and delivery process.",
+          "Yes. The sprint is scoped around your current product, codebase, and delivery process.",
       },
       {
-        question: "What happens after launch?",
+        question: "How do you pick what to work on?",
         answer:
-          "The sprint includes launch support and a practical iteration plan so the feature can improve around real usage.",
+          "We start from your goal, then I focus on the single area where a short sprint can make the biggest measurable difference.",
+      },
+      {
+        question: "What happens after the sprint?",
+        answer:
+          "You get the changes shipped plus notes on what to try next. We can run another sprint or keep working together from there.",
       },
     ],
     accent: {

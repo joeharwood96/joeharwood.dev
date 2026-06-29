@@ -23,7 +23,7 @@ export const caseStudies: CaseStudy[] = [
     company: "Booking.com",
     year: "2023",
     description:
-      "Built AI-assisted travel planning and recommendation experiences that helped users move from intent to relevant trip ideas faster.",
+      "Built travel planning and discovery experiences that helped users move from a vague idea to relevant trip ideas faster.",
     fullDescription:
       "At Booking.com, the work focused on turning complex travel intent into clearer product experiences. Projects included an early AI Trip Planner, recommendation-led discovery flows, and a personalised Year in Travel experience that helped users revisit and share their travel history.",
     challenge:

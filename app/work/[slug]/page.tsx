@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import FadeIn from "@/components/motion/fade-in";
 import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/site-footer";
 import { caseStudies } from "@/data/case-studies";
 import { CALENDLY_URL } from "@/lib/constants";
 
@@ -40,9 +41,9 @@ export async function generateMetadata({
     keywords: [
       ...caseStudy.tags,
       caseStudy.company,
-      "AI discovery",
-      "recommendation systems",
       "product engineering",
+      "web development",
+      "MVP development",
       "Joseph Harwood",
       "DevJoe",
     ],
@@ -200,7 +201,7 @@ export default async function CaseStudyPage({
                 </h2>
                 <p className="mb-8 text-xl font-medium leading-relaxed text-neutral-600">
                   {caseStudy.solution ??
-                    "I designed and implemented a focused discovery layer around the moments where users need clearer recommendations, faster search, and better paths to value."}
+                    "I designed and built the product around the moments that mattered most, focused on getting users to value as quickly as possible."}
                 </p>
                 <ul className="space-y-4">
                   {caseStudy.features.slice(0, 3).map((feature) => (
@@ -270,6 +271,8 @@ export default async function CaseStudyPage({
           </div>
         </div>
       </article>
+
+      <SiteFooter />
     </main>
   );
 }

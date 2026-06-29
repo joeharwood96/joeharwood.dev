@@ -8,14 +8,14 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const steps = [
   {
     id: 1,
-    title: "Understand the product",
+    title: "Understand",
     description:
-      "Review onboarding, discovery flows, workflows, search, and user friction.",
+      "Get clear on the product, the users, and what success actually looks like.",
     capabilities: [
-      "Product deep-dive",
-      "UX / UI Audit",
-      "Friction mapping",
-      "User behaviour analysis",
+      "Product discovery",
+      "Scope",
+      "UX review",
+      "Goals",
     ],
     graphic: (
       <div className="relative flex aspect-[2/1] w-full max-w-[300px] items-center justify-center">
@@ -34,14 +34,14 @@ const steps = [
   },
   {
     id: 2,
-    title: "Identify AI opportunities",
+    title: "Design",
     description:
-      "Map practical AI opportunities with the highest product impact.",
+      "Design the flows and interface around how people actually use it.",
     capabilities: [
-      "Opportunity mapping",
-      "Technical feasibility",
-      "Prioritisation",
-      "Strategic roadmap",
+      "UX / UI design",
+      "Prototyping",
+      "Interaction design",
+      "Brand",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-center justify-between border-b border-neutral-200">
@@ -63,14 +63,14 @@ const steps = [
   },
   {
     id: 3,
-    title: "Prototype & validate",
+    title: "Build",
     description:
-      "Test ideas quickly before over-investing in implementation.",
+      "Build the real thing: front end, backend, and everything in between.",
     capabilities: [
-      "Rapid prototyping",
-      "Conversational UX",
-      "Validation testing",
-      "Concept iteration",
+      "Production build",
+      "Backend & APIs",
+      "Integrations",
+      "Quality assurance",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-end justify-center gap-4">
@@ -84,14 +84,14 @@ const steps = [
   },
   {
     id: 4,
-    title: "Ship & iterate",
+    title: "Ship",
     description:
-      "Implement validated features and refine based on real usage.",
+      "Launch it, measure it, and refine based on real usage.",
     capabilities: [
-      "Production build",
-      "Quality assurance",
+      "Deployment",
+      "Analytics",
       "Launch support",
-      "Continuous refinement",
+      "Iteration",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-center justify-center">
@@ -147,17 +147,18 @@ export default function HomeProcess() {
               transition={{ duration: 0.8, ease }}
             >
               <h2 className="mb-4 text-xl font-medium tracking-tight text-white/50">
-                How I help teams improve discovery
+                How I work
               </h2>
               <div className="text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
-                Better Search,
+                From idea
                 <br />
-                Recommendations &<br />
-                Product Discovery
+                to shipped
+                <br />
+                product
               </div>
               <p className="mt-8 max-w-md text-lg font-medium leading-relaxed text-neutral-400 sm:text-xl">
-                I work closely with teams to improve how users find, compare,
-                and choose the right thing.
+                I work closely with founders to take a product from a rough idea
+                to something real, shipped, and ready for users.
               </p>
             </m.div>
           </div>
