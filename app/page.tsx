@@ -261,6 +261,59 @@ export default function Home() {
 
       <HomeProcess />
 
+      <section id="about" className="mx-auto w-full max-w-[1400px] px-6 py-32">
+        <FadeIn className="mb-16 max-w-4xl" duration={0.8}>
+          <h2 className="mb-6 text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
+            About
+          </h2>
+        </FadeIn>
+
+        <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
+          <FadeIn y={30} duration={0.8}>
+            <div className="relative aspect-[4/5] w-full max-w-xl overflow-hidden rounded-[2rem] bg-neutral-100">
+              <Image
+                src="/joe.png"
+                alt="Joe Harwood in Amsterdam"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </FadeIn>
+
+          <FadeIn y={30} delay={0.1} duration={0.8}>
+            <div className="space-y-6 text-xl leading-relaxed text-neutral-500 md:pt-2">
+              <p>I&apos;m Joe, a full-stack developer based in Amsterdam.</p>
+              <p>
+                I spent the last three and a half years at Booking.com, where I
+                launched their first AI Trip Planner and built features used by
+                millions of travellers. Before that I worked at Appical and
+                IBM.
+              </p>
+              <p>
+                On the side I build my own products. Weeknights, a marketplace
+                for social and hobby clubs in Amsterdam that grew to 3,000
+                monthly users, and RailGPT, an AI travel planner for Dutch
+                trains.
+              </p>
+              <p>
+                Now I do that same work for businesses across Europe: design,
+                build, ship, end to end.
+              </p>
+            </div>
+            <a
+              href="/Joseph_Harwood_CV.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-10 inline-flex items-center justify-center rounded-full bg-[#F5F5F5] px-10 py-5 text-lg font-medium text-neutral-900 transition-all hover:bg-[#E5E5E5]"
+            >
+              View my CV
+              <ArrowUpRight className="ml-2 h-5 w-5" />
+            </a>
+          </FadeIn>
+        </div>
+      </section>
+
       <section
         id="contact"
         className="mx-auto w-full max-w-[1400px] px-6 py-32 text-center"

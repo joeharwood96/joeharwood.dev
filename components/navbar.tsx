@@ -13,6 +13,7 @@ const navItems = [
   { href: "/#work", label: "Work" },
   { href: "/#services", label: "Services" },
   { href: "/#process", label: "Process" },
+  { href: "/#about", label: "About" },
   { href: "/#contact", label: "Contact" },
 ];
 
@@ -34,7 +35,7 @@ export default function Navbar() {
       { rootMargin: "-40% 0px -40% 0px" },
     );
 
-    const sections = ["work", "services", "process", "contact"];
+    const sections = ["work", "services", "process", "about", "contact"];
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -83,7 +84,7 @@ export default function Navbar() {
         className="fixed bottom-8 left-1/2 z-50 pointer-events-auto"
       >
         <nav
-          className="flex items-center gap-1 rounded-full border border-white/20 bg-[#F5F5F5]/90 px-2 py-2 shadow-[0_4px_20px_rgb(0,0,0,0.08)] backdrop-blur-xl sm:gap-2"
+          className="flex items-center gap-0.5 rounded-full border border-white/20 bg-[#F5F5F5]/90 px-1.5 py-1.5 shadow-[0_4px_20px_rgb(0,0,0,0.08)] backdrop-blur-xl sm:gap-2 sm:px-2 sm:py-2"
           aria-label="Primary"
         >
           {navItems.map((item) => {
@@ -93,7 +94,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-all duration-300 ${
+                className={`flex items-center gap-1.5 rounded-full px-3 py-2 text-xs font-medium transition-all duration-300 sm:gap-2 sm:px-5 sm:py-2.5 sm:text-sm ${
                   active
                     ? "bg-white text-neutral-900 shadow-sm"
                     : "text-neutral-500 hover:bg-white/50 hover:text-neutral-900"
