@@ -17,44 +17,44 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "DevJoe — Web products for founders",
+  title: "DevJoe — Custom software for businesses",
   description:
-    "Freelance product engineer in Amsterdam. I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
+    "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
   keywords: [
-    "web developer for founders",
-    "MVP development",
-    "SaaS development",
-    "marketplace development",
-    "marketing website",
-    "product engineer Amsterdam",
+    "custom software development",
+    "booking system development",
+    "customer portal development",
+    "internal tools development",
+    "workflow automation",
+    "full-stack developer Amsterdam",
     "Joseph Harwood",
     "DevJoe",
   ],
-  authors: [{ name: "Joseph Harwood", url: "https://www.devjoe.io" }],
+  authors: [{ name: "Joseph Harwood", url: "https://joeharwood.dev" }],
   creator: "Joseph Harwood",
-  metadataBase: new URL("https://www.devjoe.io"),
+  metadataBase: new URL("https://joeharwood.dev"),
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://www.devjoe.io",
-    title: "Joseph Harwood — Web products for founders",
+    url: "https://joeharwood.dev",
+    title: "DevJoe — Custom software for businesses",
     description:
-      "I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
+      "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
     siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Joseph Harwood — Web products for founders",
+        alt: "DevJoe — Custom software for businesses",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Joseph Harwood — Web products for founders",
+    title: "DevJoe — Custom software for businesses",
     description:
-      "I design and build marketing sites, MVPs, and SaaS for founders, made to look premium and built to convert.",
+      "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
     images: ["/og-image.png"],
   },
   robots: {

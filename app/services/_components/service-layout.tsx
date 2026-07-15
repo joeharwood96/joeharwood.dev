@@ -67,6 +67,12 @@ export default function ServiceLayout({ service }: { service: Service }) {
               {service.description}
             </p>
 
+            {service.eligibilityNote ? (
+              <p className="mt-5 max-w-2xl text-base font-medium">
+                {service.eligibilityNote}
+              </p>
+            ) : null}
+
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
               <a
                 href={`${CALENDLY_URL}?utm_source=service-${service.slug}`}
@@ -78,7 +84,7 @@ export default function ServiceLayout({ service }: { service: Service }) {
                   color: service.accent.bg,
                 }}
               >
-                Book this
+                Book a fit call
                 <ArrowUpRight className="h-5 w-5" />
               </a>
               <Link
@@ -95,6 +101,28 @@ export default function ServiceLayout({ service }: { service: Service }) {
           </div>
         </FadeIn>
       </section>
+
+      {service.terms ? (
+        <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
+          <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
+            <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
+              Good to know
+            </h2>
+          </FadeIn>
+          <FadeIn duration={0.6}>
+            <ul className="grid gap-4 border-t border-neutral-200 pt-8 sm:grid-cols-2">
+              {service.terms.map((item) => (
+                <li
+                  key={item}
+                  className="rounded-2xl bg-[#F5F5F5] p-6 text-base font-medium leading-relaxed text-neutral-600"
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
+        </section>
+      ) : null}
 
       {/* Deliverables */}
       <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
@@ -170,7 +198,7 @@ export default function ServiceLayout({ service }: { service: Service }) {
       <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
         <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
           <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            Questions we get a lot
+            Common questions
           </h2>
         </FadeIn>
         <FadeIn duration={0.6}>
@@ -197,12 +225,12 @@ export default function ServiceLayout({ service }: { service: Service }) {
       <section className="mx-auto w-full max-w-[1400px] px-6 py-20 text-center sm:py-28">
         <FadeIn className="mx-auto max-w-4xl" y={30} duration={0.8}>
           <h2 className="mb-6 text-[3rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4.5rem]">
-            Ready to get started?
+            Start with a fit call.
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            Pick a 30-minute slot and tell me what you&apos;re working on. No
-            pitch deck, no sales call, just a focused conversation about what you
-            want to ship.
+            In 30 minutes, we&apos;ll look at the workflow, the urgency, and
+            whether this service is the right next step. No pitch deck and no
+            hard sell.
           </p>
           <a
             href={`${CALENDLY_URL}?utm_source=service-${service.slug}-footer`}
@@ -210,7 +238,7 @@ export default function ServiceLayout({ service }: { service: Service }) {
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
           >
-            Book the {service.label.toLowerCase()}
+            Book a fit call
             <ArrowRight className="ml-2 h-5 w-5" />
           </a>
         </FadeIn>
@@ -229,7 +257,7 @@ export default function ServiceLayout({ service }: { service: Service }) {
             </h3>
           </div>
           <span className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors group-hover:text-neutral-900">
-            View service
+            View details
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
           </span>
         </Link>

@@ -6,6 +6,7 @@ import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
+import { services } from "@/data/services";
 import { CALENDLY_URL } from "@/lib/constants";
 
 const clientTiles = [
@@ -46,36 +47,13 @@ const clientTiles = [
   },
 ];
 
-const services = [
-  {
-    slug: "startup-mvp",
-    title: "Startup MVP",
-    priceLabel: "€12,000–20,000",
-    description:
-      "A production-ready SaaS or marketplace, designed and built end to end and ready to put in front of real users.",
-    deliverables: [
-      "Product & UX design",
-      "Full front-end build",
-      "Backend, database & APIs",
-      "Auth, payments & core integrations",
-      "Production deployment",
-      "Handover & launch support",
-    ],
-  },
-  {
-    slug: "launch-site",
-    title: "Launch Site",
-    priceLabel: "€4,000–6,000",
-    description:
-      "A fast, beautiful marketing site that looks premium, loads quick, and runs on a CMS you can update yourself.",
-  },
-  {
-    slug: "growth-sprint",
-    title: "Growth Sprint",
-    priceLabel: "€3,000–5,000",
-    description:
-      "A focused sprint to improve conversion, onboarding, search, or a key flow in your existing product.",
-  },
+const operationalProblems = [
+  "Bookings copied between forms, email, and spreadsheets",
+  "Customers or members relying on staff for simple updates",
+  "Confirmations, reminders, and reports assembled by hand",
+  "Information duplicated across tools that do not communicate",
+  "Important workflows that only one employee fully understands",
+  "Off-the-shelf software forcing the business into the wrong process",
 ];
 
 export default function Home() {
@@ -90,12 +68,12 @@ export default function Home() {
         name: "DevJoe",
         url: "https://joeharwood.dev",
         description:
-          "Design and build of web products for founders: marketing sites, MVPs, and SaaS, made to look premium and built to convert.",
+          "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
         founder: {
           "@type": "Person",
           name: "Joseph Harwood",
           url: "https://joeharwood.dev",
-          jobTitle: "Product Engineer",
+          jobTitle: "Full-stack Developer",
         },
         address: {
           "@type": "PostalAddress",
@@ -108,7 +86,7 @@ export default function Home() {
         "@type": "Person",
         "@id": "https://joeharwood.dev/#person",
         name: "Joseph Harwood",
-        jobTitle: "Product Engineer",
+        jobTitle: "Full-stack Developer",
         url: "https://joeharwood.dev",
         email: "joeharwooddev@gmail.com",
         sameAs: [
@@ -132,10 +110,10 @@ export default function Home() {
         <div className="max-w-6xl">
           <FadeIn y={20} duration={0.8}>
             <h1 className="text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
-              I design and build web products for founders.
+              Software for businesses that have outgrown spreadsheets.
               <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
-                Marketing sites, MVPs, and full SaaS, made to look premium and
-                built to convert.
+                Booking systems, customer portals and internal tools, built
+                around how your business actually works.
               </span>
             </h1>
           </FadeIn>
@@ -143,6 +121,11 @@ export default function Home() {
       </section>
 
       <section className="mx-auto w-full max-w-[1400px] px-6 py-10">
+        <FadeIn duration={0.6}>
+          <p className="mb-6 text-sm font-medium uppercase tracking-widest text-neutral-400">
+            Experience includes
+          </p>
+        </FadeIn>
         <div className="grid grid-cols-2 gap-4 md:grid-cols-5">
           {clientTiles.map((tile, index) => (
             <FadeIn key={tile.name} delay={index * 0.05}>
@@ -160,7 +143,48 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="mx-auto w-full max-w-[1400px] px-6 py-24 sm:py-32">
+        <FadeIn className="max-w-4xl" duration={0.8}>
+          <p className="text-sm font-medium uppercase tracking-widest text-neutral-400">
+            When the current process stops scaling
+          </p>
+          <h2 className="mt-5 text-balance text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
+            Your business should not depend on copying information between
+            forms, inboxes, and spreadsheets.
+          </h2>
+          <p className="mt-7 max-w-3xl text-xl leading-relaxed text-neutral-500">
+            I turn fragile, repetitive workflows into straightforward software
+            built around the way your team and customers actually work.
+          </p>
+        </FadeIn>
+        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {operationalProblems.map((problem, index) => (
+            <FadeIn key={problem} delay={index * 0.05} duration={0.6}>
+              <div className="h-full rounded-3xl bg-[#F5F5F5] p-7 text-lg font-medium leading-relaxed text-neutral-700">
+                {problem}
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+        <FadeIn className="mt-10" duration={0.6}>
+          <p className="max-w-3xl text-lg leading-relaxed text-neutral-500">
+            This is especially useful for training providers, membership
+            organisations, event and community businesses, and other teams
+            managing bookings or recurring customer administration.
+          </p>
+        </FadeIn>
+      </section>
+
       <section id="work" className="mx-auto w-full max-w-[1400px] px-6 py-20">
+        <FadeIn className="mb-16 max-w-4xl" duration={0.8}>
+          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
+            Relevant experience
+          </h2>
+          <p className="mt-6 max-w-3xl text-xl leading-relaxed text-neutral-500">
+            Booking, onboarding, discovery, and internal workflows built for
+            established companies and my own products.
+          </p>
+        </FadeIn>
         <div className="grid gap-x-6 gap-y-16 md:grid-cols-2">
           {featuredCaseStudies.map((caseStudy, index) => (
             <FadeIn
@@ -210,14 +234,14 @@ export default function Home() {
 
         <div className="flex flex-col border-t border-neutral-200">
           {services.map((service, index) => (
-            <FadeIn key={service.title} delay={index * 0.1} duration={0.6}>
+            <FadeIn key={service.slug} delay={index * 0.1} duration={0.6}>
               <Link
                 href={`/services/${service.slug}`}
                 className="group flex flex-col gap-6 border-b border-neutral-200 py-10 md:flex-row md:gap-12"
               >
                 <div className="shrink-0 md:w-1/3">
                   <h3 className="flex items-start gap-2 text-2xl font-medium tracking-tight sm:text-3xl">
-                    {service.title}
+                    {service.name}
                     <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-neutral-300 transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-neutral-900" />
                   </h3>
                   <p className="mt-3 text-base font-medium tabular-nums text-neutral-400">
@@ -226,30 +250,31 @@ export default function Home() {
                 </div>
                 <div className="flex-1">
                   <p className="text-xl leading-relaxed text-neutral-500 md:pt-1">
-                    {service.description}
+                    {service.tagline}
                   </p>
-                  {service.deliverables ? (
-                    <div className="mt-8 border-t border-neutral-100 pt-6">
-                      <h4 className="mb-4 text-sm font-bold uppercase tracking-widest text-neutral-900">
-                        Includes
-                      </h4>
-                      <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
-                        {service.deliverables.map((item) => (
-                          <li
-                            key={item}
-                            className="flex items-start text-base font-medium text-neutral-600"
-                          >
-                            <span className="mr-3 mt-0.5 text-neutral-300">
-                              -
-                            </span>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
+                  {service.eligibilityNote ? (
+                    <p className="mt-3 text-base font-medium leading-relaxed text-neutral-700">
+                      {service.eligibilityNote}
+                    </p>
                   ) : null}
+                  <div className="mt-8 border-t border-neutral-100 pt-6">
+                    <h4 className="mb-4 text-sm font-bold uppercase tracking-widest text-neutral-900">
+                      Includes
+                    </h4>
+                    <ul className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+                      {service.deliverables.slice(0, 4).map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start text-base font-medium text-neutral-600"
+                        >
+                          <span className="mr-3 mt-0.5 text-neutral-300">-</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors group-hover:text-neutral-900">
-                    View service
+                    {service.linkLabel}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </div>
@@ -297,8 +322,9 @@ export default function Home() {
                 trains.
               </p>
               <p>
-                Now I do that same work for businesses across Europe: design,
-                build, ship, end to end.
+                Now I help established businesses replace manual processes with
+                software that fits how they actually operate—from the first
+                workflow map through to a working system.
               </p>
             </div>
             <a
@@ -320,12 +346,11 @@ export default function Home() {
       >
         <FadeIn className="mx-auto max-w-4xl" y={30} duration={0.8}>
           <h2 className="mb-6 text-[3rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4.5rem]">
-            Got something you need built?
+            What is your team still doing by hand?
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            Whether it&apos;s a marketing site, an MVP, or a flow that
-            isn&apos;t converting, tell me what you&apos;re working on and
-            I&apos;ll tell you how I&apos;d approach it.
+            Book a 30-minute fit call. We&apos;ll look at the workflow, the
+            urgency, and whether a review or build is the right next step.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
@@ -334,7 +359,7 @@ export default function Home() {
               rel="noopener noreferrer"
               className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95 sm:w-auto"
             >
-              Book a call
+              Book a fit call
               <ArrowRight className="ml-2 h-5 w-5" />
             </a>
             <Link

@@ -8,14 +8,14 @@ const ease = [0.16, 1, 0.3, 1] as const;
 const steps = [
   {
     id: 1,
-    title: "Understand",
+    title: "Map",
     description:
-      "Get clear on the product, the users, and what success actually looks like.",
+      "Understand the current workflow, who depends on it, and where time or information gets lost.",
     capabilities: [
-      "Product discovery",
-      "Scope",
-      "UX review",
-      "Goals",
+      "Workflow mapping",
+      "Bottleneck analysis",
+      "Business rules",
+      "Success criteria",
     ],
     graphic: (
       <div className="relative flex aspect-[2/1] w-full max-w-[300px] items-center justify-center">
@@ -36,12 +36,12 @@ const steps = [
     id: 2,
     title: "Design",
     description:
-      "Design the flows and interface around how people actually use it.",
+      "Design a simpler replacement around the needs of customers and operational staff.",
     capabilities: [
-      "UX / UI design",
+      "Workflow design",
       "Prototyping",
       "Interaction design",
-      "Brand",
+      "Integration planning",
     ],
     graphic: (
       <div className="relative flex h-24 w-full max-w-[300px] items-center justify-between border-b border-neutral-200">
@@ -65,7 +65,7 @@ const steps = [
     id: 3,
     title: "Build",
     description:
-      "Build the real thing: front end, backend, and everything in between.",
+      "Build and connect the working system, from the interface through to data and integrations.",
     capabilities: [
       "Production build",
       "Backend & APIs",
@@ -84,12 +84,12 @@ const steps = [
   },
   {
     id: 4,
-    title: "Ship",
+    title: "Improve",
     description:
-      "Launch it, measure it, and refine based on real usage.",
+      "Launch the new workflow, support adoption, and refine it using real operational feedback.",
     capabilities: [
       "Deployment",
-      "Analytics",
+      "Monitoring",
       "Launch support",
       "Iteration",
     ],
@@ -150,15 +150,15 @@ export default function HomeProcess() {
                 How I work
               </h2>
               <div className="text-4xl font-medium leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[3.5rem]">
-                From idea
+                From fragile
                 <br />
-                to shipped
+                process to
                 <br />
-                product
+                working system
               </div>
               <p className="mt-8 max-w-md text-lg font-medium leading-relaxed text-neutral-400 sm:text-xl">
-                I work closely with founders to take a product from a rough idea
-                to something real, shipped, and ready for users.
+                I work directly with the people who run the process, then own
+                the design and development through to a reliable launch.
               </p>
             </m.div>
           </div>

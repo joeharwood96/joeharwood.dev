@@ -97,7 +97,7 @@ export default function ContactForm() {
 
       <div className="space-y-2">
         <label htmlFor="message" className="text-sm font-medium text-foreground">
-          Message
+          Current workflow and problem
         </label>
         <Textarea
           id="message"
@@ -107,7 +107,7 @@ export default function ContactForm() {
           required
           disabled={status === "loading"}
           rows={5}
-          placeholder="I'd love to hear from you..."
+          placeholder="What does your team do today, where does it break down, and what would you like to improve?"
         />
       </div>
 

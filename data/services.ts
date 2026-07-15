@@ -1,84 +1,87 @@
 export type Service = {
-  slug: "startup-mvp" | "launch-site" | "growth-sprint";
+  slug: "workflow-review" | "workflow-build" | "ongoing-improvements";
   label: string;
   name: string;
   priceLabel: string;
   durationLabel: string;
   tagline: string;
+  eligibilityNote?: string;
+  linkLabel: string;
   description: string;
   deliverables: string[];
   process: { title: string; description: string }[];
   whoFor: string[];
+  terms?: string[];
   faq: { question: string; answer: string }[];
-  // Pastel accent used on the homepage service cards.
   accent: {
-    // Background color for the card (CSS color, dark pastel).
     bg: string;
-    // Foreground (main text) color, should contrast on bg.
     fg: string;
-    // Muted foreground for secondary text on the card.
     fgMuted: string;
-    // Subtle overlay/border on the card.
     border: string;
   };
 };
 
 export const services: Service[] = [
   {
-    slug: "startup-mvp",
-    label: "MVP",
-    name: "Startup MVP",
-    priceLabel: "€12,000–20,000",
-    durationLabel: "4-8 weeks",
+    slug: "workflow-review",
+    label: "Review",
+    name: "Workflow Review",
+    priceLabel: "€750 fixed",
+    durationLabel: "Delivered in 5 business days",
     tagline:
-      "A production-ready SaaS or marketplace, designed and built end to end and ready to put in front of real users.",
+      "Turn one inefficient process into a clear, costed plan for improvement.",
+    linkLabel: "See how it works",
     description:
-      "For founders who need to go from idea to a real, working product. I design and build the whole thing: the interface, the backend, auth, payments, and the core flows your users actually need. You get something solid enough to launch, raise on, or start charging for.",
+      "A focused review of one customer or operational workflow. We map how it works today, identify the biggest bottlenecks, and define a practical replacement before you commit to a larger build.",
     deliverables: [
-      "Product & UX design",
-      "Full front-end build",
-      "Backend, database & APIs",
-      "Auth, payments & core integrations",
-      "Production deployment",
-      "Handover & launch support",
+      "One 60-minute stakeholder workshop",
+      "Current-state map for one workflow",
+      "Bottlenecks and recommended replacement",
+      "Scoped implementation plan and cost estimate",
     ],
     process: [
       {
-        title: "Scope",
+        title: "Workshop",
         description:
-          "Get clear on the product, the core flows, and the smallest version worth launching.",
+          "Walk through one workflow, who touches it, where information moves, and what currently causes delays or mistakes.",
       },
       {
-        title: "Design & build",
+        title: "Review",
         description:
-          "Design the experience and build the real thing: front end, backend, data, and integrations.",
+          "Map the current process, isolate the highest-value improvements, and outline a practical replacement.",
       },
       {
-        title: "Ship",
+        title: "Recommendation",
         description:
-          "Deploy to production, hand it over, and support the launch so you can put it in front of users.",
+          "Receive written findings, a scoped implementation plan, and a cost estimate within five business days of the workshop.",
       },
     ],
     whoFor: [
-      "Founders turning an idea into a real product",
-      "Teams that need to launch before raising or selling",
-      "Non-technical founders who need one person to own delivery",
+      "Businesses with one manual or unreliable process they want to improve",
+      "Teams that need clarity before commissioning custom software",
+      "Owners and operational leaders who want a costed next step",
+    ],
+    terms: [
+      "Covers one workflow and one stakeholder workshop",
+      "Includes one clarification round",
+      "Does not include implementation or production-ready designs",
+      "Multiple workflows, user research, and technical audits are scoped separately",
     ],
     faq: [
       {
-        question: "Can we start without a full spec?",
+        question: "What counts as one workflow?",
         answer:
-          "Yes. Most founders come with an idea, not a spec. The first step is scoping it together into the smallest version worth building.",
+          "One workflow is a single end-to-end process with a clear start and finish, such as registering for a course, onboarding a member, or preparing a weekly report.",
       },
       {
-        question: "Do I own the code?",
+        question: "Will I receive a working prototype?",
         answer:
-          "Completely. You get the full codebase, the deployment, and everything needed to keep building after launch.",
+          "No. The review may include light screens or a flow sketch when that makes the recommendation easier to understand, but production-ready design and implementation are separate work.",
       },
       {
-        question: "What happens after launch?",
+        question: "Do I have to use you for the build?",
         answer:
-          "I support the launch and can keep working with you on the next set of features, or hand over cleanly if you have a team ready to take it on.",
+          "No. The findings and recommendation are yours. The implementation proposal gives you a clear option to continue with me, but there is no obligation.",
       },
     ],
     accent: {
@@ -89,60 +92,64 @@ export const services: Service[] = [
     },
   },
   {
-    slug: "launch-site",
-    label: "Site",
-    name: "Launch Site",
-    priceLabel: "€4,000–6,000",
-    durationLabel: "2-3 weeks",
+    slug: "workflow-build",
+    label: "Build",
+    name: "Workflow Build",
+    priceLabel: "From €3,000",
+    durationLabel: "Typically 2–8 weeks",
     tagline:
-      "A fast, beautiful marketing site with a CMS you can update yourself.",
+      "Replace a manual process with software designed around how your business actually works.",
+    linkLabel: "View details",
     description:
-      "A marketing website that looks premium and converts. Designed around your story and your offer, built to load fast and rank well, and running on a CMS so you can edit content without calling a developer.",
+      "A clearly scoped operational improvement, integration, booking flow, customer portal, or internal tool. Smaller workflow builds begin at €3,000; larger portals and platforms are scoped and priced after a Workflow Review.",
     deliverables: [
-      "Custom design",
-      "Responsive build",
-      "CMS setup",
-      "SEO & performance",
-      "Analytics",
-      "Launch support",
+      "Clear scope and success criteria",
+      "UX and interface design",
+      "Complete design and development",
+      "Integrations, testing and production launch",
     ],
     process: [
       {
-        title: "Design",
+        title: "Scope",
         description:
-          "Shape the story, the structure, and a design that makes your offer look the part.",
+          "Agree the workflow, integrations, boundaries, timeline, and definition of done before development starts.",
       },
       {
-        title: "Build",
+        title: "Design & build",
         description:
-          "Build it fast and responsive, wired up to a CMS so you can edit it yourself.",
+          "Design the new flow and build the working system, sharing progress at clear checkpoints along the way.",
       },
       {
         title: "Launch",
         description:
-          "Set up SEO, analytics, and hosting, then ship it live with support through launch.",
+          "Test the agreed scenarios, deploy the system, and support the team as the new workflow goes live.",
       },
     ],
     whoFor: [
-      "Founders and brands that need a site that looks the part",
-      "Teams replacing a slow or dated website",
-      "Anyone who wants to update their own content",
+      "Businesses replacing forms, email, spreadsheets, or disconnected tools",
+      "Teams that need a customer, member, or staff portal",
+      "Operational leaders who need one person to own delivery end to end",
+    ],
+    terms: [
+      "Smaller, clearly bounded builds begin at €3,000",
+      "Larger portals and platforms are priced after a Workflow Review",
+      "Third-party services and usage costs are identified separately",
     ],
     faq: [
       {
-        question: "Can I update the site myself afterwards?",
+        question: "Does a full portal cost €3,000?",
         answer:
-          "Yes. That is the point of the CMS. You can edit copy, images, and pages without touching code or waiting on a developer.",
+          "Not usually. €3,000 is the starting point for a small, clearly scoped workflow improvement. Larger portals and internal platforms vary significantly and are costed after the Workflow Review.",
       },
       {
-        question: "Do you handle hosting and domains?",
+        question: "Can you connect our existing systems?",
         answer:
-          "I set up hosting, connect your domain, and make sure everything is live and fast. You keep ownership of all of it.",
+          "Yes, where those systems provide suitable APIs or integration options. The proposal will identify the integrations, constraints, and any third-party costs before work begins.",
       },
       {
-        question: "What if I need more pages later?",
+        question: "Who owns the finished system?",
         answer:
-          "The build is set up so new pages are easy to add. I can do them for you or you can add them through the CMS.",
+          "You do. You receive the codebase, deployment access, and handover information needed to keep operating or developing it.",
       },
     ],
     accent: {
@@ -153,59 +160,66 @@ export const services: Service[] = [
     },
   },
   {
-    slug: "growth-sprint",
-    label: "Sprint",
-    name: "Growth Sprint",
-    priceLabel: "€3,000–5,000",
-    durationLabel: "1-2 weeks",
+    slug: "ongoing-improvements",
+    label: "Support",
+    name: "Ongoing Improvements",
+    priceLabel: "From €500/month",
+    durationLabel: "3-month minimum",
     tagline:
-      "A focused sprint to improve conversion, onboarding, search, or a key flow in your existing product.",
+      "Reserved development time to keep your system reliable and continuously improving.",
+    eligibilityNote: "Available for systems I have built or reviewed.",
+    linkLabel: "View details",
     description:
-      "For products that already exist but are not pulling their weight somewhere. We pick one high-impact area, conversion, onboarding, search, or a clunky flow, and I ship real improvements in a short, focused sprint.",
+      "A defined monthly development allocation covering maintenance, monitoring, and agreed improvements. Work is prioritised and scheduled rather than unlimited or on demand.",
     deliverables: [
-      "Focused review of the chosen area",
-      "Prioritised list of improvements",
-      "Implementation of the agreed changes",
-      "Before & after measurement",
-      "Handover notes",
+      "Reserved monthly development time",
+      "Prioritised maintenance and improvements",
+      "Monitoring of agreed critical journeys",
+      "Scheduled releases and progress updates",
     ],
     process: [
       {
+        title: "Plan",
+        description:
+          "Agree the monthly allocation, support boundaries, priorities, and release schedule for a system I have built or reviewed.",
+      },
+      {
+        title: "Improve",
+        description:
+          "Use the reserved time on the highest-priority maintenance and improvements agreed for that month.",
+      },
+      {
         title: "Review",
         description:
-          "Dig into the chosen area and find the changes most likely to move the number.",
-      },
-      {
-        title: "Build",
-        description:
-          "Ship the agreed improvements directly into your existing product.",
-      },
-      {
-        title: "Measure",
-        description:
-          "Check the before and after, and leave clear notes on what changed and why.",
+          "Summarise what shipped, note anything that needs attention, and set the next priorities together.",
       },
     ],
     whoFor: [
-      "Teams with a live product and a specific problem",
-      "Founders who want quick, measurable wins",
-      "Products with leaky onboarding, search, or conversion",
+      "Clients who want continued support after a Workflow Build",
+      "Businesses whose existing system has first been through a Workflow Review",
+      "Teams that need predictable access to development without hiring internally",
+    ],
+    terms: [
+      "Available only for systems I have built or reviewed",
+      "Work is limited to the monthly allocation agreed in the proposal",
+      "Hosting, subscriptions, API usage, and other third-party costs are separate",
+      "Initial three-month commitment, then month to month",
     ],
     faq: [
       {
-        question: "Can you work inside our existing stack?",
+        question: "Is this unlimited support?",
         answer:
-          "Yes. The sprint is scoped around your current product, codebase, and delivery process.",
+          "No. Each plan reserves a defined amount of development time. Requests are prioritised together and scheduled within that allocation.",
       },
       {
-        question: "How do you pick what to work on?",
+        question: "Can you take over a system somebody else built?",
         answer:
-          "We start from your goal, then I focus on the single area where a short sprint can make the biggest measurable difference.",
+          "Potentially, but only after I have reviewed the system and confirmed that I can support it responsibly. Unknown systems are not accepted directly onto a monthly plan.",
       },
       {
-        question: "What happens after the sprint?",
+        question: "Are hosting and software costs included?",
         answer:
-          "You get the changes shipped plus notes on what to try next. We can run another sprint or keep working together from there.",
+          "No. Hosting, subscriptions, API usage, licences, and other third-party charges remain separate and are paid by the client.",
       },
     ],
     accent: {
@@ -218,5 +232,5 @@ export const services: Service[] = [
 ];
 
 export function getService(slug: Service["slug"]) {
-  return services.find((s) => s.slug === slug);
+  return services.find((service) => service.slug === slug);
 }

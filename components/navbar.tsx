@@ -73,7 +73,7 @@ export default function Navbar() {
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
         >
-          Book a call
+          Book a fit call
         </a>
       </header>
 

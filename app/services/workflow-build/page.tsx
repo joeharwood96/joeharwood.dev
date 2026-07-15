@@ -3,18 +3,19 @@ import { notFound } from "next/navigation";
 import ServiceLayout from "../_components/service-layout";
 import { getService } from "@/data/services";
 
-const service = getService("startup-mvp");
+const service = getService("workflow-build");
 
 export const metadata: Metadata = {
   title: `${service?.name} · DevJoe`,
-  description: service?.description,
+  description: service?.tagline,
   openGraph: {
     title: `${service?.name} · DevJoe`,
-    description: service?.description,
+    description: service?.tagline,
+    url: "/services/workflow-build",
   },
 };
 
-export default function StartupMvpPage() {
+export default function WorkflowBuildPage() {
   if (!service) notFound();
   return <ServiceLayout service={service} />;
 }

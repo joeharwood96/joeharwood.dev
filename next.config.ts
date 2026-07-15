@@ -26,6 +26,21 @@ const nextConfig: NextConfig = {
         destination: "/work/:slug",
         permanent: true,
       },
+      {
+        source: "/services/startup-mvp",
+        destination: "/services/workflow-build",
+        permanent: true,
+      },
+      {
+        source: "/services/growth-sprint",
+        destination: "/services/workflow-build",
+        permanent: true,
+      },
+      {
+        source: "/services/launch-site",
+        destination: "/agencies",
+        permanent: true,
+      },
     ];
   },
 };

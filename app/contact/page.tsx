@@ -9,12 +9,13 @@ import { CALENDLY_URL } from "@/lib/constants";
 export const metadata: Metadata = {
   title: "Contact · DevJoe",
   description:
-    "Book a 30-minute call with DevJoe or send a message. No pitch deck, no sales call. Just a focused conversation about what you want to ship.",
+    "Book a 30-minute fit call about an inefficient workflow, customer portal, booking system, or internal tool.",
   openGraph: {
     type: "website",
     url: "https://joeharwood.dev/contact",
     title: "Contact · DevJoe",
-    description: "Book a 30-minute call with DevJoe or send a message.",
+    description:
+      "Book a 30-minute fit call about an inefficient workflow, customer portal, booking system, or internal tool.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
@@ -29,11 +30,11 @@ export default function ContactPage() {
         <FadeIn y={20} duration={0.8}>
           <div className="max-w-6xl">
             <h1 className="text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
-              Let&apos;s talk.
+              Start with a fit call.
               <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
-                Pick a 30-minute slot below, or send a message if you&apos;d
-                prefer. No pitch deck, no sales call, just a focused
-                conversation about what you want to ship.
+                Pick a 30-minute slot below. We&apos;ll look at the current
+                workflow, the urgency, and whether a review or build is the
+                right next step. No pitch deck and no hard sell.
               </span>
             </h1>
           </div>
@@ -55,11 +56,12 @@ export default function ContactPage() {
       <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
         <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
           <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            Prefer to write first?
+            Prefer to describe it first?
           </h2>
           <p className="mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            Drop a few lines about your company and what you&apos;re trying to
-            build. Replies usually land within a day.
+            Tell me about your company, how the workflow works today, where it
+            causes problems, and what a better outcome would look like. Replies
+            usually land within a day.
           </p>
         </FadeIn>
         <FadeIn duration={0.6}>
