@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { m } from "motion/react";
 import { CALENDLY_URL } from "@/lib/constants";
+import TrackedLink from "@/components/tracked-link";
 
 const ease = [0.16, 1, 0.3, 1] as const;
 
@@ -67,14 +68,16 @@ export default function Navbar() {
           />
         </Link>
 
-        <a
+        <TrackedLink
           href={`${CALENDLY_URL}?utm_source=top-nav`}
           target="_blank"
           rel="noopener noreferrer"
+          eventName="Fit Call Clicked"
+          eventData={{ location: "top_nav" }}
           className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-6 py-2.5 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
         >
           Book a fit call
-        </a>
+        </TrackedLink>
       </header>
 
       <m.div

@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/accordion";
 import { services, type Service } from "@/data/services";
 import { CALENDLY_URL } from "@/lib/constants";
+import TrackedLink from "@/components/tracked-link";
 
 export default function ServiceLayout({ service }: { service: Service }) {
   const nextService =
@@ -74,10 +75,15 @@ export default function ServiceLayout({ service }: { service: Service }) {
             ) : null}
 
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-              <a
+              <TrackedLink
                 href={`${CALENDLY_URL}?utm_source=service-${service.slug}`}
                 target="_blank"
                 rel="noopener noreferrer"
+                eventName="Fit Call Clicked"
+                eventData={{
+                  location: "service_hero",
+                  service: service.slug,
+                }}
                 className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-medium transition-transform hover:scale-105 active:scale-95"
                 style={{
                   backgroundColor: service.accent.fg,
@@ -86,7 +92,7 @@ export default function ServiceLayout({ service }: { service: Service }) {
               >
                 Book a fit call
                 <ArrowUpRight className="h-5 w-5" />
-              </a>
+              </TrackedLink>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-medium transition-opacity hover:opacity-80"
@@ -232,15 +238,20 @@ export default function ServiceLayout({ service }: { service: Service }) {
             whether this service is the right next step. No pitch deck and no
             hard sell.
           </p>
-          <a
+          <TrackedLink
             href={`${CALENDLY_URL}?utm_source=service-${service.slug}-footer`}
             target="_blank"
             rel="noopener noreferrer"
+            eventName="Fit Call Clicked"
+            eventData={{
+              location: "service_footer",
+              service: service.slug,
+            }}
             className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
           >
             Book a fit call
             <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          </TrackedLink>
         </FadeIn>
       </section>
 

@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/site-footer";
 import { caseStudies } from "@/data/case-studies";
 import { CALENDLY_URL } from "@/lib/constants";
+import TrackedLink from "@/components/tracked-link";
 
 export async function generateStaticParams() {
   return caseStudies.map((caseStudy) => ({
@@ -258,15 +259,20 @@ export default async function CaseStudyPage({
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
                 ) : null}
-                <a
+                <TrackedLink
                   href={`${CALENDLY_URL}?utm_source=work-${caseStudy.slug}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  eventName="Fit Call Clicked"
+                  eventData={{
+                    location: "case_study",
+                    caseStudy: caseStudy.slug,
+                  }}
                   className="inline-flex items-center gap-2 rounded-full bg-[#F5F5F5] px-5 py-3 text-sm font-medium text-neutral-900 transition-all hover:scale-105 hover:bg-neutral-100 active:scale-95"
                 >
                   Book a call
                   <ArrowUpRight className="h-4 w-4" />
-                </a>
+                </TrackedLink>
               </div>
             </aside>
           </div>

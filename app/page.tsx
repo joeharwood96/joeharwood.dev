@@ -8,6 +8,7 @@ import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
 import { CALENDLY_URL } from "@/lib/constants";
+import TrackedLink from "@/components/tracked-link";
 
 const clientTiles = [
   {
@@ -235,8 +236,10 @@ export default function Home() {
         <div className="flex flex-col border-t border-neutral-200">
           {services.map((service, index) => (
             <FadeIn key={service.slug} delay={index * 0.1} duration={0.6}>
-              <Link
+              <TrackedLink
                 href={`/services/${service.slug}`}
+                eventName="Service Viewed"
+                eventData={{ service: service.slug, location: "homepage" }}
                 className="group flex flex-col gap-6 border-b border-neutral-200 py-10 md:flex-row md:gap-12"
               >
                 <div className="shrink-0 md:w-1/3">
@@ -278,7 +281,7 @@ export default function Home() {
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                   </span>
                 </div>
-              </Link>
+              </TrackedLink>
             </FadeIn>
           ))}
         </div>
@@ -353,15 +356,17 @@ export default function Home() {
             urgency, and whether a review or build is the right next step.
           </p>
           <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
+            <TrackedLink
               href={`${CALENDLY_URL}?utm_source=home-cta`}
               target="_blank"
               rel="noopener noreferrer"
+              eventName="Fit Call Clicked"
+              eventData={{ location: "homepage_footer" }}
               className="inline-flex w-full items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95 sm:w-auto"
             >
               Book a fit call
               <ArrowRight className="ml-2 h-5 w-5" />
-            </a>
+            </TrackedLink>
             <Link
               href="/#work"
               className="inline-flex w-full items-center justify-center rounded-full bg-[#F5F5F5] px-10 py-5 text-lg font-medium text-neutral-900 transition-all hover:bg-[#E5E5E5] sm:w-auto"

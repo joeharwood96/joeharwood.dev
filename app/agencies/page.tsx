@@ -4,6 +4,7 @@ import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { CALENDLY_URL } from "@/lib/constants";
+import TrackedLink from "@/components/tracked-link";
 
 export const metadata: Metadata = {
   title: "React and Next.js support for agencies · DevJoe",
@@ -66,21 +67,25 @@ export default function AgenciesPage() {
               </span>
             </h1>
             <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-              <a
+              <TrackedLink
                 href={`${CALENDLY_URL}?utm_source=agency-hero`}
                 target="_blank"
                 rel="noopener noreferrer"
+                eventName="Agency Enquiry Clicked"
+                eventData={{ action: "schedule", location: "agency_hero" }}
                 className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-base font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
               >
                 Check availability
                 <ArrowUpRight className="ml-2 h-5 w-5" />
-              </a>
-              <a
+              </TrackedLink>
+              <TrackedLink
                 href="mailto:joeharwooddev@gmail.com?subject=Agency%20delivery%20support"
+                eventName="Agency Enquiry Clicked"
+                eventData={{ action: "email", location: "agency_hero" }}
                 className="inline-flex items-center justify-center rounded-full bg-[#F5F5F5] px-8 py-4 text-base font-medium text-neutral-900 transition-colors hover:bg-[#E5E5E5]"
               >
                 Email project details
-              </a>
+              </TrackedLink>
             </div>
           </div>
         </FadeIn>
@@ -168,15 +173,17 @@ export default function AgenciesPage() {
             Send the project, timing, stack, and the part you need owned. I&apos;ll
             reply with availability and the most practical next step.
           </p>
-          <a
+          <TrackedLink
             href={`${CALENDLY_URL}?utm_source=agency-footer`}
             target="_blank"
             rel="noopener noreferrer"
+            eventName="Agency Enquiry Clicked"
+            eventData={{ action: "schedule", location: "agency_footer" }}
             className="mt-10 inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
           >
             Check availability
             <ArrowRight className="ml-2 h-5 w-5" />
-          </a>
+          </TrackedLink>
         </FadeIn>
       </section>
 

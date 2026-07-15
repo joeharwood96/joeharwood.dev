@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ArrowRight, CheckCircle, AlertCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { track } from "@vercel/analytics";
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -37,6 +38,7 @@ export default function ContactForm() {
 
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
+      track("Contact Form Submitted", { location: "contact_page" });
 
       setTimeout(() => setStatus("idle"), 5000);
     } catch (error) {
