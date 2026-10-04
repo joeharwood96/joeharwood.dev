@@ -33,12 +33,27 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/services/startup-mvp",
-        destination: "/services/workflow-build",
+        destination: "/services/ai-prototype",
         permanent: true,
       },
       {
         source: "/services/growth-sprint",
-        destination: "/services/workflow-build",
+        destination: "/services/ai-feature-launch",
+        permanent: true,
+      },
+      {
+        source: "/services/workflow-review",
+        destination: "/services/ai-prototype",
+        permanent: true,
+      },
+      {
+        source: "/services/workflow-build",
+        destination: "/services/ai-feature-launch",
+        permanent: true,
+      },
+      {
+        source: "/services/ongoing-improvements",
+        destination: "/services/embedded-ai-engineer",
         permanent: true,
       },
       {

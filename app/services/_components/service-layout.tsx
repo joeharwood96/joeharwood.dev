@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import FadeIn from "@/components/motion/fade-in";
 import {
   Accordion,
@@ -7,9 +7,21 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import Section from "@/components/site/section";
+import ButtonLink from "@/components/site/button-link";
 import { services, type Service } from "@/data/services";
 import { CALENDLY_URL } from "@/lib/constants";
-import TrackedLink from "@/components/tracked-link";
+
+function SectionHeading({ label, title }: { label: string; title: string }) {
+  return (
+    <div>
+      <p className="mono-label">{label}</p>
+      <h2 className="mt-3 text-3xl font-medium tracking-tight text-neutral-950 sm:text-4xl">
+        {title}
+      </h2>
+    </div>
+  );
+}
 
 export default function ServiceLayout({ service }: { service: Service }) {
   const nextService =
@@ -18,259 +30,180 @@ export default function ServiceLayout({ service }: { service: Service }) {
     ];
 
   return (
-    <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-
+    <main className="flex min-h-screen flex-col bg-background text-neutral-950">
       {/* Hero */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
-        <FadeIn y={20} duration={0.8}>
-          <Link
-            href="/#services"
-            className="inline-flex items-center gap-2 text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900"
-          >
-            <ArrowLeft className="h-4 w-4" />
-            All services
-          </Link>
+      <Section innerClassName="border-b px-6 pb-16 pt-16 sm:px-10 sm:pb-24 sm:pt-24">
+        <FadeIn y={12}>
+          <p className="mono-label">
+            <Link href="/#offers" className="hover:text-neutral-950">
+              Services
+            </Link>{" "}
+            / {service.name}
+          </p>
         </FadeIn>
-
-        <FadeIn y={20} duration={0.8} delay={0.1}>
-          <div
-            className="relative mt-8 overflow-hidden rounded-[2.5rem] px-8 py-16 sm:px-16 sm:py-24"
-            style={{
-              backgroundColor: service.accent.bg,
-              color: service.accent.fg,
-            }}
-          >
-            <div className="flex flex-wrap gap-3">
-              {[service.label, service.priceLabel, service.durationLabel].map(
-                (chip) => (
-                  <span
-                    key={chip}
-                    className="inline-flex items-center rounded-full px-3 py-1 text-xs font-medium tabular-nums"
-                    style={{ border: `1px solid ${service.accent.border}` }}
-                  >
-                    {chip}
-                  </span>
-                ),
-              )}
-            </div>
-
-            <h1 className="mt-10 max-w-3xl text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight sm:text-[3.6rem] md:text-[4.35rem]">
+        <div className="mt-8 grid gap-12 lg:grid-cols-[1fr_340px] lg:items-end">
+          <FadeIn y={12} delay={0.05}>
+            <h1 className="text-balance text-5xl font-medium tracking-tight sm:text-6xl">
               {service.name}
             </h1>
-
-            <p
-              className="mt-8 max-w-2xl text-lg leading-relaxed sm:text-xl"
-              style={{ color: service.accent.fgMuted }}
-            >
+            <p className="mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500 sm:text-2xl">
+              {service.tagline}
+            </p>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600">
               {service.description}
             </p>
-
-            {service.eligibilityNote ? (
-              <p className="mt-5 max-w-2xl text-base font-medium">
-                {service.eligibilityNote}
-              </p>
-            ) : null}
-
-            <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-              <TrackedLink
-                href={`${CALENDLY_URL}?utm_source=service-${service.slug}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                eventName="Fit Call Clicked"
-                eventData={{
-                  location: "service_hero",
-                  service: service.slug,
-                }}
-                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-medium transition-transform hover:scale-105 active:scale-95"
-                style={{
-                  backgroundColor: service.accent.fg,
-                  color: service.accent.bg,
-                }}
-              >
-                Book a fit call
-                <ArrowUpRight className="h-5 w-5" />
-              </TrackedLink>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-base font-medium transition-opacity hover:opacity-80"
-                style={{
-                  color: service.accent.fg,
-                  border: `1px solid ${service.accent.border}`,
-                }}
-              >
-                Ask a question
-              </Link>
-            </div>
-          </div>
-        </FadeIn>
-      </section>
-
-      {service.terms ? (
-        <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-          <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
-            <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-              Good to know
-            </h2>
           </FadeIn>
-          <FadeIn duration={0.6}>
-            <ul className="grid gap-4 border-t border-neutral-200 pt-8 sm:grid-cols-2">
-              {service.terms.map((item) => (
-                <li
-                  key={item}
-                  className="rounded-2xl bg-[#F5F5F5] p-6 text-base font-medium leading-relaxed text-neutral-600"
+
+          <FadeIn y={12} delay={0.1}>
+            <div className="grid-frame bg-white p-6">
+              <p className="mono-label">Price</p>
+              <p className="mt-1 text-2xl font-medium tabular-nums">
+                {service.priceLabel}
+              </p>
+              <p className="mono-label mt-5">Timeline</p>
+              <p className="mt-1 text-base">{service.durationLabel}</p>
+              <div className="mt-6 grid gap-2">
+                <ButtonLink
+                  href={`${CALENDLY_URL}?utm_source=service-${service.slug}`}
+                  external
+                  eventName="Fit Call Clicked"
+                  eventData={{ location: "service_hero", service: service.slug }}
                 >
+                  Book a call
+                  <ArrowUpRight className="h-4 w-4" />
+                </ButtonLink>
+                <ButtonLink href="/contact" variant="outline">
+                  Ask a question
+                </ButtonLink>
+              </div>
+            </div>
+          </FadeIn>
+        </div>
+      </Section>
+
+      {/* Deliverables */}
+      <Section innerClassName="grid gap-10 border-b px-6 py-16 sm:px-10 md:grid-cols-[1fr_1.4fr] sm:py-20">
+        <SectionHeading label="Deliverables" title="What you get" />
+        <ul className="divide-y divide-neutral-200 border-y border-neutral-200">
+          {service.deliverables.map((item) => (
+            <li key={item} className="py-4 text-base text-neutral-700">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
+      {/* Process */}
+      <Section innerClassName="border-b">
+        <div className="px-6 pt-16 sm:px-10 sm:pt-20">
+          <SectionHeading label="Process" title="How it works" />
+        </div>
+        <ol className="mt-10 grid border-t border-neutral-200 md:grid-cols-3">
+          {service.process.map((step, index) => (
+            <li
+              key={step.title}
+              className="border-neutral-200 p-6 sm:p-10 [&:not(:last-child)]:border-b md:[&:not(:last-child)]:border-b-0 md:[&:not(:last-child)]:border-r"
+            >
+              <span className="font-mono text-xs text-neutral-400">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 text-xl font-medium tracking-tight">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-base leading-relaxed text-neutral-500">
+                {step.description}
+              </p>
+            </li>
+          ))}
+        </ol>
+      </Section>
+
+      {/* Fit and terms */}
+      <Section innerClassName="grid border-b md:grid-cols-2">
+        <div className="border-neutral-200 px-6 py-16 sm:px-10 sm:py-20 max-md:border-b md:border-r">
+          <SectionHeading label="Fit" title="Who it's for" />
+          <ul className="mt-8 space-y-3">
+            {service.whoFor.map((item) => (
+              <li key={item} className="flex gap-3 text-base text-neutral-700">
+                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-neutral-950" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        {service.terms ? (
+          <div className="px-6 py-16 sm:px-10 sm:py-20">
+            <SectionHeading label="Terms" title="Good to know" />
+            <ul className="mt-8 space-y-3">
+              {service.terms.map((item) => (
+                <li key={item} className="flex gap-3 text-base text-neutral-700">
+                  <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-neutral-400" />
                   {item}
                 </li>
               ))}
             </ul>
-          </FadeIn>
-        </section>
-      ) : null}
-
-      {/* Deliverables */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
-          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            What you get
-          </h2>
-        </FadeIn>
-        <FadeIn duration={0.6}>
-          <ul className="grid gap-x-6 gap-y-3 border-t border-neutral-200 pt-8 sm:grid-cols-2">
-            {service.deliverables.map((item) => (
-              <li
-                key={item}
-                className="flex items-start text-base font-medium text-neutral-600"
-              >
-                <span className="mr-3 mt-0.5 text-neutral-300">-</span>
-                {item}
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
-      </section>
-
-      {/* Process */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
-          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            How it works
-          </h2>
-        </FadeIn>
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {service.process.map((step, index) => (
-            <FadeIn key={step.title} delay={index * 0.1} duration={0.6}>
-              <div className="h-full rounded-[2rem] border border-neutral-200 bg-[#F5F5F5] p-8">
-                <span className="text-sm font-medium tabular-nums text-neutral-400">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-4 text-xl font-medium tracking-tight text-neutral-900 sm:text-2xl">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-base leading-relaxed text-neutral-500">
-                  {step.description}
-                </p>
-              </div>
-            </FadeIn>
-          ))}
-        </div>
-      </section>
-
-      {/* Who it's for */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
-          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            Who it&apos;s for
-          </h2>
-        </FadeIn>
-        <FadeIn duration={0.6}>
-          <ul className="max-w-3xl space-y-4 border-t border-neutral-200 pt-8">
-            {service.whoFor.map((item) => (
-              <li
-                key={item}
-                className="flex items-start text-lg font-medium leading-relaxed text-neutral-600"
-              >
-                <span className="mr-4 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-900" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
-      </section>
+          </div>
+        ) : null}
+      </Section>
 
       {/* FAQ */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn className="mb-12 max-w-4xl" duration={0.8}>
-          <h2 className="text-4xl font-medium tracking-tight text-neutral-900 sm:text-5xl">
-            Common questions
-          </h2>
-        </FadeIn>
-        <FadeIn duration={0.6}>
-          <Accordion
-            type="single"
-            collapsible
-            className="max-w-3xl border-t border-neutral-200"
-          >
-            {service.faq.map((item, i) => (
-              <AccordionItem key={i} value={`faq-${i}`}>
-                <AccordionTrigger className="text-left text-lg font-medium text-neutral-900">
-                  {item.question}
-                </AccordionTrigger>
-                <AccordionContent className="text-base leading-relaxed text-neutral-500">
-                  {item.answer}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
-        </FadeIn>
-      </section>
+      <Section innerClassName="grid gap-10 border-b px-6 py-16 sm:px-10 md:grid-cols-[1fr_1.4fr] sm:py-20">
+        <SectionHeading label="FAQ" title="Common questions" />
+        <Accordion type="single" collapsible className="border-t border-neutral-200">
+          {service.faq.map((item, i) => (
+            <AccordionItem key={item.question} value={`faq-${i}`}>
+              <AccordionTrigger className="text-left text-base font-medium text-neutral-950">
+                {item.question}
+              </AccordionTrigger>
+              <AccordionContent className="text-base leading-relaxed text-neutral-500">
+                {item.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Section>
 
-      {/* Final CTA */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 text-center sm:py-28">
-        <FadeIn className="mx-auto max-w-4xl" y={30} duration={0.8}>
-          <h2 className="mb-6 text-[3rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[4.5rem]">
-            Start with a fit call.
+      {/* CTA and next */}
+      <Section innerClassName="grid md:grid-cols-2">
+        <div className="border-neutral-200 px-6 py-16 sm:px-10 sm:py-20 max-md:border-b md:border-r">
+          <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
+            Talk it through first.
           </h2>
-          <p className="mx-auto mb-12 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            In 30 minutes, we&apos;ll look at the workflow, the urgency, and
-            whether this service is the right next step. No pitch deck and no
-            hard sell.
+          <p className="mt-4 max-w-md text-base leading-relaxed text-neutral-500">
+            30 minutes on what you want to build and whether this is the right
+            fit. If it isn&apos;t, I&apos;ll say so.
           </p>
-          <TrackedLink
+          <ButtonLink
             href={`${CALENDLY_URL}?utm_source=service-${service.slug}-footer`}
-            target="_blank"
-            rel="noopener noreferrer"
+            external
+            size="lg"
+            className="mt-8"
             eventName="Fit Call Clicked"
-            eventData={{
-              location: "service_footer",
-              service: service.slug,
-            }}
-            className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
+            eventData={{ location: "service_footer", service: service.slug }}
           >
-            Book a fit call
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </TrackedLink>
-        </FadeIn>
-      </section>
-
-      {/* Next service */}
-      <section className="mx-auto w-full max-w-[1400px] px-6 pb-10">
+            Book a call
+            <ArrowRight className="h-4 w-4" />
+          </ButtonLink>
+        </div>
         <Link
           href={`/services/${nextService.slug}`}
-          className="group flex flex-col gap-4 border-t border-neutral-200 py-12 sm:flex-row sm:items-end sm:justify-between"
+          className="group flex flex-col justify-between px-6 py-16 transition-colors hover:bg-white sm:px-10 sm:py-20"
         >
-          <div>
-            <p className="text-sm font-medium text-neutral-400">Next</p>
-            <h3 className="mt-2 text-3xl font-medium tracking-tight text-neutral-900 sm:text-4xl">
+          <p className="mono-label">Next offer</p>
+          <div className="mt-10">
+            <h3 className="text-3xl font-medium tracking-tight sm:text-4xl">
               {nextService.name}
             </h3>
+            <p className="mt-2 text-base text-neutral-500">
+              {nextService.priceLabel} · {nextService.durationLabel}
+            </p>
+            <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-neutral-950">
+              {nextService.linkLabel}
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+            </span>
           </div>
-          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-neutral-400 transition-colors group-hover:text-neutral-900">
-            View details
-            <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
-          </span>
         </Link>
-      </section>
-
+      </Section>
     </main>
   );
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import ServiceLayout from "../_components/service-layout";
 import { getService } from "@/data/services";
 
-const service = getService("workflow-review");
+const service = getService("ai-feature-launch");
 
 export const metadata: Metadata = {
   title: `${service?.name} · DevJoe`,
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${service?.name} · DevJoe`,
     description: service?.tagline,
-    url: "/services/workflow-review",
+    url: "/services/ai-feature-launch",
   },
 };
 
-export default function WorkflowReviewPage() {
+export default function AiFeatureLaunchPage() {
   if (!service) notFound();
   return <ServiceLayout service={service} />;
 }

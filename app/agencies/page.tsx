@@ -1,189 +1,147 @@
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import FadeIn from "@/components/motion/fade-in";
+import Section from "@/components/site/section";
+import ButtonLink from "@/components/site/button-link";
+import FeatureList from "@/components/site/feature-list";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/constants";
-import TrackedLink from "@/components/tracked-link";
 
 export const metadata: Metadata = {
-  title: "React and Next.js support for agencies · DevJoe",
+  title: "AI features for agencies · DevJoe",
   description:
-    "Senior React and Next.js delivery support for design, marketing, and digital agencies that need dependable development capacity.",
+    "White-label AI product engineering for agencies. Sell the AI work, I build it under your name.",
   openGraph: {
     type: "website",
     url: "https://www.devjoe.io/agencies",
-    title: "React and Next.js support for agencies · DevJoe",
+    title: "AI features for agencies · DevJoe",
     description:
-      "Senior React and Next.js delivery support for agencies that need dependable development capacity.",
+      "White-label AI product engineering for agencies. Sell the AI work, I build it under your name.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
 };
 
-const supportModes = [
+const modes = [
+  {
+    title: "One-off AI feature",
+    description:
+      "Your client wants a chatbot, smart search or document tool. I build it into the site or app you already run for them.",
+  },
   {
     title: "Overflow delivery",
     description:
-      "Add senior development capacity when the work is sold but your internal team is full.",
+      "The project is sold and your team is full. I take a defined part of it in React, Next.js or Node.",
   },
   {
-    title: "Embedded support",
+    title: "Ongoing AI partner",
     description:
-      "Join an existing project, work within your delivery process, and communicate directly with designers and technical leads.",
-  },
-  {
-    title: "End-to-end implementation",
-    description:
-      "Take an approved design or clearly scoped brief through development, QA, deployment, and handover.",
+      "Steady AI work across several clients. Two days a week, booked in advance.",
   },
 ];
 
 const capabilities = [
-  "React and Next.js implementation",
-  "TypeScript front ends and full-stack applications",
-  "CMS, API, authentication, and payment integrations",
-  "Responsive, accessible UI from supplied designs",
-  "Existing codebase improvements and delivery rescue",
-  "Clear handover to your team or client",
+  "Chat and search over client content",
+  "Document summaries and extraction",
+  "Recommendations and personalisation",
+  "React and Next.js front ends",
+  "Node, Postgres and Supabase back ends",
+  "Stripe and third-party integrations",
 ];
 
 export default function AgenciesPage() {
   return (
-    <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-
-      <section className="mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 sm:pt-52">
-        <FadeIn y={20} duration={0.8}>
-          <div className="max-w-6xl">
-            <p className="text-sm font-medium uppercase tracking-widest text-neutral-400">
-              For design, marketing, and digital agencies
-            </p>
-            <h1 className="mt-6 text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
-              Senior React and Next.js delivery support for agencies.
-              <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
-                Dependable development capacity for projects that need to ship
-                without adding a permanent hire.
-              </span>
-            </h1>
-            <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-              <TrackedLink
-                href={`${CALENDLY_URL}?utm_source=agency-hero`}
-                target="_blank"
-                rel="noopener noreferrer"
-                eventName="Agency Enquiry Clicked"
-                eventData={{ action: "schedule", location: "agency_hero" }}
-                className="inline-flex items-center justify-center rounded-full bg-neutral-900 px-8 py-4 text-base font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
-              >
-                Check availability
-                <ArrowUpRight className="ml-2 h-5 w-5" />
-              </TrackedLink>
-              <TrackedLink
-                href={`mailto:${CONTACT_EMAIL}?subject=Agency%20delivery%20support`}
-                eventName="Agency Enquiry Clicked"
-                eventData={{ action: "email", location: "agency_hero" }}
-                className="inline-flex items-center justify-center rounded-full bg-[#F5F5F5] px-8 py-4 text-base font-medium text-neutral-900 transition-colors hover:bg-[#E5E5E5]"
-              >
-                Email project details
-              </TrackedLink>
-            </div>
+    <main className="flex min-h-screen flex-col bg-background text-neutral-950">
+      <Section innerClassName="border-b px-6 pb-16 pt-16 sm:px-10 sm:pb-24 sm:pt-24">
+        <FadeIn y={12}>
+          <p className="mono-label">For agencies</p>
+          <h1 className="mt-6 max-w-4xl text-balance text-5xl font-medium tracking-tight sm:text-6xl">
+            Sell the AI work. I&apos;ll build it under your name.
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500">
+            Clients keep asking for AI features. I build them inside your
+            process, for your client, without you hiring for it.
+          </p>
+          <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <ButtonLink
+              href={`${CALENDLY_URL}?utm_source=agency-hero`}
+              external
+              size="lg"
+              eventName="Agency Enquiry Clicked"
+              eventData={{ action: "schedule", location: "agency_hero" }}
+            >
+              Check availability
+              <ArrowUpRight className="h-4 w-4" />
+            </ButtonLink>
+            <ButtonLink
+              href={`mailto:${CONTACT_EMAIL}?subject=Agency%20AI%20project`}
+              variant="outline"
+              size="lg"
+              eventName="Agency Enquiry Clicked"
+              eventData={{ action: "email", location: "agency_hero" }}
+            >
+              Email the brief
+            </ButtonLink>
           </div>
         </FadeIn>
-      </section>
+      </Section>
 
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn className="mb-14 max-w-4xl" duration={0.8}>
-          <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
-            Flexible support, clear ownership
+      <Section innerClassName="border-b">
+        <div className="px-6 pt-16 sm:px-10 sm:pt-20">
+          <p className="mono-label">How we can work</p>
+          <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
+            Pick what fits the project
           </h2>
-          <p className="mt-6 max-w-3xl text-xl leading-relaxed text-neutral-500">
-            I can work under your agency&apos;s process and client relationship,
-            taking responsibility for a defined stream of delivery.
-          </p>
-        </FadeIn>
-        <div className="grid gap-4 md:grid-cols-3">
-          {supportModes.map((mode, index) => (
-            <FadeIn key={mode.title} delay={index * 0.08} duration={0.6}>
-              <div className="h-full rounded-[2rem] bg-[#F5F5F5] p-8">
-                <h3 className="text-2xl font-medium tracking-tight">
-                  {mode.title}
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-neutral-500">
-                  {mode.description}
-                </p>
-              </div>
-            </FadeIn>
+        </div>
+        <ul className="mt-10 grid border-t border-neutral-200 md:grid-cols-3">
+          {modes.map((mode) => (
+            <li
+              key={mode.title}
+              className="border-neutral-200 p-6 sm:p-10 [&:not(:last-child)]:border-b md:[&:not(:last-child)]:border-b-0 md:[&:not(:last-child)]:border-r"
+            >
+              <h3 className="text-xl font-medium tracking-tight">{mode.title}</h3>
+              <p className="mt-2 text-base leading-relaxed text-neutral-500">
+                {mode.description}
+              </p>
+            </li>
           ))}
-        </div>
-      </section>
+        </ul>
+      </Section>
 
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <div className="grid gap-14 lg:grid-cols-2 lg:gap-20">
-          <FadeIn duration={0.8}>
-            <h2 className="text-4xl font-medium tracking-tight sm:text-5xl">
-              What I can own
-            </h2>
-            <p className="mt-6 max-w-xl text-xl leading-relaxed text-neutral-500">
-              Best suited to projects with an agreed direction, an accountable
-              agency lead, and enough scope for meaningful delivery.
-            </p>
-          </FadeIn>
-          <FadeIn delay={0.1} duration={0.8}>
-            <ul className="border-t border-neutral-200">
-              {capabilities.map((capability) => (
-                <li
-                  key={capability}
-                  className="flex items-start border-b border-neutral-200 py-5 text-lg font-medium text-neutral-700"
-                >
-                  <span className="mr-4 mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-neutral-900" />
-                  {capability}
-                </li>
-              ))}
-            </ul>
-          </FadeIn>
-        </div>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-20 sm:py-28">
-        <FadeIn duration={0.8}>
-          <div className="rounded-[3rem] bg-[#0a0a0a] px-8 py-16 text-white sm:px-16 sm:py-24">
-            <p className="text-sm font-medium uppercase tracking-widest text-neutral-500">
-              Senior delivery experience
-            </p>
-            <h2 className="mt-6 max-w-4xl text-balance text-4xl font-medium tracking-tight sm:text-5xl">
-              Product-minded development, without a long technical hiring
-              process.
-            </h2>
-            <p className="mt-7 max-w-3xl text-xl leading-relaxed text-neutral-400">
-              I spent three and a half years building customer-facing products
-              at Booking.com, with earlier experience at Appical and IBM. I am
-              comfortable working with established codebases, cross-functional
-              teams, and production delivery standards.
-            </p>
-          </div>
-        </FadeIn>
-      </section>
-
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-24 text-center sm:py-32">
-        <FadeIn className="mx-auto max-w-4xl" duration={0.8}>
-          <h2 className="text-[3rem] font-medium leading-[1.1] tracking-tight sm:text-[4.5rem]">
-            Need delivery capacity?
+      <Section innerClassName="grid gap-10 border-b px-6 py-16 sm:px-10 sm:py-20 md:grid-cols-2">
+        <div>
+          <p className="mono-label">Background</p>
+          <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
+            Built AI at Booking.com scale
           </h2>
-          <p className="mx-auto mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500">
-            Send the project, timing, stack, and the part you need owned. I&apos;ll
-            reply with availability and the most practical next step.
+          <p className="mt-4 max-w-lg text-base leading-relaxed text-neutral-500">
+            Three and a half years at Booking.com, where I built their first AI
+            Trip Planner. Before that, Appical and IBM. I&apos;m used to other
+            people&apos;s codebases, design files and review processes.
           </p>
-          <TrackedLink
-            href={`${CALENDLY_URL}?utm_source=agency-footer`}
-            target="_blank"
-            rel="noopener noreferrer"
-            eventName="Agency Enquiry Clicked"
-            eventData={{ action: "schedule", location: "agency_footer" }}
-            className="mt-10 inline-flex items-center justify-center rounded-full bg-neutral-900 px-10 py-5 text-lg font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
-          >
-            Check availability
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </TrackedLink>
-        </FadeIn>
-      </section>
+        </div>
+        <FeatureList label="What I build" items={capabilities} />
+      </Section>
 
+      <Section innerClassName="px-6 py-16 sm:px-10 sm:py-24">
+        <h2 className="text-3xl font-medium tracking-tight sm:text-4xl">
+          Got a client asking for AI?
+        </h2>
+        <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-500">
+          Send the brief, the stack and the timing. I&apos;ll reply within a
+          working day with availability and a rough price.
+        </p>
+        <ButtonLink
+          href={`${CALENDLY_URL}?utm_source=agency-footer`}
+          external
+          size="lg"
+          className="mt-8"
+          eventName="Agency Enquiry Clicked"
+          eventData={{ action: "schedule", location: "agency_footer" }}
+        >
+          Check availability
+          <ArrowRight className="h-4 w-4" />
+        </ButtonLink>
+      </Section>
     </main>
   );
 }

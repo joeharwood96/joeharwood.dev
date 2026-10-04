@@ -1,11 +1,10 @@
 export type Service = {
-  slug: "workflow-review" | "workflow-build" | "ongoing-improvements";
+  slug: "ai-prototype" | "ai-feature-launch" | "embedded-ai-engineer";
   label: string;
   name: string;
   priceLabel: string;
   durationLabel: string;
   tagline: string;
-  eligibilityNote?: string;
   linkLabel: string;
   description: string;
   deliverables: string[];
@@ -13,221 +12,196 @@ export type Service = {
   whoFor: string[];
   terms?: string[];
   faq: { question: string; answer: string }[];
-  accent: {
-    bg: string;
-    fg: string;
-    fgMuted: string;
-    border: string;
-  };
+};
+
+const dbaFaq = {
+  question: "Is this a problem under the Wet DBA?",
+  answer:
+    "No. Each project is fixed price with a defined deliverable. I run DevJoe as my own business, use my own tools and set my own hours. You pay for a result.",
 };
 
 export const services: Service[] = [
   {
-    slug: "workflow-review",
-    label: "Review",
-    name: "Workflow Review",
-    priceLabel: "€750 fixed",
-    durationLabel: "Delivered in 5 business days",
-    tagline:
-      "Turn one inefficient process into a clear, costed plan for improvement.",
+    slug: "ai-prototype",
+    label: "Prototype",
+    name: "AI Prototype",
+    priceLabel: "€4,500 fixed",
+    durationLabel: "2 weeks",
+    tagline: "A working AI feature on your real data in two weeks.",
     linkLabel: "See how it works",
     description:
-      "A focused review of one customer or operational workflow. We map how it works today, identify the biggest bottlenecks, and define a practical replacement before you commit to a larger build.",
+      "You have an AI idea and a deadline. In two weeks I build a working version on your own data, so you can put it in front of users or investors and find out if it holds up.",
     deliverables: [
-      "One 60-minute stakeholder workshop",
-      "Current-state map for one workflow",
-      "Bottlenecks and recommended replacement",
-      "Scoped implementation plan and cost estimate",
-    ],
-    process: [
-      {
-        title: "Workshop",
-        description:
-          "Walk through one workflow, who touches it, where information moves, and what currently causes delays or mistakes.",
-      },
-      {
-        title: "Review",
-        description:
-          "Map the current process, isolate the highest-value improvements, and outline a practical replacement.",
-      },
-      {
-        title: "Recommendation",
-        description:
-          "Receive written findings, a scoped implementation plan, and a cost estimate within five business days of the workshop.",
-      },
-    ],
-    whoFor: [
-      "Businesses with one manual or unreliable process they want to improve",
-      "Teams that need clarity before commissioning custom software",
-      "Owners and operational leaders who want a costed next step",
-    ],
-    terms: [
-      "Covers one workflow and one stakeholder workshop",
-      "Includes one clarification round",
-      "Does not include implementation or production-ready designs",
-      "Multiple workflows, user research, and technical audits are scoped separately",
-    ],
-    faq: [
-      {
-        question: "What counts as one workflow?",
-        answer:
-          "One workflow is a single end-to-end process with a clear start and finish, such as registering for a course, onboarding a member, or preparing a weekly report.",
-      },
-      {
-        question: "Will I receive a working prototype?",
-        answer:
-          "No. The review may include light screens or a flow sketch when that makes the recommendation easier to understand, but production-ready design and implementation are separate work.",
-      },
-      {
-        question: "Do I have to use you for the build?",
-        answer:
-          "No. The findings and recommendation are yours. The implementation proposal gives you a clear option to continue with me, but there is no obligation.",
-      },
-    ],
-    accent: {
-      bg: "#2F4E4A",
-      fg: "#F2EDE3",
-      fgMuted: "rgba(242, 237, 227, 0.72)",
-      border: "rgba(242, 237, 227, 0.14)",
-    },
-  },
-  {
-    slug: "workflow-build",
-    label: "Build",
-    name: "Workflow Build",
-    priceLabel: "From €3,000",
-    durationLabel: "Typically 2–8 weeks",
-    tagline:
-      "Replace a manual process with software designed around how your business actually works.",
-    linkLabel: "View details",
-    description:
-      "A clearly scoped operational improvement, integration, booking flow, customer portal, or internal tool. Smaller workflow builds begin at €3,000; larger portals and platforms are scoped and priced after a Workflow Review.",
-    deliverables: [
-      "Clear scope and success criteria",
-      "UX and interface design",
-      "Complete design and development",
-      "Integrations, testing and production launch",
+      "Kick-off call to agree the one thing it must do",
+      "A deployed prototype on your data, with a shareable link",
+      "Prompt, model and cost choices written down",
+      "A short report: what worked, what didn't, what a real build costs",
     ],
     process: [
       {
         title: "Scope",
         description:
-          "Agree the workflow, integrations, boundaries, timeline, and definition of done before development starts.",
+          "One call to pick the feature, the data and what success looks like. Written up the same day.",
       },
       {
-        title: "Design & build",
+        title: "Build",
         description:
-          "Design the new flow and build the working system, sharing progress at clear checkpoints along the way.",
+          "Ten working days of building. You get a link to the latest version every couple of days.",
+      },
+      {
+        title: "Hand over",
+        description:
+          "A walkthrough call, the code, and a plain estimate for taking it to production.",
+      },
+    ],
+    whoFor: [
+      "Startups testing an AI feature before committing a team to it",
+      "Founders who need something real for a demo day or investor meeting",
+      "Product teams who want an answer, not a slide deck",
+    ],
+    terms: [
+      "One feature, one data source",
+      "Built to learn from, not to scale",
+      "API and hosting costs are billed to you at cost",
+      "50% up front, 50% on hand over",
+    ],
+    faq: [
+      {
+        question: "What kind of features does this cover?",
+        answer:
+          "Chat and search over your content, recommendations, summarising or extracting from documents, natural-language queries over your data, and agents that do a narrow job well.",
+      },
+      {
+        question: "Do I own the code?",
+        answer: "Yes. The repo and everything in it is yours from day one.",
+      },
+      {
+        question: "What if the idea doesn't work?",
+        answer:
+          "Then you found out in two weeks for €4,500 instead of six months. The report tells you why and what to try next.",
+      },
+      dbaFaq,
+    ],
+  },
+  {
+    slug: "ai-feature-launch",
+    label: "Launch",
+    name: "AI Feature Launch",
+    priceLabel: "From €12,000",
+    durationLabel: "4 to 6 weeks",
+    tagline: "An AI feature built into your product and live with real users.",
+    linkLabel: "View details",
+    description:
+      "I build the feature into your product properly: the UI, the backend, testing for bad answers, guardrails, and cost tracking. Then I ship it and watch how people use it.",
+    deliverables: [
+      "Scope, success metrics and a fixed quote before work starts",
+      "Frontend and backend built into your existing stack",
+      "Tests for answer quality, plus guardrails for bad output",
+      "Cost and usage monitoring",
+      "Launch, then two weeks of fixes and tuning",
+    ],
+    process: [
+      {
+        title: "Scope",
+        description:
+          "A short paid discovery, or a finished AI Prototype, turns into a fixed quote with clear boundaries.",
+      },
+      {
+        title: "Build",
+        description:
+          "Weekly demos on a preview link. You see progress, not status updates.",
       },
       {
         title: "Launch",
         description:
-          "Test the agreed scenarios, deploy the system, and support the team as the new workflow goes live.",
+          "Released behind a flag, measured against the agreed metrics, then rolled out.",
       },
     ],
     whoFor: [
-      "Businesses replacing forms, email, spreadsheets, or disconnected tools",
-      "Teams that need a customer, member, or staff portal",
-      "Operational leaders who need one person to own delivery end to end",
+      "Startups with an AI feature on the roadmap and no one free to build it",
+      "Teams who tried a quick version and need it production-ready",
+      "Companies running React, Next.js or Node who want the feature in their own codebase",
     ],
     terms: [
-      "Smaller, clearly bounded builds begin at €3,000",
-      "Larger portals and platforms are priced after a Workflow Review",
-      "Third-party services and usage costs are identified separately",
+      "Fixed price agreed before work starts",
+      "Larger scopes are split into phases",
+      "Model, API and hosting costs are separate",
+      "Paid in three milestones",
     ],
     faq: [
       {
-        question: "Does a full portal cost €3,000?",
+        question: "Can you work in our codebase?",
         answer:
-          "Not usually. €3,000 is the starting point for a small, clearly scoped workflow improvement. Larger portals and internal platforms vary significantly and are costed after the Workflow Review.",
+          "Yes, that is the normal setup. I work in your repo, follow your conventions and go through your code review.",
       },
       {
-        question: "Can you connect our existing systems?",
+        question: "Which models do you use?",
         answer:
-          "Yes, where those systems provide suitable APIs or integration options. The proposal will identify the integrations, constraints, and any third-party costs before work begins.",
+          "Whatever fits the job and the budget. Usually OpenAI or Anthropic, sometimes a smaller or open model when cost or privacy matters.",
       },
       {
-        question: "Who owns the finished system?",
+        question: "What happens after launch?",
         answer:
-          "You do. You receive the codebase, deployment access, and handover information needed to keep operating or developing it.",
+          "Two weeks of fixes and tuning are included. After that, the Embedded AI Engineer plan keeps it improving.",
       },
+      dbaFaq,
     ],
-    accent: {
-      bg: "#8B5566",
-      fg: "#F7EFE6",
-      fgMuted: "rgba(247, 239, 230, 0.72)",
-      border: "rgba(247, 239, 230, 0.14)",
-    },
   },
   {
-    slug: "ongoing-improvements",
-    label: "Support",
-    name: "Ongoing Improvements",
-    priceLabel: "From €500/month",
-    durationLabel: "3-month minimum",
-    tagline:
-      "Reserved development time to keep your system reliable and continuously improving.",
-    eligibilityNote: "Available for systems I have built or reviewed.",
+    slug: "embedded-ai-engineer",
+    label: "Embedded",
+    name: "Embedded AI Engineer",
+    priceLabel: "€6,000 / month",
+    durationLabel: "2 days a week · 3-month minimum",
+    tagline: "A senior AI product engineer in your team two days a week.",
     linkLabel: "View details",
     description:
-      "A defined monthly development allocation covering maintenance, monitoring, and agreed improvements. Work is prioritised and scheduled rather than unlimited or on demand.",
+      "Two fixed days a week on your AI roadmap. I join your standups, ship features, and help the rest of the team build AI work well.",
     deliverables: [
-      "Reserved monthly development time",
-      "Prioritised maintenance and improvements",
-      "Monitoring of agreed critical journeys",
-      "Scheduled releases and progress updates",
+      "Two days a week on your roadmap",
+      "Features shipped through your normal process",
+      "Model, prompt and cost reviews",
+      "A monthly summary of what shipped and what's next",
     ],
     process: [
       {
         title: "Plan",
         description:
-          "Agree the monthly allocation, support boundaries, priorities, and release schedule for a system I have built or reviewed.",
+          "Agree the first month's goals and which days I'm with you.",
       },
       {
-        title: "Improve",
+        title: "Ship",
         description:
-          "Use the reserved time on the highest-priority maintenance and improvements agreed for that month.",
+          "Work through the backlog with your team, in your tools.",
       },
       {
         title: "Review",
         description:
-          "Summarise what shipped, note anything that needs attention, and set the next priorities together.",
+          "Monthly check-in on what shipped, what it did, and what comes next.",
       },
     ],
     whoFor: [
-      "Clients who want continued support after a Workflow Build",
-      "Businesses whose existing system has first been through a Workflow Review",
-      "Teams that need predictable access to development without hiring internally",
+      "Startups who need senior AI experience but not a full-time hire yet",
+      "Teams after an AI Feature Launch who want to keep improving it",
+      "Agencies with steady AI work across several clients",
     ],
     terms: [
-      "Available only for systems I have built or reviewed",
-      "Work is limited to the monthly allocation agreed in the proposal",
-      "Hosting, subscriptions, API usage, and other third-party costs are separate",
-      "Initial three-month commitment, then month to month",
+      "Three-month minimum, then month to month",
+      "Two days a week, agreed in advance",
+      "Invoiced monthly",
     ],
     faq: [
       {
-        question: "Is this unlimited support?",
+        question: "Can we go to more days?",
         answer:
-          "No. Each plan reserves a defined amount of development time. Requests are prioritised together and scheduled within that allocation.",
+          "Sometimes, depending on my other projects. Ask and I'll tell you straight.",
       },
       {
-        question: "Can you take over a system somebody else built?",
+        question: "Is this a problem under the Wet DBA?",
         answer:
-          "Potentially, but only after I have reviewed the system and confirmed that I can support it responsibly. Unknown systems are not accepted directly onto a monthly plan.",
-      },
-      {
-        question: "Are hosting and software costs included?",
-        answer:
-          "No. Hosting, subscriptions, API usage, licences, and other third-party charges remain separate and are paid by the client.",
+          "It is set up as a monthly scope with agreed goals, not open-ended hours. I run my own business, use my own tools and take other work. If you need someone full time, I'll help you hire them.",
       },
     ],
-    accent: {
-      bg: "#3E4058",
-      fg: "#F4F1EA",
-      fgMuted: "rgba(244, 241, 234, 0.72)",
-      border: "rgba(244, 241, 234, 0.14)",
-    },
   },
 ];
 

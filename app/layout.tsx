@@ -19,16 +19,16 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "DevJoe — Custom software for businesses",
+  title: "DevJoe · AI product engineering for startups and agencies",
   description:
-    "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
+    "Fixed-price AI prototypes and feature launches, built by a senior AI product engineer who shipped Booking.com's first AI Trip Planner.",
   keywords: [
-    "custom software development",
-    "booking system development",
-    "customer portal development",
-    "internal tools development",
-    "workflow automation",
-    "full-stack developer Amsterdam",
+    "AI product engineer",
+    "AI prototype",
+    "LLM feature development",
+    "AI engineer Amsterdam",
+    "Next.js developer Amsterdam",
+    "freelance AI engineer Europe",
     "Joseph Harwood",
     "DevJoe",
   ],
@@ -39,24 +39,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: "https://www.devjoe.io",
-    title: "DevJoe — Custom software for businesses",
+    title: "DevJoe · AI product engineering for startups and agencies",
     description:
-      "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
+      "Fixed-price AI prototypes and feature launches, built by a senior AI product engineer who shipped Booking.com's first AI Trip Planner.",
     siteName: "DevJoe",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "DevJoe — Custom software for businesses",
+        alt: "DevJoe · AI product engineering for startups and agencies",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "DevJoe — Custom software for businesses",
+    title: "DevJoe · AI product engineering for startups and agencies",
     description:
-      "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
+      "Fixed-price AI prototypes and feature launches, built by a senior AI product engineer who shipped Booking.com's first AI Trip Planner.",
     images: ["/og-image.png"],
   },
   robots: {

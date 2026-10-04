@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import ServiceLayout from "../_components/service-layout";
 import { getService } from "@/data/services";
 
-const service = getService("ongoing-improvements");
+const service = getService("ai-prototype");
 
 export const metadata: Metadata = {
   title: `${service?.name} · DevJoe`,
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${service?.name} · DevJoe`,
     description: service?.tagline,
-    url: "/services/ongoing-improvements",
+    url: "/services/ai-prototype",
   },
 };
 
-export default function OngoingImprovementsPage() {
+export default function AiPrototypePage() {
   if (!service) notFound();
   return <ServiceLayout service={service} />;
 }

@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import ServiceLayout from "../_components/service-layout";
 import { getService } from "@/data/services";
 
-const service = getService("workflow-build");
+const service = getService("embedded-ai-engineer");
 
 export const metadata: Metadata = {
   title: `${service?.name} · DevJoe`,
@@ -11,11 +11,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${service?.name} · DevJoe`,
     description: service?.tagline,
-    url: "/services/workflow-build",
+    url: "/services/embedded-ai-engineer",
   },
 };
 
-export default function WorkflowBuildPage() {
+export default function EmbeddedAiEngineerPage() {
   if (!service) notFound();
   return <ServiceLayout service={service} />;
 }

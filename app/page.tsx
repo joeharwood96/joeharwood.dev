@@ -67,12 +67,12 @@ export default function Home() {
         name: "DevJoe",
         url: "https://www.devjoe.io",
         description:
-          "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
+          "Fixed-price AI product engineering for startups and agencies. AI prototypes, feature launches and embedded support.",
         founder: {
           "@type": "Person",
           name: "Joseph Harwood",
           url: "https://www.devjoe.io",
-          jobTitle: "Full-stack Developer",
+          jobTitle: "Senior AI Product Engineer",
         },
         address: {
           "@type": "PostalAddress",
@@ -85,7 +85,7 @@ export default function Home() {
         "@type": "Person",
         "@id": "https://www.devjoe.io/#person",
         name: "Joseph Harwood",
-        jobTitle: "Full-stack Developer",
+        jobTitle: "Senior AI Product Engineer",
         url: "https://www.devjoe.io",
         email: CONTACT_EMAIL,
         sameAs: [
@@ -252,11 +252,6 @@ export default function Home() {
                   <p className="text-xl leading-relaxed text-neutral-500 md:pt-1">
                     {service.tagline}
                   </p>
-                  {service.eligibilityNote ? (
-                    <p className="mt-3 text-base font-medium leading-relaxed text-neutral-700">
-                      {service.eligibilityNote}
-                    </p>
-                  ) : null}
                   <div className="mt-8 border-t border-neutral-100 pt-6">
                     <h4 className="mb-4 text-sm font-bold uppercase tracking-widest text-neutral-900">
                       Includes
