@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import FadeIn from "@/components/motion/fade-in";
+import Section from "@/components/site/section";
 import BlogPostCard from "@/components/blog-post-card";
 import { getBlogPosts } from "@/lib/feed";
 
@@ -8,13 +9,13 @@ export const revalidate = 3600;
 export const metadata: Metadata = {
   title: "Articles · DevJoe",
   description:
-    "Notes on building and shipping web products, and what actually works running a small studio.",
+    "Notes on building AI products, shipping my own, and working independently in Amsterdam.",
   openGraph: {
     type: "website",
     url: "https://www.devjoe.io/articles",
     title: "Articles · DevJoe",
     description:
-      "Notes on building and shipping web products, and what actually works running a small studio.",
+      "Notes on building AI products, shipping my own, and working independently in Amsterdam.",
     siteName: "DevJoe",
     images: [{ url: "/og-image.png", width: 1200, height: 630 }],
   },
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Articles · DevJoe",
     description:
-      "Notes on building and shipping web products, and what actually works running a small studio.",
+      "Notes on building AI products, shipping my own, and working independently in Amsterdam.",
     images: ["/og-image.png"],
   },
 };
@@ -35,48 +36,41 @@ export default async function ArticlesPage() {
     "@type": "CollectionPage",
     name: "Articles · DevJoe",
     description:
-      "Notes on building and shipping web products, and what actually works running a small studio.",
+      "Notes on building AI products, shipping my own, and working independently in Amsterdam.",
     url: "https://www.devjoe.io/articles",
   };
 
   return (
-    <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
+    <main className="flex min-h-screen flex-col bg-background text-neutral-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-
-      <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
-        <FadeIn y={20} duration={0.8}>
-          <div className="max-w-6xl">
-            <h1 className="text-balance text-[2.45rem] font-medium leading-[1.1] tracking-tight text-neutral-900 sm:text-[3.6rem] md:text-[4.35rem] lg:text-[4.75rem]">
-              Writing and thinking.
-              <span className="mt-6 block text-[0.78em] leading-[1.08] text-neutral-400">
-                Notes on building and shipping web products, and what actually
-                works when you&apos;re running a small studio.
-              </span>
-            </h1>
-          </div>
+      <Section innerClassName="border-b px-6 pb-12 pt-16 sm:px-10 sm:pb-16 sm:pt-24">
+        <FadeIn y={12}>
+          <p className="mono-label">Articles</p>
+          <h1 className="mt-4 max-w-3xl text-balance text-5xl font-medium tracking-tight sm:text-6xl">
+            Writing
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500">
+            Notes on building AI products, shipping my own, and working
+            independently in Amsterdam.
+          </p>
         </FadeIn>
-      </section>
+      </Section>
 
-      <section className="mx-auto w-full max-w-[1400px] px-6 py-10">
+      <Section>
         {posts.length > 0 ? (
-          <ul className="grid grid-cols-1 gap-x-6 gap-y-16 md:grid-cols-2">
-            {posts.map((post, index) => (
-              <FadeIn key={post.link} delay={index * 0.1} y={40} duration={0.8}>
-                <BlogPostCard post={post} />
-              </FadeIn>
+          <ul>
+            {posts.map((post) => (
+              <BlogPostCard key={post.link} post={post} />
             ))}
           </ul>
         ) : (
-          <div className="rounded-[2rem] border border-neutral-200 bg-[#F5F5F5] py-20 text-center">
-            <p className="text-neutral-500">No articles yet. Check back soon.</p>
-          </div>
+          <p className="p-10 text-neutral-500">No articles yet. Check back soon.</p>
         )}
-      </section>
-
+      </Section>
     </main>
   );
 }

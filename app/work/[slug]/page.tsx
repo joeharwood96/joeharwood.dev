@@ -2,11 +2,13 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
 import { CALENDLY_URL } from "@/lib/constants";
-import TrackedLink from "@/components/tracked-link";
+import Section from "@/components/site/section";
+import ButtonLink from "@/components/site/button-link";
+import FeatureList from "@/components/site/feature-list";
 
 export async function generateStaticParams() {
   return caseStudies.map((caseStudy) => ({
@@ -40,10 +42,8 @@ export async function generateMetadata({
     keywords: [
       ...caseStudy.tags,
       caseStudy.company,
+      "AI product engineering",
       "product engineering",
-      "web development",
-      "custom software development",
-      "workflow automation",
       "Joseph Harwood",
       "DevJoe",
     ],
@@ -128,154 +128,131 @@ export default async function CaseStudyPage({
     ],
   };
 
+  const index = caseStudies.findIndex((c) => c.slug === caseStudy.slug);
+  const nextCase = caseStudies[(index + 1) % caseStudies.length];
+
   return (
-    <main className="relative min-h-screen bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
+    <main className="flex min-h-screen flex-col bg-background text-neutral-950">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-
-      <article className="px-6 pb-32 pt-40">
-        <div className="mx-auto max-w-[1400px]">
-          <FadeIn>
-            <Link
-              href="/#work"
-              className="group mb-12 inline-flex items-center text-sm font-medium text-neutral-500 transition-colors hover:text-neutral-900"
+      <Section innerClassName="border-b px-6 pb-12 pt-16 sm:px-10 sm:pb-16 sm:pt-24">
+        <FadeIn y={12}>
+          <p className="mono-label">
+            <Link href="/work" className="hover:text-neutral-950">
+              Work
+            </Link>{" "}
+            / {caseStudy.company} · {caseStudy.year}
+          </p>
+          <h1 className="mt-4 max-w-4xl text-balance text-5xl font-medium tracking-tight sm:text-6xl">
+            {caseStudy.title}
+          </h1>
+          <p className="mt-6 max-w-2xl text-xl leading-relaxed text-neutral-500">
+            {caseStudy.description}
+          </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            {caseStudy.link ? (
+              <ButtonLink href={caseStudy.link} external>
+                View live
+                <ArrowUpRight className="h-4 w-4" />
+              </ButtonLink>
+            ) : null}
+            <ButtonLink
+              href={`${CALENDLY_URL}?utm_source=work-${caseStudy.slug}`}
+              variant={caseStudy.link ? "outline" : "solid"}
+              external
+              eventName="Fit Call Clicked"
+              eventData={{ location: "case_study", caseStudy: caseStudy.slug }}
             >
-              <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
-              Back to home
-            </Link>
-
-            <header className="mb-16 max-w-6xl">
-              <h1 className="mb-8 text-[3rem] font-medium leading-[1.05] tracking-tight text-neutral-900 sm:text-[5rem]">
-                {caseStudy.company}
-              </h1>
-              <p className="text-2xl font-medium leading-snug text-neutral-500 sm:text-3xl">
-                {caseStudy.title}
-              </p>
-            </header>
-          </FadeIn>
-
-          {(caseStudy.video || caseStudy.image) && (
-            <FadeIn className="mb-24">
-              <div className="relative mb-24 flex aspect-[4/3] w-full items-center justify-center overflow-hidden rounded-[2rem] bg-neutral-100 shadow-sm sm:rounded-[3rem]">
-                {caseStudy.video ? (
-                  <iframe
-                    src={caseStudy.video}
-                    title={caseStudy.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="h-full w-full"
-                  />
-                ) : caseStudy.image ? (
-                  <Image
-                    src={caseStudy.image}
-                    alt={caseStudy.title}
-                    fill
-                    sizes="(max-width: 768px) calc(100vw - 48px), 1400px"
-                    className="object-cover"
-                    quality={100}
-                    priority
-                  />
-                ) : null}
-              </div>
-            </FadeIn>
-          )}
-
-          <div className="grid w-full gap-16 md:grid-cols-[minmax(0,1fr)_400px] md:gap-32">
-            <div className="space-y-16">
-              <section>
-                <h2 className="mb-6 text-2xl font-medium text-neutral-900">
-                  The Challenge
-                </h2>
-                <p className="text-xl font-medium leading-relaxed text-neutral-600">
-                  {caseStudy.challenge ?? caseStudy.fullDescription}
-                </p>
-              </section>
-
-              <section>
-                <h2 className="mb-6 text-2xl font-medium text-neutral-900">
-                  The Solution
-                </h2>
-                <p className="mb-8 text-xl font-medium leading-relaxed text-neutral-600">
-                  {caseStudy.solution ??
-                    "I designed and built the product around the moments that mattered most, focused on getting users to value as quickly as possible."}
-                </p>
-                <ul className="space-y-4">
-                  {caseStudy.features.slice(0, 3).map((feature) => (
-                    <li
-                      key={feature}
-                      className="flex items-start text-xl font-medium text-neutral-600"
-                    >
-                      <span className="mr-4 text-neutral-300">-</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            </div>
-
-            <aside className="space-y-12">
-              <section>
-                <h2 className="mb-6 text-sm font-bold uppercase tracking-widest text-neutral-400">
-                  Technologies
-                </h2>
-                <div className="flex flex-wrap gap-2">
-                  {caseStudy.technologies.map((technology) => (
-                    <span
-                      key={technology}
-                      className="rounded-full bg-[#F5F5F5] px-4 py-2 text-sm font-medium text-neutral-900"
-                    >
-                      {technology}
-                    </span>
-                  ))}
-                </div>
-              </section>
-
-              {caseStudy.outcomes ? (
-                <section>
-                  <h2 className="mb-6 text-sm font-bold uppercase tracking-widest text-neutral-400">
-                    Outcomes
-                  </h2>
-                  <p className="text-lg font-medium leading-relaxed text-neutral-500">
-                    {caseStudy.outcomes}
-                  </p>
-                </section>
-              ) : null}
-
-              <div className="flex flex-wrap gap-3">
-                {caseStudy.link ? (
-                  <a
-                    href={caseStudy.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full bg-neutral-900 px-5 py-3 text-sm font-medium text-white transition-all hover:scale-105 hover:bg-neutral-800 active:scale-95"
-                  >
-                    View live
-                    <ArrowUpRight className="h-4 w-4" />
-                  </a>
-                ) : null}
-                <TrackedLink
-                  href={`${CALENDLY_URL}?utm_source=work-${caseStudy.slug}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  eventName="Fit Call Clicked"
-                  eventData={{
-                    location: "case_study",
-                    caseStudy: caseStudy.slug,
-                  }}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#F5F5F5] px-5 py-3 text-sm font-medium text-neutral-900 transition-all hover:scale-105 hover:bg-neutral-100 active:scale-95"
-                >
-                  Book a call
-                  <ArrowUpRight className="h-4 w-4" />
-                </TrackedLink>
-              </div>
-            </aside>
+              Book a call
+            </ButtonLink>
           </div>
-        </div>
-      </article>
+        </FadeIn>
+      </Section>
 
+      {caseStudy.image ? (
+        <Section innerClassName="border-b p-6 sm:p-10">
+          <div className="overflow-hidden border border-neutral-200 bg-[#F5F5F5]">
+            <Image
+              src={caseStudy.image}
+              alt={caseStudy.title}
+              width={2400}
+              height={1800}
+              sizes="(max-width: 1200px) 100vw, 1120px"
+              className="h-auto w-full"
+              priority
+            />
+          </div>
+        </Section>
+      ) : null}
+
+      {caseStudy.stats ? (
+        <Section innerClassName="border-b">
+          <ul className="grid sm:grid-cols-3">
+            {caseStudy.stats.map((stat) => (
+              <li
+                key={stat.label}
+                className="border-neutral-200 p-6 sm:p-10 max-sm:[&:not(:last-child)]:border-b sm:[&:not(:last-child)]:border-r"
+              >
+                <p className="text-4xl font-medium tracking-tight tabular-nums">
+                  {stat.value}
+                </p>
+                <p className="mt-2 text-sm text-neutral-500">{stat.label}</p>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
+
+      <Section innerClassName="grid border-b md:grid-cols-2">
+        <div className="border-neutral-200 p-6 sm:p-10 max-md:border-b md:border-r">
+          <p className="mono-label">Problem</p>
+          <p className="mt-4 text-lg leading-relaxed text-neutral-700">
+            {caseStudy.challenge ?? caseStudy.fullDescription}
+          </p>
+        </div>
+        <div className="p-6 sm:p-10">
+          <p className="mono-label">What I built</p>
+          <p className="mt-4 text-lg leading-relaxed text-neutral-700">
+            {caseStudy.solution ?? caseStudy.fullDescription}
+          </p>
+          <ul className="mt-6 space-y-2">
+            {caseStudy.features.map((feature) => (
+              <li key={feature} className="flex gap-3 text-base text-neutral-600">
+                <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-neutral-950" />
+                {feature}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </Section>
+
+      <Section innerClassName="grid gap-10 border-b p-6 sm:p-10 md:grid-cols-2">
+        <FeatureList label="Stack" items={caseStudy.technologies} />
+        <div>
+          <p className="text-sm text-neutral-500">Outcome</p>
+          <p className="mt-2 text-lg leading-relaxed text-neutral-950">
+            {caseStudy.outcomes}
+          </p>
+        </div>
+      </Section>
+
+      <Section>
+        <Link
+          href={`/work/${nextCase.slug}`}
+          className="group flex flex-col gap-2 p-6 transition-colors hover:bg-white sm:flex-row sm:items-end sm:justify-between sm:p-10"
+        >
+          <div>
+            <p className="mono-label">Next case</p>
+            <h2 className="mt-3 text-3xl font-medium tracking-tight sm:text-4xl">
+              {nextCase.title}
+            </h2>
+          </div>
+          <ArrowRight className="h-6 w-6 shrink-0 text-neutral-400 transition-transform group-hover:translate-x-1 group-hover:text-neutral-950" />
+        </Link>
+      </Section>
     </main>
   );
 }

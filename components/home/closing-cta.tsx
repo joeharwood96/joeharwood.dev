@@ -42,7 +42,6 @@ export default function ClosingCta() {
           className="inline-flex h-10 items-center gap-3 rounded-full border border-neutral-200 bg-white pl-4 pr-3 font-mono text-sm text-neutral-700 transition-colors hover:bg-neutral-100"
           aria-label={`Copy ${CONTACT_EMAIL}`}
         >
-          <span className="text-neutral-400">$</span>
           {CONTACT_EMAIL}
           {copied ? (
             <Check className="h-4 w-4 text-emerald-600" />

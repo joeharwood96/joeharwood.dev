@@ -118,15 +118,6 @@
     text-wrap: pretty;
   }
 
-  .logo-muted {
-    filter: grayscale(1) brightness(0);
-    opacity: 0.5;
-    transition: opacity 0.25s ease;
-  }
-
-  .logo-muted:hover {
-    opacity: 0.85;
-  }
 }
 
 @keyframes fadeIn {

@@ -14,69 +14,80 @@ export type CaseStudy = {
   features: string[];
   technologies: string[];
   outcomes: string;
+  stats?: { value: string; label: string }[];
 };
 
 export const caseStudies: CaseStudy[] = [
   {
     slug: "year-in-travel",
-    title: "Conversational travel discovery at Booking.com",
+    title: "Booking.com's first AI Trip Planner",
     company: "Booking.com",
-    year: "2023",
+    year: "2022-2025",
     description:
-      "Built travel planning and discovery experiences that helped users move from a vague idea to relevant trip ideas faster.",
+      "Built and launched a customer-facing conversational trip planner on the OpenAI API, plus recommendation and discovery work across the app.",
     fullDescription:
-      "At Booking.com, the work focused on turning complex travel intent into clearer product experiences. Projects included an early AI Trip Planner, recommendation-led discovery flows, and a personalised Year in Travel experience that helped users revisit and share their travel history.",
+      "Three and a half years at Booking.com turning messy travel intent into clear product. The headline was the AI Trip Planner, Booking.com's first customer-facing conversational recommender. Alongside it: a neighbourhood search worth an estimated €19.7M a year, and Year in Travel, a shareable travel recap that won the internal hackathon.",
     challenge:
       "Travel intent is messy. Users often know the kind of trip they want, but not the exact destination, dates, filters, or path through a traditional search flow.",
     solution:
-      "I worked on conversational and recommendation-led product experiences that translated broad travel intent into clearer discovery paths, including AI trip planning concepts and personalised travel surfaces.",
-    tags: ["React", "TypeScript", "Node.js", "Java"],
+      "I built and launched the AI Trip Planner, a conversational recommender on the OpenAI API that turns a loose idea into stays and destinations. I also led frontend delivery for neighbourhood search and built recommendation components marketing could configure themselves.",
+    tags: ["React", "TypeScript", "OpenAI API", "Node.js"],
     image: "/booking-trip-planner.png",
     features: [
-      "Conversational travel planning concepts for high-intent discovery",
-      "Recommendation-led experiences that helped users explore travel options",
-      "Personalised travel summaries built for mobile-first sharing",
-      "Product work designed to fit large-scale consumer travel surfaces",
+      "Conversational trip planning powered by the OpenAI API",
+      "Neighbourhood search that helped travellers pick where to stay",
+      "Configurable recommendation components with self-service tooling",
+      "Year in Travel, a personalised recap built for sharing",
     ],
     technologies: [
-      "React for interactive front-end",
-      "TypeScript for type safety",
-      "Java services for user data aggregation",
-      "Node.js for the personalisation pipeline",
+      "OpenAI API",
+      "React and TypeScript",
+      "Node.js",
+      "A/B experimentation",
     ],
     outcomes:
-      "Shipped product experiences inside Booking.com and validated AI-assisted discovery patterns in a large-scale travel environment.",
+      "Launched Booking.com's first AI Trip Planner to customers. The neighbourhood search was valued at an estimated €19.7M a year, and the self-service tooling cut marketing launch time from two weeks to two days.",
+    stats: [
+      { value: "1st", label: "AI Trip Planner at Booking.com" },
+      { value: "€19.7M", label: "Estimated yearly value, neighbourhood search" },
+      { value: "2 days", label: "Marketing launch time, down from 2 weeks" },
+    ],
   },
   {
     slug: "weeknights",
-    title: "Local discovery and onboarding for Amsterdam communities",
+    title: "A marketplace for Amsterdam clubs and events",
     company: "Weeknights",
-    year: "2025",
+    year: "2026",
     description:
-      "Built a local marketplace that helped people find clubs, events, and communities through smoother onboarding, browsing, and local search.",
+      "Built and launched a two-sided marketplace where people find local clubs and book events, and hosts get paid through Stripe Connect.",
     fullDescription:
-      "Weeknights helps Amsterdam residents find and join local clubs: book clubs, running groups, cooking classes, language practice, board games. Built from scratch as a co-founder, with a focus on reducing onboarding friction, making local browsing feel natural, and helping communities get discovered organically.",
+      "Weeknights helps people in Amsterdam find and join local clubs: book clubs, running groups, cooking classes, language practice, board games. I built it from scratch as the founder, covering discovery, UX, booking and ticketing, and host payouts.",
     challenge:
       "Local discovery breaks when supply is fragmented and users do not know what to search for. Communities also need a low-friction way to get listed.",
     solution:
       "I designed and built the marketplace around simple onboarding, interest-led browsing, location-aware discovery, and SEO-friendly pages that helped real organisers become discoverable.",
     link: "https://weeknights.nl/",
-    tags: ["Next.js", "TypeScript", "Tailwind CSS", "Node.js", "Supabase"],
+    tags: ["Next.js", "TypeScript", "Supabase", "Stripe Connect"],
     image: "/weeknights.png",
     features: [
-      "Frictionless onboarding for clubs, hosts, and local communities",
+      "Event publishing, booking and ticketing for hosts and guests",
+      "Stripe Connect onboarding, payments and payouts for hosts",
       "Browsing flows designed around real-world interests and neighbourhood context",
       "Local search and filtering tuned for Amsterdam discovery",
-      "Content-driven SEO that helps communities get found organically",
     ],
     technologies: [
-      "Next.js 15 on Vercel",
-      "Supabase for auth, database, and storage",
+      "Next.js on Vercel",
+      "Supabase and PostgreSQL",
+      "Stripe Connect",
       "TypeScript end to end",
-      "Tailwind for a minimal, content-first design system",
     ],
     outcomes:
-      "Reached 3,000+ monthly active users organically with clubs and events created by real organisers, not seed data.",
+      "Grew organically to 830 accounts, 131 active clubs and 599 confirmed ticket places across 273 events by September 2026. 82 of 320 buyers have booked more than once.",
+    stats: [
+      { value: "830", label: "Registered accounts" },
+      { value: "273", label: "Published events" },
+      { value: "599", label: "Confirmed ticket places" },
+    ],
   },
   {
     slug: "railgpt",
