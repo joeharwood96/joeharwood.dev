@@ -25,7 +25,7 @@ const suggestions = [
   { icon: Box, text: "What's in the AI Prototype?" },
   { icon: Plane, text: "What did Joe build at Booking.com?" },
   { icon: Briefcase, text: "Is Joe open to full-time roles?" },
-  { icon: Building2, text: "Do you work with agencies?" },
+  { icon: Building2, text: "Does Joe work with agencies?" },
 ];
 
 const errorCopy: Record<string, string> = {

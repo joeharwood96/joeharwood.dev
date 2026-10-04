@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/accordion";
 import Section from "@/components/site/section";
 import ButtonLink from "@/components/site/button-link";
+import ServiceDemo from "@/components/demo/service-demo";
 import { services, type Service } from "@/data/services";
 import { CALENDLY_URL } from "@/lib/constants";
 
@@ -79,6 +80,12 @@ export default function ServiceLayout({ service }: { service: Service }) {
             </div>
           </FadeIn>
         </div>
+      </Section>
+
+      {/* Demo */}
+      <Section innerClassName="border-b px-6 py-12 sm:px-10 sm:py-16">
+        <p className="mono-label mb-6">What it looks like</p>
+        <ServiceDemo slug={service.slug} />
       </Section>
 
       {/* Deliverables */}
