@@ -4,11 +4,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { CALENDLY_URL } from "@/lib/constants";
 import { primaryLinks, serviceLinks } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 import TrackedLink from "@/components/tracked-link";
+import { useChat } from "@/components/chat/chat-provider";
 
 const navLink =
   "rounded-full px-3 py-1.5 text-sm transition-colors hover:bg-neutral-100 hover:text-neutral-950";
@@ -20,9 +22,11 @@ export default function Navbar() {
   const servicesRef = useRef<HTMLDivElement>(null);
   const sheetRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const { open: chatOpen, toggleChat, openChat } = useChat();
 
   const isActive = (href: string) =>
-    !href.includes("#") && (pathname === href || pathname.startsWith(`${href}/`));
+    !href.includes("#") &&
+    (pathname === href || pathname.startsWith(`${href}/`));
   const servicesActive =
     pathname.startsWith("/services") || pathname === "/agencies";
 
@@ -57,9 +61,7 @@ export default function Navbar() {
     const sheet = sheetRef.current;
     const menuButton = menuButtonRef.current;
     const focusables = () =>
-      Array.from(
-        sheet?.querySelectorAll<HTMLElement>("a[href], button") ?? [],
-      );
+      Array.from(sheet?.querySelectorAll<HTMLElement>("a[href], button") ?? []);
     focusables()[0]?.focus();
     document.body.style.overflow = "hidden";
 
@@ -107,7 +109,10 @@ export default function Navbar() {
             />
           </Link>
 
-          <nav aria-label="Primary" className="hidden items-center gap-1 md:flex">
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-1 md:flex"
+          >
             <div
               ref={servicesRef}
               className="relative"
@@ -140,7 +145,10 @@ export default function Navbar() {
               </button>
 
               {servicesOpen ? (
-                <div id="services-menu" className="absolute left-0 top-full pt-2">
+                <div
+                  id="services-menu"
+                  className="absolute left-0 top-full pt-2"
+                >
                   <ul className="w-80 rounded-xl border border-neutral-200 bg-white p-2 shadow-[0_8px_30px_rgb(0,0,0,0.08)]">
                     {serviceLinks.map((item) => (
                       <li key={item.href}>
@@ -179,6 +187,15 @@ export default function Navbar() {
         </div>
 
         <div className="hidden items-center gap-2 md:flex">
+          <button
+            type="button"
+            onClick={toggleChat}
+            aria-expanded={chatOpen}
+            aria-controls="site-chat"
+            className="inline-flex h-8 items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 text-sm font-medium text-neutral-950 transition-colors hover:bg-neutral-100"
+          >
+            Ask AI
+          </button>
           <Link
             href="/cv"
             className="inline-flex h-8 items-center rounded-full border border-neutral-200 bg-white px-3 text-sm font-medium text-neutral-950 transition-colors hover:bg-neutral-100"
@@ -197,78 +214,99 @@ export default function Navbar() {
           </TrackedLink>
         </div>
 
-        <button
-          ref={menuButtonRef}
-          type="button"
-          className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white md:hidden"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          aria-expanded={mobileOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMobileOpen((open) => !open)}
-        >
-          {mobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          <button
+            type="button"
+            onClick={openChat}
+            aria-label="Ask AI"
+            aria-controls="site-chat"
+            className="inline-flex h-9 items-center gap-1.5 rounded-full border border-neutral-200 bg-white px-3 text-sm font-medium text-neutral-950"
+          >
+            Ask AI
+          </button>
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-neutral-200 bg-white"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileOpen((open) => !open)}
+          >
+            {mobileOpen ? (
+              <X className="h-4 w-4" />
+            ) : (
+              <Menu className="h-4 w-4" />
+            )}
+          </button>
+        </div>
       </div>
 
-      {mobileOpen ? (
-        <div
-          id="mobile-menu"
-          ref={sheetRef}
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menu"
-          className="fixed inset-x-0 bottom-0 top-16 z-50 overflow-y-auto bg-white px-4 pb-10 pt-4 md:hidden"
-        >
-          <p className="mono-label px-2">Services</p>
-          <ul className="mt-2">
-            {serviceLinks.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="block rounded-lg px-2 py-3">
-                  <span className="block text-base font-medium text-neutral-950">
-                    {item.label}
-                  </span>
-                  <span className="block text-sm text-neutral-500">
-                    {item.description}
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
+      {mobileOpen
+        ? createPortal(
+            <div
+              id="mobile-menu"
+              ref={sheetRef}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Menu"
+              className="fixed inset-x-0 bottom-0 top-16 z-50 overflow-y-auto border-t border-neutral-200 bg-white px-4 pb-10 pt-4 md:hidden"
+            >
+              <p className="mono-label px-2">Services</p>
+              <ul className="mt-2">
+                {serviceLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="block rounded-lg px-2 py-3"
+                    >
+                      <span className="block text-base font-medium text-neutral-950">
+                        {item.label}
+                      </span>
+                      <span className="block text-sm text-neutral-500">
+                        {item.description}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
 
-          <ul className="mt-4 border-t border-neutral-200 pt-4">
-            {primaryLinks.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="block rounded-lg px-2 py-3 text-base font-medium text-neutral-950"
+              <ul className="mt-4 border-t border-neutral-200 pt-4">
+                {primaryLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="block rounded-lg px-2 py-3 text-base font-medium text-neutral-950"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-6 grid gap-3">
+                <TrackedLink
+                  href={`${CALENDLY_URL}?utm_source=mobile-nav`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  eventName="Fit Call Clicked"
+                  eventData={{ location: "mobile_nav" }}
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-neutral-950 text-base font-medium text-white"
                 >
-                  {item.label}
+                  Book a call
+                </TrackedLink>
+                <Link
+                  href="/cv"
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-200 text-base font-medium text-neutral-950"
+                >
+                  Download CV
                 </Link>
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-6 grid gap-3">
-            <TrackedLink
-              href={`${CALENDLY_URL}?utm_source=mobile-nav`}
-              target="_blank"
-              rel="noopener noreferrer"
-              eventName="Fit Call Clicked"
-              eventData={{ location: "mobile_nav" }}
-              className="inline-flex h-12 items-center justify-center rounded-full bg-neutral-950 text-base font-medium text-white"
-            >
-              Book a call
-            </TrackedLink>
-            <Link
-              href="/cv"
-              className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-200 text-base font-medium text-neutral-950"
-            >
-              Download CV
-            </Link>
-          </div>
-        </div>
-      ) : null}
+              </div>
+            </div>,
+            document.body,
+          )
+        : null}
     </header>
   );
 }

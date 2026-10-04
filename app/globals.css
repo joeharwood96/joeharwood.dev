@@ -42,7 +42,15 @@
 
   body {
     @apply bg-background text-foreground antialiased;
+    transition: padding-right 300ms ease-out;
     font-feature-settings: "ss01", "cv11";
+  }
+}
+
+/* Make room for the Ask AI panel on wide screens. */
+@media (min-width: 1024px) {
+  html[data-chat-open] body {
+    padding-right: 400px;
   }
 }
 

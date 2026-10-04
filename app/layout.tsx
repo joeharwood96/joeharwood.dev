@@ -4,6 +4,7 @@ import { Analytics } from "@vercel/analytics/react";
 import MotionProvider from "@/components/motion/motion-provider";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/site-footer";
+import ChatProvider from "@/components/chat/chat-provider";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -84,9 +85,11 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <MotionProvider>
-          <Navbar />
-          {children}
-          <SiteFooter />
+          <ChatProvider>
+            <Navbar />
+            {children}
+            <SiteFooter />
+          </ChatProvider>
         </MotionProvider>
         <Analytics />
       </body>
