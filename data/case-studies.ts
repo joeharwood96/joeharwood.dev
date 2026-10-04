@@ -32,7 +32,7 @@ export const caseStudies: CaseStudy[] = [
     solution:
       "I built and launched the AI Trip Planner, a conversational recommender on the OpenAI API that turns a loose idea into stays and destinations. I also led frontend delivery for neighbourhood search and built recommendation components marketing could configure themselves.",
     tags: ["React", "TypeScript", "OpenAI API", "Node.js"],
-    image: "/booking-trip-planner.png",
+    image: "/booking-trip-planner.webp",
     features: [
       "Conversational trip planning powered by the OpenAI API",
       "Neighbourhood search that helped travellers pick where to stay",

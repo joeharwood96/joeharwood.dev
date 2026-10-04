@@ -13,7 +13,7 @@ const features: Feature[] = [
     lead: "Booking.com's first AI Trip Planner",
     stat: "is a conversational recommender I built and launched on the OpenAI API.",
     features: ["OpenAI API", "Conversational UI", "React and TypeScript", "A/B experimentation"],
-    image: "/booking-trip-planner.png",
+    image: "/booking-trip-planner.webp",
     imageAlt: "Booking.com AI Trip Planner on mobile",
     href: "/work/year-in-travel",
   },
