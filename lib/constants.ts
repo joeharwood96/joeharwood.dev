@@ -6,7 +6,7 @@ export const CALENDLY_URL =
   process.env.NEXT_PUBLIC_CALENDLY_URL ??
   "https://calendly.com/joeharwood3/30min";
 
-export const CONTACT_EMAIL = "joeharwooddev@gmail.com";
+export const CONTACT_EMAIL = "joeharwood3@gmail.com";
 
 export const BRAND = {
   name: "DevJoe",

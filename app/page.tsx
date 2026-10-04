@@ -7,7 +7,7 @@ import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
-import { CALENDLY_URL } from "@/lib/constants";
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/constants";
 import TrackedLink from "@/components/tracked-link";
 
 const clientTiles = [
@@ -65,15 +65,15 @@ export default function Home() {
     "@graph": [
       {
         "@type": "ProfessionalService",
-        "@id": "https://joeharwood.dev/#studio",
+        "@id": "https://www.devjoe.io/#studio",
         name: "DevJoe",
-        url: "https://joeharwood.dev",
+        url: "https://www.devjoe.io",
         description:
           "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",
         founder: {
           "@type": "Person",
           name: "Joseph Harwood",
-          url: "https://joeharwood.dev",
+          url: "https://www.devjoe.io",
           jobTitle: "Full-stack Developer",
         },
         address: {
@@ -85,11 +85,11 @@ export default function Home() {
       },
       {
         "@type": "Person",
-        "@id": "https://joeharwood.dev/#person",
+        "@id": "https://www.devjoe.io/#person",
         name: "Joseph Harwood",
         jobTitle: "Full-stack Developer",
-        url: "https://joeharwood.dev",
-        email: "joeharwooddev@gmail.com",
+        url: "https://www.devjoe.io",
+        email: CONTACT_EMAIL,
         sameAs: [
           "https://github.com/joeharwood96",
           "https://www.linkedin.com/in/josephharwood-3/",

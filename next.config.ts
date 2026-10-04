@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/cv",
+        destination: "/Joseph_Harwood_CV.pdf",
+        permanent: false,
+      },
+      {
         source: "/blog",
         destination: "/articles",
         permanent: true,

@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     "Joseph Harwood",
     "DevJoe",
   ],
-  authors: [{ name: "Joseph Harwood", url: "https://joeharwood.dev" }],
+  authors: [{ name: "Joseph Harwood", url: "https://www.devjoe.io" }],
   creator: "Joseph Harwood",
-  metadataBase: new URL("https://joeharwood.dev"),
+  metadataBase: new URL("https://www.devjoe.io"),
   openGraph: {
     type: "website",
     locale: "en_GB",
-    url: "https://joeharwood.dev",
+    url: "https://www.devjoe.io",
     title: "DevJoe — Custom software for businesses",
     description:
       "Custom booking systems, customer portals, and internal tools for businesses that have outgrown spreadsheets.",

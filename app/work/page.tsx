@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "Selected work across booking, onboarding, discovery, customer experiences, and internal workflows.",
   openGraph: {
     type: "website",
-    url: "https://joeharwood.dev/work",
+    url: "https://www.devjoe.io/work",
     title: "Work · DevJoe",
     description:
       "Selected work across booking, onboarding, discovery, customer experiences, and internal workflows.",

@@ -3,7 +3,7 @@ import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://joeharwood.dev";
+  const baseUrl = "https://www.devjoe.io";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {

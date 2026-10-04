@@ -30,7 +30,7 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = "https://joeharwood.dev";
+  const baseUrl = "https://www.devjoe.io";
   const caseStudyUrl = `${baseUrl}/work/${caseStudy.slug}`;
   const ogImage = caseStudy.image
     ? `${baseUrl}${caseStudy.image}`
@@ -89,7 +89,7 @@ export default async function CaseStudyPage({
     notFound();
   }
 
-  const baseUrl = "https://joeharwood.dev";
+  const baseUrl = "https://www.devjoe.io";
   const caseStudyUrl = `${baseUrl}/work/${caseStudy.slug}`;
 
   const jsonLd = {

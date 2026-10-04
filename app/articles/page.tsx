@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Notes on building and shipping web products, and what actually works running a small studio.",
   openGraph: {
     type: "website",
-    url: "https://joeharwood.dev/articles",
+    url: "https://www.devjoe.io/articles",
     title: "Articles · DevJoe",
     description:
       "Notes on building and shipping web products, and what actually works running a small studio.",
@@ -38,7 +38,7 @@ export default async function ArticlesPage() {
     name: "Articles · DevJoe",
     description:
       "Notes on building and shipping web products, and what actually works running a small studio.",
-    url: "https://joeharwood.dev/articles",
+    url: "https://www.devjoe.io/articles",
   };
 
   return (

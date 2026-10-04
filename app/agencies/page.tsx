@@ -3,7 +3,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import Navbar from "@/components/navbar";
 import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
-import { CALENDLY_URL } from "@/lib/constants";
+import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/constants";
 import TrackedLink from "@/components/tracked-link";
 
 export const metadata: Metadata = {
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     "Senior React and Next.js delivery support for design, marketing, and digital agencies that need dependable development capacity.",
   openGraph: {
     type: "website",
-    url: "https://joeharwood.dev/agencies",
+    url: "https://www.devjoe.io/agencies",
     title: "React and Next.js support for agencies · DevJoe",
     description:
       "Senior React and Next.js delivery support for agencies that need dependable development capacity.",
@@ -79,7 +79,7 @@ export default function AgenciesPage() {
                 <ArrowUpRight className="ml-2 h-5 w-5" />
               </TrackedLink>
               <TrackedLink
-                href="mailto:joeharwooddev@gmail.com?subject=Agency%20delivery%20support"
+                href={`mailto:${CONTACT_EMAIL}?subject=Agency%20delivery%20support`}
                 eventName="Agency Enquiry Clicked"
                 eventData={{ action: "email", location: "agency_hero" }}
                 className="inline-flex items-center justify-center rounded-full bg-[#F5F5F5] px-8 py-4 text-base font-medium text-neutral-900 transition-colors hover:bg-[#E5E5E5]"

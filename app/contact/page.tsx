@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Book a 30-minute fit call about an inefficient workflow, customer portal, booking system, or internal tool.",
   openGraph: {
     type: "website",
-    url: "https://joeharwood.dev/contact",
+    url: "https://www.devjoe.io/contact",
     title: "Contact · DevJoe",
     description:
       "Book a 30-minute fit call about an inefficient workflow, customer portal, booking system, or internal tool.",
