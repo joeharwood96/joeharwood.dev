@@ -4,8 +4,6 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import FadeIn from "@/components/motion/fade-in";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import { caseStudies } from "@/data/case-studies";
 import { CALENDLY_URL } from "@/lib/constants";
 import TrackedLink from "@/components/tracked-link";
@@ -137,7 +135,6 @@ export default async function CaseStudyPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar />
 
       <article className="px-6 pb-32 pt-40">
         <div className="mx-auto max-w-[1400px]">
@@ -279,7 +276,6 @@ export default async function CaseStudyPage({
         </div>
       </article>
 
-      <SiteFooter />
     </main>
   );
 }

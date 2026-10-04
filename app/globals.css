@@ -4,13 +4,13 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 10%;
+    --background: 0 0% 98%;
+    --foreground: 0 0% 4%;
     --card: 0 0% 96%;
     --card-foreground: 0 0% 10%;
     --popover: 0 0% 98%;
     --popover-foreground: 0 0% 10%;
-    --primary: 14 70% 48%;
+    --primary: 0 0% 4%;
     --primary-foreground: 0 0% 100%;
     --secondary: 0 0% 95%;
     --secondary-foreground: 0 0% 10%;
@@ -20,30 +20,13 @@
     --accent-foreground: 0 0% 10%;
     --destructive: 0 74% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 0 0% 87%;
+    --border: 0 0% 90%;
     --input: 0 0% 87%;
-    --ring: 14 70% 48%;
+    --ring: 0 0% 4%;
     --surface: 0 0% 96%;
     --surface-foreground: 0 0% 10%;
     --radius: 0.75rem;
 
-    --gradient-hero:
-      radial-gradient(
-        ellipse 110% 70% at 72% 32%,
-        hsl(14 78% 70% / 0.55),
-        transparent 62%
-      ),
-      radial-gradient(
-        ellipse 80% 60% at 18% 20%,
-        hsl(22 85% 78% / 0.42),
-        transparent 58%
-      ),
-      radial-gradient(
-        ellipse 100% 80% at 50% 110%,
-        hsl(28 55% 82% / 0.45),
-        transparent 60%
-      ),
-      hsl(var(--background));
   }
 }
 
@@ -95,8 +78,35 @@
     animation: fadeIn 0.6s ease-out forwards;
   }
 
-  .hero-gradient {
-    background-image: var(--gradient-hero);
+  .mono-label {
+    @apply font-mono text-xs uppercase tracking-[0.08em] text-neutral-500;
+  }
+
+  /* 1px frame with corner ticks, as on vercel.com */
+  .grid-frame {
+    @apply relative border border-neutral-200;
+  }
+
+  .grid-frame::before,
+  .grid-frame::after {
+    content: "";
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    pointer-events: none;
+    background:
+      linear-gradient(theme("colors.neutral.400"), theme("colors.neutral.400")) center / 1px 100% no-repeat,
+      linear-gradient(theme("colors.neutral.400"), theme("colors.neutral.400")) center / 100% 1px no-repeat;
+  }
+
+  .grid-frame::before {
+    top: -6px;
+    left: -6px;
+  }
+
+  .grid-frame::after {
+    right: -6px;
+    bottom: -6px;
   }
 
   .text-balance {

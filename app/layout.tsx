@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/react";
 import MotionProvider from "@/components/motion/motion-provider";
+import Navbar from "@/components/navbar";
+import SiteFooter from "@/components/site-footer";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -81,7 +83,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <MotionProvider>{children}</MotionProvider>
+        <MotionProvider>
+          <Navbar />
+          {children}
+          <SiteFooter />
+        </MotionProvider>
         <Analytics />
       </body>
     </html>

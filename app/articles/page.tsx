@@ -1,6 +1,4 @@
 import { Metadata } from "next";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import BlogPostCard from "@/components/blog-post-card";
 import { getBlogPosts } from "@/lib/feed";
@@ -48,7 +46,6 @@ export default async function ArticlesPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar />
 
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
         <FadeIn y={20} duration={0.8}>
@@ -80,7 +77,6 @@ export default async function ArticlesPage() {
         )}
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

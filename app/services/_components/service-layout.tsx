@@ -1,7 +1,5 @@
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import {
   Accordion,
@@ -21,7 +19,6 @@ export default function ServiceLayout({ service }: { service: Service }) {
 
   return (
     <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-      <Navbar />
 
       {/* Hero */}
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
@@ -274,7 +271,6 @@ export default function ServiceLayout({ service }: { service: Service }) {
         </Link>
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

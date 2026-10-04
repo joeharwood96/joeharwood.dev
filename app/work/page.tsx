@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import CaseStudyCard from "@/components/case-study-card";
 import FadeIn from "@/components/motion/fade-in";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import { caseStudies } from "@/data/case-studies";
 
 export const metadata: Metadata = {
@@ -30,7 +28,6 @@ export const metadata: Metadata = {
 export default function WorkPage() {
   return (
     <main className="relative min-h-screen bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-      <Navbar />
 
       <section className="px-6 pb-20 pt-40 sm:pt-52">
         <div className="mx-auto max-w-[1400px]">
@@ -56,7 +53,6 @@ export default function WorkPage() {
         </div>
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

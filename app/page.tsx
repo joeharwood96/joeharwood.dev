@@ -2,8 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import HomeProcess from "@/components/home-process";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { caseStudies } from "@/data/case-studies";
 import { services } from "@/data/services";
@@ -105,7 +103,6 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar />
 
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-52 sm:pb-32 sm:pt-44 lg:pt-40">
         <div className="max-w-6xl">
@@ -377,7 +374,6 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

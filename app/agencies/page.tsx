@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import { CALENDLY_URL, CONTACT_EMAIL } from "@/lib/constants";
 import TrackedLink from "@/components/tracked-link";
@@ -51,7 +49,6 @@ const capabilities = [
 export default function AgenciesPage() {
   return (
     <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-      <Navbar />
 
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-20 pt-40 sm:pt-52">
         <FadeIn y={20} duration={0.8}>
@@ -187,7 +184,6 @@ export default function AgenciesPage() {
         </FadeIn>
       </section>
 
-      <SiteFooter />
     </main>
   );
 }

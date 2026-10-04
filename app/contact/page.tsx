@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import Navbar from "@/components/navbar";
-import SiteFooter from "@/components/site-footer";
 import FadeIn from "@/components/motion/fade-in";
 import ContactForm from "@/components/contact-form";
 import { CALENDLY_URL } from "@/lib/constants";
@@ -25,7 +23,6 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <main className="relative flex min-h-screen flex-col bg-white pb-32 font-sans text-neutral-900 selection:bg-neutral-200">
-      <Navbar />
       <CalendlyEventTracking />
 
       <section className="mx-auto w-full max-w-[1400px] px-6 pb-16 pt-32 sm:pt-40">
@@ -73,7 +70,6 @@ export default function ContactPage() {
         </FadeIn>
       </section>
 
-      <SiteFooter />
 
       <Script
         src="https://assets.calendly.com/assets/external/widget.js"
