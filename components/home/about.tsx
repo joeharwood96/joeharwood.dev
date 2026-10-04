@@ -8,16 +8,15 @@ import { LINKEDIN_URL } from "@/lib/nav";
 export default function About() {
   return (
     <Section id="about" innerClassName="grid border-b md:grid-cols-[320px_1fr]">
-      <div className="border-neutral-200 p-6 sm:p-10 max-md:border-b md:border-r">
-        <div className="relative aspect-[4/5] w-full max-w-[280px] overflow-hidden border border-neutral-200 bg-neutral-100">
-          <Image
-            src="/joe.png"
-            alt="Joe Harwood"
-            fill
-            sizes="280px"
-            className="object-cover"
-          />
-        </div>
+      {/* Photo fills the whole cell, matching its height to the text beside it. */}
+      <div className="relative overflow-hidden border-neutral-200 bg-neutral-100 max-md:aspect-[4/5] max-md:border-b md:border-r">
+        <Image
+          src="/joe.png"
+          alt="Joe Harwood"
+          fill
+          sizes="(min-width: 768px) 320px, 100vw"
+          className="object-cover object-[50%_30%]"
+        />
       </div>
 
       <FadeIn y={12} className="p-6 sm:p-10">
