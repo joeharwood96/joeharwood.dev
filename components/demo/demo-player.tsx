@@ -36,9 +36,15 @@ export default function DemoPlayer({
 
   useEffect(() => {
     if (stopped) return;
+    let last = performance.now();
     const id = setInterval(() => {
+      // Advance by real elapsed time (capped) so throttled timers in
+      // background tabs don't slow the demo down or make it jump ahead.
+      const now = performance.now();
+      const step = Math.min(now - last, 250);
+      last = now;
       setPlayhead((prev) => {
-        const next = prev.t + TICK;
+        const next = prev.t + step;
         return next >= scenes[prev.scene].duration
           ? { scene: (prev.scene + 1) % scenes.length, t: 0 }
           : { scene: prev.scene, t: next };

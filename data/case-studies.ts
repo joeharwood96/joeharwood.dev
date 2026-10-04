@@ -68,7 +68,7 @@ export const caseStudies: CaseStudy[] = [
       "I designed and built the marketplace around simple onboarding, interest-led browsing, location-aware discovery, and SEO-friendly pages that helped real organisers become discoverable.",
     link: "https://weeknights.nl/",
     tags: ["Next.js", "TypeScript", "Supabase", "Stripe Connect"],
-    image: "/weeknights.png",
+    image: "/weeknights.webp",
     features: [
       "Event publishing, booking and ticketing for hosts and guests",
       "Stripe Connect onboarding, payments and payouts for hosts",
@@ -104,7 +104,7 @@ export const caseStudies: CaseStudy[] = [
       "I built a conversational interface over the NS API so users could ask journey questions naturally and receive grounded, structured travel answers.",
     link: "https://www.railgpt.app",
     tags: ["Next.js", "TypeScript", "OpenAI", "NS API"],
-    image: "/railgpt.png",
+    image: "/railgpt.webp",
     features: [
       "Natural language journeys for departures, arrivals, and transfers",
       "Conversational UI layered over a real transport API",
